@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --font-main: 'Poppins', sans-serif;
+  --font-alt: 'Space Grotesk', sans-serif;
+
+  /* Sizes */
+  --container-width: 1400px;
+  --header-height: 80px;
+  --section-spacing: 120px;
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.5s ease;
+  --transition-slow: 0.8s ease;
+}
+
+/* Dark Theme (default) */
+.dark {
+  /* Colors */
+  --color-bg: #050505;
+  --color-bg-rgb: 5, 5, 5;
+  --color-bg-alt: #0a0a0a;
+  --color-bg-alt-rgb: 10, 10, 10;
+  --color-text: #ffffff;
+  --color-text-rgb: 255, 255, 255;
+  --color-text-alt: rgba(255, 255, 255, 0.7);
+  --color-primary: #00c8ff;
+  --color-primary-rgb: 0, 200, 255;
+  --color-secondary: #ff3e6c;
+  --color-secondary-rgb: 255, 62, 108;
+  --color-accent: #7928ca;
+  --color-accent-rgb: 121, 40, 202;
+}
+
+/* Light Theme */
+.light {
+  /* Colors */
+  --color-bg: #f5f5f5;
+  --color-bg-rgb: 245, 245, 245;
+  --color-bg-alt: #ffffff;
+  --color-bg-alt-rgb: 255, 255, 255;
+  --color-text: #121212;
+  --color-text-rgb: 18, 18, 18;
+  --color-text-alt: rgba(18, 18, 18, 0.7);
+  --color-primary: #0078ff;
+  --color-primary-rgb: 0, 120, 255;
+  --color-secondary: #e91e63;
+  --color-secondary-rgb: 233, 30, 99;
+  --color-accent: #6200ea;
+  --color-accent-rgb: 98, 0, 234;
+}
+
+/* Default theme (for initial load before JS) */
+:root {
+  /* Colors */
+  --color-bg: #050505;
+  --color-bg-rgb: 5, 5, 5;
+  --color-bg-alt: #0a0a0a;
+  --color-bg-alt-rgb: 10, 10, 10;
+  --color-text: #ffffff;
+  --color-text-rgb: 255, 255, 255;
+  --color-text-alt: rgba(255, 255, 255, 0.7);
+  --color-primary: #00c8ff;
+  --color-primary-rgb: 0, 200, 255;
+  --color-secondary: #ff3e6c;
+  --color-secondary-rgb: 255, 62, 108;
+  --color-accent: #7928ca;
+  --color-accent-rgb: 121, 40, 202;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-alt);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+button, .button {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-primary);
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-main);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button:hover, .button:hover {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility Classes */
+.container {
+  width: 90%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--section-spacing) 0;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

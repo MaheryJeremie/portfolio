@@ -1,0 +1,26 @@
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--color-bg-alt);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+footer p {
+  color: var(--color-text-alt);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+footer p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  footer {
+    padding: 2rem 1rem;
+  }
+  
+  footer p {
+    font-size: 0.8rem;
+  }
+}
