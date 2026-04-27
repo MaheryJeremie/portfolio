@@ -1,0 +1,203 @@
+﻿export const fr = {
+  lang: 'fr',
+  nav: {
+    about: 'Ã€ Propos',
+    skills: 'CompÃ©tences',
+    experience: 'ExpÃ©rience',
+    education: 'Formation',
+    projects: 'Projets',
+    contact: 'Contact',
+    downloadCV: 'TÃ©lÃ©charger CV',
+  },
+  hero: {
+    greeting: 'Bonjour, je suis',
+    name: 'Nala Rehareha',
+    fullName: 'RANAIVO RATSIHARINIEFTRA',
+    title: 'DÃ©veloppeur Fullstack',
+    subtitle: "PassionnÃ© d'IA & Big Data, venu de Madagascar",
+    description: "Je construis des systÃ¨mes intelligents et des interfaces fluides â€” des pipelines IA aux applications prÃªtes pour la production.",
+    cta: 'Explorer mes travaux',
+    ctaContact: 'Me contacter',
+    github: 'GitHub',
+  },
+  about: {
+    title: 'Ã€ Propos',
+    subtitle: 'La personne derriÃ¨re le code',
+    paragraphs: [
+      "Je suis Ã©tudiant en informatique avec une vÃ©ritable passion pour l'Intelligence Artificielle â€” bien que je ne m'en remette pas pour tout. Mon objectif est d'obtenir un diplÃ´me spÃ©cialisÃ© dans ce domaine.",
+      "Je n'ai pas toujours aimÃ© la tech, mais dÃ¨s que j'y ai mis les pieds, tout a changÃ©. Je m'Ã©panouis dans un monde qui bouge vite et ne s'arrÃªte jamais.",
+      "GuidÃ© par l'ambition : bÃ¢tir une carriÃ¨re solide, maÃ®triser mon mÃ©tier, et un jour prendre ma retraite loin de tout Ã©cran â€” entourÃ© de livres, de nature et de bons films.",
+    ],
+    location: 'Antananarivo, Madagascar',
+    email: 'rehareharanaivo@gmail.com',
+    phone: '+261 38 93 120 30',
+    github: 'github.com/rehareha261',
+    interests: {
+      title: 'Centres d\'intÃ©rÃªt',
+      items: ['Aventure & Voyage', 'Natation', 'Lecture', 'Cuisine'],
+    },
+    languages: {
+      title: 'Langues',
+      items: [
+        { lang: 'Malgache', level: 'Langue maternelle' },
+        { lang: 'FranÃ§ais', level: 'AvancÃ©' },
+        { lang: 'Anglais', level: 'AvancÃ©' },
+      ],
+    },
+  },
+  skills: {
+    title: 'CompÃ©tences',
+    subtitle: 'Mon univers technique',
+    categories: [
+      {
+        key: 'frontend',
+        label: 'Frontend',
+        items: ['React JS', 'Angular', 'Next JS', 'AngularJS', 'HTML/CSS', 'JavaScript'],
+      },
+      {
+        key: 'backend',
+        label: 'Backend',
+        items: ['Spring', 'Node.js', 'Django', 'Symfony', '.NET'],
+      },
+      {
+        key: 'database',
+        label: 'Bases de donnÃ©es',
+        items: ['MySQL', 'PostgreSQL', 'Oracle', 'MongoDB'],
+      },
+      {
+        key: 'ai',
+        label: 'IA & DonnÃ©es',
+        items: ['LangChain', 'LangGraph', 'Google Gemini', 'OpenAI / Claude', 'Web Scraping', 'Analyse de donnÃ©es'],
+      },
+      {
+        key: 'tools',
+        label: 'Outils',
+        items: ['Git / GitHub', 'Google Sheets', 'Monday.com', 'Slack'],
+      },
+      {
+        key: 'soft',
+        label: 'Soft Skills',
+        items: ['PensÃ©e stratÃ©gique', 'Esprit d\'Ã©quipe', 'PassionnÃ© & MotivÃ©', 'Autonome & DÃ©brouillard'],
+      },
+    ],
+  },
+  experience: {
+    title: 'ExpÃ©rience',
+    subtitle: 'Mon parcours professionnel',
+    jobs: [
+      {
+        role: 'DÃ©veloppeur IA',
+        company: 'Smartelia',
+        period: 'AoÃ»t 2025 â€“ Aujourd\'hui',
+        tech: ['Python', 'React JS', 'Angular', 'Next JS', 'Node JS', 'Google Sheets'],
+        bullets: [
+          'DÃ©veloppÃ© un gÃ©nÃ©rateur SEO Amazon propulsÃ© par l\'IA avec Google Gemini pour produire des titres, bullet points et descriptions optimisÃ©s â€” boostant l\'efficacitÃ© de l\'Ã©quipe Contenu Ã  grande Ã©chelle.',
+          'ConÃ§u un pipeline SEO multilingue qui traduit et adapte automatiquement le contenu produit Amazon sur 7 marchÃ©s europÃ©ens, en appliquant les normes de conformitÃ©.',
+          'DÃ©veloppÃ© un outil de rÃ©vision de contenu A+ Amazon pilotÃ© par l\'IA avec Gemini et LangChain, automatisant les workflows de relecture multi-clients.',
+          'MenÃ© des initiatives de web scraping et d\'extraction de donnÃ©es pour alimenter les dÃ©cisions basÃ©es sur les donnÃ©es au sein des Ã©quipes.',
+        ],
+      },
+      {
+        role: 'Stagiaire Data & IA Engineer',
+        company: 'Virtuocode',
+        period: 'AoÃ»t 2025 â€“ DÃ©cembre 2025',
+        tech: ['Python', 'Monday.com', 'Slack', 'LangChain', 'LangGraph'],
+        bullets: [
+          'Construit un agent de codage IA entiÃ¨rement autonome qui convertit les tÃ¢ches Monday.com directement en Pull Requests GitHub prÃªtes pour la production.',
+          'UtilisÃ© Claude et les LLMs OpenAI dans un pipeline LangGraph selon un workflow rigoureux en plusieurs Ã©tapes : analyse du code, implÃ©mentation, QA automatisÃ©e, tests navigateur et validation humaine.',
+        ],
+      },
+      {
+        role: 'Coordinateur Projet, Communication & Ã‰vÃ©nements',
+        company: 'Peace in Garden',
+        period: 'Janvier 2024 â€“ AoÃ»t 2025',
+        tech: ['Google Sheets', 'Gestion d\'Ã©vÃ©nements', 'RÃ©seaux sociaux'],
+        bullets: [
+          'DÃ©fini et mis en Å“uvre des directives de stratÃ©gie de communication, assurant l\'alignement de l\'Ã©quipe et la planification d\'Ã©vÃ©nements de bout en bout.',
+          'AutomatisÃ© le suivi budgÃ©taire et les rapports financiers avec Google Sheets et des outils intÃ©grÃ©s, rationalisant les workflows et rÃ©duisant la charge manuelle.',
+        ],
+      },
+    ],
+  },
+  education: {
+    title: 'Formation',
+    subtitle: 'Parcours acadÃ©mique',
+    items: [
+      {
+        degree: 'PremiÃ¨re annÃ©e de Master en Informatique',
+        school: 'IT University Madagascar',
+        period: 'DÃ©cembre 2025 â€“ PrÃ©sent',
+        icon: 'ðŸŽ“',
+      },
+      {
+        degree: 'Licence en Informatique',
+        school: 'IT University Madagascar',
+        period: 'Septembre 2022 â€“ DÃ©cembre 2025',
+        icon: 'ðŸŽ“',
+      },
+      {
+        degree: 'BaccalaurÃ©at â€” SpÃ©cialitÃ© MathÃ©matiques & Physique',
+        school: 'Ecole SacrÃ© Coeur Antanimena',
+        period: 'Septembre 2016 â€“ Juillet 2022',
+        icon: 'ðŸ“š',
+      },
+    ],
+  },
+  projects: {
+    title: 'Projets',
+    subtitle: 'Ce que j\'ai construit',
+    items: [
+      {
+        name: 'Application Centre Commercial',
+        description: "Plateforme multi-rÃ´les de type Akoor pour la gestion globale d'un centre commercial, des commerces et une interface client complÃ¨te.",
+        tech: ['Node.js', 'Express', 'AngularJS', 'MongoDB'],
+        github: 'https://github.com/rehareha261',
+        highlight: false,
+      },
+      {
+        name: 'GÃ©nÃ©rateur SEO Amazon (IA)',
+        description: 'Outil IA utilisant Google Gemini pour produire des titres, bullet points et descriptions Amazon optimisÃ©s â€” boostant l\'efficacitÃ© Ã  grande Ã©chelle.',
+        tech: ['Python', 'Google Gemini', 'React JS', 'Node JS'],
+        github: 'https://github.com/rehareha261',
+        highlight: true,
+      },
+      {
+        name: 'Pipeline SEO Multilingue',
+        description: "Pipeline automatisÃ© qui traduit et adapte le contenu produit Amazon sur 7 marchÃ©s europÃ©ens en appliquant les normes de conformitÃ©.",
+        tech: ['Python', 'LangChain', 'Google Gemini'],
+        github: 'https://github.com/rehareha261',
+        highlight: false,
+      },
+      {
+        name: 'Agent de Codage IA Autonome',
+        description: 'Agent IA entiÃ¨rement autonome convertissant les tÃ¢ches Monday.com en Pull Requests GitHub prÃªtes pour la production via un pipeline LangGraph rigoureux.',
+        tech: ['Python', 'LangChain', 'LangGraph', 'OpenAI', 'Claude'],
+        github: 'https://github.com/rehareha261',
+        highlight: true,
+      },
+      {
+        name: 'Fier Mada 2025',
+        description: 'Management stratÃ©gique et coordination opÃ©rationnelle pour l\'Ã©vÃ©nement Fier Mada 2025, incluant stratÃ©gie rÃ©seaux sociaux et communication.',
+        tech: ['Gestion d\'Ã©vÃ©nements', 'StratÃ©gie rÃ©seaux sociaux', 'Google Sheets'],
+        github: null,
+        highlight: false,
+      },
+    ],
+  },
+  contact: {
+    title: 'Travaillons Ensemble',
+    subtitle: 'Ouvert aux opportunitÃ©s â€” construisons quelque chose de significatif',
+    nameLabel: 'Votre Nom',
+    emailLabel: 'Votre Email',
+    messageLabel: 'Votre Message',
+    sendButton: 'Envoyer',
+    sending: 'Envoi en cours...',
+    sent: 'Message envoyÃ© !',
+    findMe: 'Me retrouver sur',
+    orEmail: 'Ou Ã©crire directement Ã ',
+  },
+  footer: {
+    madeWith: 'ConÃ§u avec curiositÃ©, code & amour des bonnes histoires.',
+    rights: 'Â© 2025 Nala Rehareha. Tous droits rÃ©servÃ©s.',
+  },
+};

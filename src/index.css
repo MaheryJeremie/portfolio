@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --void:          #0C0C1A;
+  --ink:           #101020;
+  --surface:       #141428;
+  --card:          #181830;
+  --card-hover:    #1E1E38;
+
+  --lime:          #C2F970;
+  --lime-dim:      rgba(194,249,112,0.10);
+  --lime-glow:     rgba(194,249,112,0.22);
+  --violet:        #7C3AED;
+  --violet-dim:    rgba(124,58,237,0.12);
+  --amber:         #FBBF24;
+
+  --white:         #F6F4FF;
+  --muted:         rgba(246,244,255,0.55);
+  --dim:           rgba(246,244,255,0.22);
+  --faint:         rgba(246,244,255,0.08);
+
+  --border:        rgba(246,244,255,0.08);
+  --border-mid:    rgba(246,244,255,0.13);
+  --border-bright: rgba(246,244,255,0.22);
+
+  --font-display:  'Syne', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo:  cubic-bezier(0.7, 0, 0.84, 0);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--void);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.08), transparent);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: none;
 }
+
+@media (hover: none) {
+  body, a, button { cursor: auto; }
+}
+
+button { border: none; background: none; font-family: inherit; }
+a      { color: inherit; text-decoration: none; }
+
+::-webkit-scrollbar       { width: 2px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: rgba(194,249,112,0.2); }
+::-webkit-scrollbar-thumb:hover { background: var(--lime); }
+
+::selection { background: rgba(194,249,112,0.2); color: var(--white); }

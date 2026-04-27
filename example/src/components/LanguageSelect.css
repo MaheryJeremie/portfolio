@@ -1,0 +1,173 @@
+﻿/* ===== LANGUAGE SELECT ===== */
+.lang-select {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.lang-select::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lang-select::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw; height: 70vh;
+  background: radial-gradient(ellipse, rgba(123,155,115,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lang-select__ghost {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -52%);
+  font-family: var(--font-display);
+  font-size: clamp(18rem, 38vw, 54rem);
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245,240,230,0.03);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.lang-select__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.lang-select__mark {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(245,240,230,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.lang-select__name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  margin: 0;
+}
+
+.lang-select__name-line { display: block; }
+.lang-select__name-indent { padding-left: clamp(1.5rem, 3vw, 3.5rem); }
+
+.lang-select__name em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.lang-select__tagline {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(245,240,230,0.25);
+  margin: 0.5rem 0 1.5rem;
+}
+
+.lang-select__buttons {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid rgba(245,240,230,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.lang-select__sep {
+  width: 1px;
+  background: rgba(245,240,230,0.07);
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 2.2rem 3.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.4s cubic-bezier(0.16,1,0.3,1);
+  min-width: 190px;
+}
+
+.lang-btn:hover { background: rgba(245,240,230,0.04); }
+
+.lang-btn__code {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245,240,230,0.22);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  transition: -webkit-text-stroke 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.lang-btn:hover .lang-btn__code { -webkit-text-stroke: 1px var(--green); }
+
+.lang-btn__label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: rgba(245,240,230,0.4);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.35s;
+}
+
+.lang-btn:hover .lang-btn__label { color: var(--cream); }
+
+.lang-btn__sub {
+  font-family: var(--font-body);
+  font-size: 0.63rem;
+  color: rgba(245,240,230,0.16);
+  font-style: italic;
+  transition: color 0.35s;
+}
+
+.lang-btn:hover .lang-btn__sub { color: rgba(245,240,230,0.35); }
+
+@media (max-width: 480px) {
+  .lang-select__buttons { flex-direction: column; }
+  .lang-select__sep { width: auto; height: 1px; }
+  .lang-btn { padding: 1.8rem 2.5rem; min-width: 240px; }
+}

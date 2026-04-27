@@ -1,0 +1,126 @@
+/* ── Skills ── */
+.skills {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
+  position: relative;
+}
+
+.skills__num {
+  position: absolute;
+  top: 4rem; right: clamp(1.5rem, 6vw, 6rem);
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 14vw, 14rem);
+  font-weight: 900;
+  color: rgba(240, 238, 230, 0.03);
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+
+.skills__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills__header {
+  margin-bottom: 3rem;
+}
+
+.skills__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1rem;
+}
+
+.skills__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--lime);
+}
+
+.skills__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--white);
+  margin: 0;
+}
+
+.skills__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Tabs */
+.skills__tabs {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(240, 238, 230, 0.08);
+}
+
+.skills__tab {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 230, 0.35);
+  background: none;
+  border: none;
+  padding: 0.85rem 1.5rem;
+  cursor: none;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.skills__tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: var(--lime);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.skills__tab--active { color: var(--white); }
+.skills__tab--active::after { transform: scaleX(1); }
+.skills__tab:hover { color: rgba(240, 238, 230, 0.7); }
+
+/* Items grid */
+.skills__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1px;
+  background: rgba(240, 238, 230, 0.07);
+}
+
+.skills__item {
+  background: var(--void);
+  padding: 1.2rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(240, 238, 230, 0.55);
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+  cursor: none;
+}
+
+.skills__item:hover {
+  background: rgba(205, 254, 2, 0.05);
+  color: var(--lime);
+}

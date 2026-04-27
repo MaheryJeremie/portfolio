@@ -1,0 +1,172 @@
+/* ===== EXPERIENCE ===== */
+.experience {
+  background: var(--ink);
+  padding: 12rem 8vw 10rem;
+  position: relative;
+  overflow: hidden;
+}
+.experience__num {
+  position: absolute;
+  top: -2rem; right: 6vw;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 16vw, 18rem);
+  font-weight: 800;
+  color: rgba(245,240,230,0.025);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.experience__inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+/* Header */
+.experience__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1.5rem;
+}
+.experience__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0 0 5rem;
+}
+/* Bento layout: sidebar + panel */
+.experience__layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  border: 1px solid rgba(245,240,230,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.experience__sidebar {
+  border-right: 1px solid rgba(245,240,230,0.07);
+  display: flex;
+  flex-direction: column;
+}
+.experience__tab {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(245,240,230,0.07);
+  padding: 1.75rem 2rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.experience__tab:last-child { border-bottom: none; }
+.experience__tab:hover { background: rgba(245,240,230,0.03); }
+.experience__tab--active { background: rgba(245,240,230,0.05); }
+.experience__tab-role {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(245,240,230,0.38);
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+.experience__tab--active .experience__tab-role { color: var(--cream); }
+.experience__tab-company {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(245,240,230,0.22);
+  transition: color 0.2s;
+}
+.experience__tab--active .experience__tab-company { color: var(--green); }
+/* Panel */
+.experience__content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.experience__header { margin-bottom: 1rem; }
+.experience__role {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.1;
+}
+.experience__company {
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--green);
+}
+.experience__period {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,240,230,0.22);
+  margin: 0.5rem 0 2.5rem;
+}
+.experience__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(245,240,230,0.06);
+}
+.experience__tech-tag {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(245,240,230,0.4);
+  background: rgba(245,240,230,0.04);
+  border: 1px solid rgba(245,240,230,0.07);
+  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+}
+.experience__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.experience__bullet {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(245,240,230,0.48);
+  line-height: 1.75;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.experience__bullet-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+  margin-top: 0.65rem;
+  flex-shrink: 0;
+}
+@media (max-width: 900px) {
+  .experience__layout { grid-template-columns: 1fr; }
+  .experience__sidebar { border-right: none; border-bottom: 1px solid rgba(245,240,230,0.07); flex-direction: row; overflow-x: auto; }
+  .experience__tab { border-bottom: none; border-right: 1px solid rgba(245,240,230,0.07); min-width: 150px; }
+  .experience__content { padding: 2rem 1.5rem; }
+}

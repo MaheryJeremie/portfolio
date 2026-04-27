@@ -1,0 +1,207 @@
+/* ── Projects ── */
+.projects {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
+  position: relative;
+}
+
+.projects__num {
+  position: absolute;
+  top: 4rem; right: clamp(1.5rem, 6vw, 6rem);
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 14vw, 14rem);
+  font-weight: 900;
+  color: rgba(240, 238, 230, 0.03);
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+
+.projects__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.projects__header {
+  margin-bottom: 3rem;
+}
+
+.projects__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1rem;
+}
+
+.projects__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--lime);
+}
+
+.projects__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--white);
+  margin: 0;
+}
+
+/* Bento */
+.projects__bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(240, 238, 230, 0.07);
+}
+
+/* Cards */
+.project-card {
+  background: var(--void);
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 280px;
+  cursor: none;
+  transition: background 0.4s ease;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(205, 254, 2, 0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.project-card:hover { background: rgba(205, 254, 2, 0.02); }
+.project-card:hover::before { opacity: 1; }
+
+.project-card--featured {
+  grid-column: span 2;
+  min-height: 360px;
+}
+
+.project-card__badge {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--lime);
+  padding: 0.25em 0.6em;
+}
+
+.project-card__tag {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.project-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin: 0;
+  transition: color 0.3s;
+  flex-shrink: 0;
+}
+
+.project-card:hover .project-card__name { color: var(--lime); }
+
+.project-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: rgba(240, 238, 230, 0.45);
+  margin: 0;
+  flex: 1;
+  white-space: pre-line;
+}
+
+.project-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.project-card__tech-tag {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 230, 0.5);
+  border: 1px solid rgba(240, 238, 230, 0.1);
+  padding: 0.2em 0.55em;
+}
+
+.project-card__link {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: auto;
+  transition: color 0.3s, gap 0.3s;
+  flex-shrink: 0;
+}
+
+.project-card__link--live {
+  color: var(--lime);
+  border: 1px solid rgba(194,249,112,0.3);
+  padding: 0.2em 0.6em;
+  margin-top: auto;
+}
+
+.project-card__link--live:hover {
+  background: var(--lime-dim);
+  gap: 0.5rem;
+}
+
+.project-card__link:hover {
+  color: var(--lime);
+  gap: 0.6rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .projects__bento { grid-template-columns: 1fr 1fr; }
+  .project-card--featured { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+  .projects__bento { grid-template-columns: 1fr; }
+  .project-card--featured { grid-column: span 1; }
+}

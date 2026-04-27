@@ -1,0 +1,116 @@
+/* ===== EDUCATION ===== */
+.education {
+  background: var(--cream);
+  padding: 12rem 8vw 10rem;
+  position: relative;
+  overflow: hidden;
+}
+.education__num {
+  position: absolute;
+  top: -2rem; right: 6vw;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 16vw, 18rem);
+  font-weight: 800;
+  color: rgba(10,11,9,0.035);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.education__inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.education__header { margin-bottom: 5rem; }
+.education__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1.5rem;
+}
+.education__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0;
+}
+/* Bento grid */
+.education__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+}
+.edu-card {
+  border: 1px solid rgba(10,11,9,0.07);
+  border-radius: 4px;
+  padding: 2.5rem;
+  background: rgba(10,11,9,0.02);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-expo);
+  grid-column: span 6;
+}
+.edu-card:first-child { grid-column: span 7; }
+.edu-card:nth-child(2) { grid-column: span 5; }
+.edu-card:last-child { grid-column: span 12; display: flex; align-items: flex-start; gap: 4rem; }
+.edu-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--green);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.edu-card:hover::before { opacity: 1; }
+.edu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(10,11,9,0.08);
+  border-color: rgba(10,11,9,0.12);
+}
+.edu-card__icon { font-size: 1.5rem; margin-bottom: 1.5rem; display: block; }
+.education__period {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(10,11,9,0.28);
+  margin: 0 0 0.8rem;
+}
+.education__degree {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  margin: 0 0 0.4rem;
+  line-height: 1.15;
+}
+.education__school {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(10,11,9,0.42);
+  margin: 0;
+}
+/* Legacy timeline classes (no-op, kept for compat) */
+.education__timeline { display: contents; }
+.education__item { display: contents; }
+.education__marker { display: none; }
+.education__card { display: contents; }
+@media (max-width: 900px) {
+  .education__grid { grid-template-columns: 1fr; }
+  .edu-card,
+  .edu-card:first-child,
+  .edu-card:nth-child(2),
+  .edu-card:last-child { grid-column: span 1; flex-direction: column; gap: 0; }
+}

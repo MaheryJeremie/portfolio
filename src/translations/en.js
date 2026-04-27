@@ -1,0 +1,212 @@
+export const en = {
+  lang: 'en',
+  nav: {
+    about: 'About',
+    projects: 'Projects',
+    skills: 'Skills',
+    education: 'Education',
+    experience: 'Experience',
+    process: 'Process',
+    contact: 'Contact',
+    downloadCV: 'Download CV',
+  },
+  hero: {
+    eyebrow: 'Junior Developer · 2026',
+    available: 'Available',
+    name1: 'Mahery',
+    name2: 'Ramahay',
+    description: 'My job is to turn your ideas into digital tools.',
+    cta: 'See my work',
+    ctaGithub: 'GitHub ↗',
+    marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
+  },
+  about: {
+    title: 'About',
+    subtitle: 'The dev behind the terminal',
+    paragraphs: [
+      'Code runs in the family.',
+      "Growing up, I watched my father work at his screen. I didn't understand much of those scrolling lines, but I already knew that's where the magic happened. I was immersed in that world indirectly for years, so choosing development wasn't a surprise — it was inevitable.",
+      "Once I started myself, curiosity became passion. Now graduated, I'm launching my career with the drive to build my own solutions, while continuing my studies to go even further.",
+    ],
+    location: 'Antananarivo, Madagascar',
+    email: 'maheryramahay@gmail.com',
+    phone: '+261 38 72 721 78',
+    github: 'github.com/MaheryJeremie',
+    linkedin: 'linkedin.com/in/mahery-ramahay-mandimby-823b6b315',
+    interests: {
+      title: 'Interests',
+      items: ['Music', 'Video Games', 'Tech Products'],
+    },
+    languages: {
+      title: 'Languages',
+      items: [
+        { lang: 'Malagasy', level: 'Native' },
+        { lang: 'French', level: 'Fluent' },
+        { lang: 'English', level: 'Intermediate' },
+      ],
+    },
+    stats: [],
+  },
+  projects: {
+    title: 'Projects',
+    subtitle: 'Things I shipped',
+    items: [
+      {
+        name: 'Shopping Centre App',
+        description: 'App for an Akoor-style shopping centre:\n— Admin: global management of the centre (users, shops, events, ...)\n— Merchants: manage their shop (info, promotions, ...)\n— Clients: browse the site (shop listings, reviews, favourites, ...)',
+        tech: ['Node.js', 'Express', 'Angular JS', 'MongoDB'],
+        github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
+        live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
+        highlight: true,
+        tag: 'Academic project',
+      },
+      {
+        name: 'Budget Management Module (Odoo)',
+        description:
+          'Custom Odoo 8 module: budget planning, real-time expense tracking, comparative analysis, dashboard and automated notifications.',
+        tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
+        github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
+        live: null,
+        highlight: true,
+        tag: 'Degree project',
+      },
+      {
+        name: 'Personal Portfolio',
+        description:
+          'This portfolio — built with React, Framer Motion, Three.js, bilingual EN/FR, with 3D scenes inspired by music, gaming & tech.',
+        tech: ['React', 'Three.js', 'Framer Motion'],
+        github: 'https://github.com/MaheryJeremie',
+        live: null,
+        highlight: true,
+        tag: 'Design',
+      },
+    ],
+  },
+  skills: {
+    title: 'Skills',
+    subtitle: 'My technical stack',
+    categories: [
+      {
+        key: 'frontend',
+        label: 'Frontend',
+        items: ['React', 'Angular JS', 'React Native', 'Vue.js', 'HTML/CSS', 'Bootstrap'],
+      },
+      {
+        key: 'backend',
+        label: 'Backend',
+        items: ['Spring Boot', 'Node.js / Express', 'Symfony', '.NET', 'Odoo'],
+      },
+      {
+        key: 'languages',
+        label: 'Languages',
+        items: ['Java', 'PHP', 'Python', 'JavaScript', 'C', 'C#', 'C++'],
+      },
+      {
+        key: 'database',
+        label: 'Databases',
+        items: ['PostgreSQL', 'MySQL', 'Oracle', 'MongoDB', 'Firebase'],
+      },
+      {
+        key: 'tools',
+        label: 'Tools',
+        items: ['Gitlab / GitHub', 'Docker', 'Firebase'],
+      },
+    ],
+  },
+  process: {
+    title: 'How I Work',
+    subtitle: 'My approach to every project',
+    steps: [
+      {
+        num: '01',
+        title: 'Understand',
+        desc: 'I start by deeply understanding the problem — user needs, business logic, constraints. No code before clarity.',
+      },
+      {
+        num: '02',
+        title: 'Design',
+        desc: 'Architecture first. Clean schema, solid API contract, component structure. Think before typing.',
+      },
+      {
+        num: '03',
+        title: 'Build',
+        desc: 'Iterative development, clean commits, readable code. Features that work, not just features that ship.',
+      },
+      {
+        num: '04',
+        title: 'Refine',
+        desc: 'Code review, performance, UX polish. The last 20% that makes the difference between good and great.',
+      },
+    ],
+  },
+  education: {
+    title: 'Education',
+    subtitle: 'My academic background',
+    items: [
+      {
+        degree: 'Master 1 — Computer Science',
+        school: 'IT University',
+        period: 'January 2026 — Present',
+        location: 'Andoharanofotsy, Madagascar',
+        description: 'Common core curriculum.',
+      },
+      {
+        degree: "Bachelor's Degree — Computer Science",
+        school: 'IT University',
+        period: 'September 2022 — December 2025',
+        location: 'Andoharanofotsy, Madagascar',
+        description: 'Development track.',
+      },
+      {
+        degree: 'High School Diploma (Baccalauréat) — Science',
+        school: 'Collège Saint Michel',
+        period: '2010 - 2022',
+        location: 'Amparibe, Madagascar',
+        description: 'Science track.',
+      },
+    ],
+  },
+  experience: {
+    title: 'Experience',
+    subtitle: "Where I've worked",
+    jobs: [
+      {
+        role: 'Fullstack Developer',
+        company: 'GeoMadagascar',
+        period: 'April 2026 - Present',
+        location: 'Antananarivo, Madagascar',
+        type: 'Internship',
+        tech: ['Symfony', 'PHP', 'PostgreSQL'],
+        bullets: [
+          'Redesign and modernisation of the ConsoMyZone website interface.',
+        ],
+      },
+      {
+        role: 'Odoo Developer',
+        company: 'Assurances ARO',
+        period: 'September 2025 - November 2025',
+        location: 'Antananarivo, Madagascar',
+        type: 'Internship',
+        tech: ['Odoo 8', 'Python', 'XML', 'PostgreSQL'],
+        bullets: [
+          'Designed and built a custom budget management module for Odoo 8 from scratch.',
+          'Implemented real-time expense tracking with comparative analysis dashboards.',
+          'Set up automated email notifications triggered by budget threshold events.',
+          'Wrote full technical and functional documentation for handover.',
+        ],
+      },
+    ],
+  },
+  cta: {
+    title: "Let's build\nsomething.",
+    subtitle: 'Open to opportunities — internships, junior positions, freelance projects.',
+    btnCV: 'Download CV',
+    btnContact: 'Get in touch',
+    email: 'maheryramahay@gmail.com',
+  },
+  footer: {
+    built: 'Built with React, Three.js & too much coffee.',
+    links: 'GitHub · LinkedIn',
+    copy: '© 2026 Mahery Ramahay Mandimby',
+  },
+};

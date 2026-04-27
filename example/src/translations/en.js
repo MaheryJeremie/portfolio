@@ -1,0 +1,203 @@
+﻿export const en = {
+  lang: 'en',
+  nav: {
+    about: 'About',
+    skills: 'Skills',
+    experience: 'Experience',
+    education: 'Education',
+    projects: 'Projects',
+    contact: 'Contact',
+    downloadCV: 'Download CV',
+  },
+  hero: {
+    greeting: "Hi, I'm",
+    name: 'Nala Rehareha',
+    fullName: 'RANAIVO RATSIHARINIEFTRA',
+    title: 'Fullstack Developer',
+    subtitle: 'AI & Big Data enthusiast from Madagascar',
+    description: "I build intelligent systems and seamless interfaces â€” from AI pipelines to production-ready apps.",
+    cta: 'Explore my work',
+    ctaContact: 'Get in touch',
+    github: 'GitHub',
+  },
+  about: {
+    title: 'About Me',
+    subtitle: 'The person behind the code',
+    paragraphs: [
+      "I'm a Computer Science student with a genuine passion for Artificial Intelligence â€” though I don't rely on it for everything I do. My goal is to earn a degree specializing in that field.",
+      "I didn't always love tech, but the moment I stepped into it, everything changed. I thrive in a world that moves fast and never stands still.",
+      "Driven by ambition: build a strong career, master my craft, and one day retire far from any screen â€” surrounded by books, nature, and great films.",
+    ],
+    location: 'Antananarivo, Madagascar',
+    email: 'rehareharanaivo@gmail.com',
+    phone: '+261 38 93 120 30',
+    github: 'github.com/rehareha261',
+    interests: {
+      title: 'Interests',
+      items: ['Adventure & Travel', 'Swimming', 'Reading', 'Cooking'],
+    },
+    languages: {
+      title: 'Languages',
+      items: [
+        { lang: 'Malagasy', level: 'Native' },
+        { lang: 'French', level: 'Advanced' },
+        { lang: 'English', level: 'Advanced' },
+      ],
+    },
+  },
+  skills: {
+    title: 'Skills',
+    subtitle: 'My technical universe',
+    categories: [
+      {
+        key: 'frontend',
+        label: 'Frontend',
+        items: ['React JS', 'Angular', 'Next JS', 'AngularJS', 'HTML/CSS', 'JavaScript'],
+      },
+      {
+        key: 'backend',
+        label: 'Backend',
+        items: ['Spring', 'Node.js', 'Django', 'Symfony', '.NET'],
+      },
+      {
+        key: 'database',
+        label: 'Databases',
+        items: ['MySQL', 'PostgreSQL', 'Oracle', 'MongoDB'],
+      },
+      {
+        key: 'ai',
+        label: 'AI & Data',
+        items: ['LangChain', 'LangGraph', 'Google Gemini', 'OpenAI / Claude', 'Web Scraping', 'Data Analysis'],
+      },
+      {
+        key: 'tools',
+        label: 'Tools',
+        items: ['Git / GitHub', 'Google Sheets', 'Monday.com', 'Slack'],
+      },
+      {
+        key: 'soft',
+        label: 'Soft Skills',
+        items: ['Strategic Thinking', 'Team Player', 'Passionate & Driven', 'Resourceful & Self-Reliant'],
+      },
+    ],
+  },
+  experience: {
+    title: 'Experience',
+    subtitle: 'My professional journey',
+    jobs: [
+      {
+        role: 'AI Developer',
+        company: 'Smartelia',
+        period: 'August 2025 â€“ Present',
+        tech: ['Python', 'React JS', 'Angular', 'Next JS', 'Node JS', 'Google Sheets'],
+        bullets: [
+          'Built an AI-powered Amazon SEO generator using Google Gemini to produce optimized titles, bullet points, and descriptions â€” boosting Content team efficiency at scale.',
+          'Engineered a multilingual SEO pipeline auto-translating Amazon product content across 7 European marketplaces, enforcing compliance standards.',
+          'Developed an AI-driven Amazon A+ content review tool with Gemini and LangChain, automating multi-client proofreading workflows.',
+          'Executed targeted web scraping and data extraction initiatives to fuel data-driven decisions across cross-functional teams.',
+        ],
+      },
+      {
+        role: 'Intern Data & AI Engineer',
+        company: 'Virtuocode',
+        period: 'August 2025 â€“ December 2025',
+        tech: ['Python', 'Monday.com', 'Slack', 'LangChain', 'LangGraph'],
+        bullets: [
+          'Built a fully autonomous AI coding agent converting Monday.com tasks directly into production-ready GitHub Pull Requests.',
+          'Leveraged Claude and OpenAI LLMs within a LangGraph pipeline across a rigorous multi-step workflow: code analysis, implementation, automated QA, browser testing, and human validation.',
+        ],
+      },
+      {
+        role: 'Project Coordinator, Communication & Events',
+        company: 'Peace in Garden',
+        period: 'January 2024 â€“ August 2025',
+        tech: ['Google Sheets', 'Event Planning', 'Social Media'],
+        bullets: [
+          'Defined and implemented communication strategy guidelines, driving cohesive team alignment and leading end-to-end event planning.',
+          'Automated budget tracking and financial reporting using Google Sheets and integrated tools, streamlining workflows and reducing manual overhead.',
+        ],
+      },
+    ],
+  },
+  education: {
+    title: 'Education',
+    subtitle: 'Academic path',
+    items: [
+      {
+        degree: "First Year Master's in Computer Science",
+        school: 'IT University Madagascar',
+        period: 'December 2025 â€“ Present',
+        icon: 'ðŸŽ“',
+      },
+      {
+        degree: 'Bachelor of Science in Computer Science',
+        school: 'IT University Madagascar',
+        period: 'September 2022 â€“ December 2025',
+        icon: 'ðŸŽ“',
+      },
+      {
+        degree: 'High School Diploma â€” Mathematics & Physics',
+        school: 'Ecole SacrÃ© Coeur Antanimena',
+        period: 'September 2016 â€“ July 2022',
+        icon: 'ðŸ“š',
+      },
+    ],
+  },
+  projects: {
+    title: 'Projects',
+    subtitle: 'Things I built',
+    items: [
+      {
+        name: 'Shopping Centre Application',
+        description: 'Multi-role platform for shopping centre management â€” global administration, business management, and a complete client interface of the Akoor type.',
+        tech: ['Node.js', 'Express', 'AngularJS', 'MongoDB'],
+        github: 'https://github.com/rehareha261',
+        highlight: false,
+      },
+      {
+        name: 'Amazon SEO Generator (AI)',
+        description: 'AI-powered tool using Google Gemini to produce optimized Amazon product titles, bullet points, and descriptions â€” boosting content team efficiency at scale.',
+        tech: ['Python', 'Google Gemini', 'React JS', 'Node JS'],
+        github: 'https://github.com/rehareha261',
+        highlight: true,
+      },
+      {
+        name: 'Multilingual SEO Pipeline',
+        description: 'Automated pipeline that translates and adapts Amazon product content across 7 European marketplaces, enforcing compliance standards.',
+        tech: ['Python', 'LangChain', 'Google Gemini'],
+        github: 'https://github.com/rehareha261',
+        highlight: false,
+      },
+      {
+        name: 'Autonomous AI Coding Agent',
+        description: 'Fully autonomous AI agent converting Monday.com tasks into production-ready GitHub Pull Requests via a rigorous LangGraph multi-step pipeline.',
+        tech: ['Python', 'LangChain', 'LangGraph', 'OpenAI', 'Claude'],
+        github: 'https://github.com/rehareha261',
+        highlight: true,
+      },
+      {
+        name: 'Fier Mada 2025',
+        description: 'Strategic management and operational coordination for the Fier Mada 2025 event, including social media strategy and communication.',
+        tech: ['Event Management', 'Social Media Strategy', 'Google Sheets'],
+        github: null,
+        highlight: false,
+      },
+    ],
+  },
+  contact: {
+    title: "Let's Connect",
+    subtitle: "Open to opportunities â€” let's build something meaningful",
+    nameLabel: 'Your Name',
+    emailLabel: 'Your Email',
+    messageLabel: 'Your Message',
+    sendButton: 'Send Message',
+    sending: 'Sending...',
+    sent: 'Message sent!',
+    findMe: 'Find me at',
+    orEmail: 'Or write directly to',
+  },
+  footer: {
+    madeWith: 'Crafted with curiosity, code & a love for good stories.',
+    rights: 'Â© 2025 Nala Rehareha. All rights reserved.',
+  },
+};

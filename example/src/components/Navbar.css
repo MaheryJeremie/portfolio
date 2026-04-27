@@ -1,0 +1,196 @@
+﻿/* ===== NAVBAR ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 1.4rem 0;
+  transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.nav--scrolled {
+  padding: 0.9rem 0;
+  background: rgba(10,11,9,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(245,240,230,0.06);
+}
+
+.nav__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 8vw;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Logo */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.nav__logo-mark {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: #f5f0e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0a0b09;
+  letter-spacing: 0.05em;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.nav__logo:hover .nav__logo-mark {
+  transform: rotate(12deg);
+}
+
+.nav__logo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f5f0e6;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Links */
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.nav__link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245,240,230,0.45);
+  padding: 0.45rem 0.8rem;
+  border-radius: 4px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 12px; height: 1px;
+  background: #7B9B73;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.nav__link:hover { color: #f5f0e6; }
+.nav__link:hover::after { transform: translateX(-50%) scaleX(1); }
+
+/* Actions */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.nav__lang {
+  background: none;
+  border: 1px solid rgba(245,240,230,0.18);
+  border-radius: 100px;
+  padding: 0.3rem 0.8rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,240,230,0.45);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.nav__lang:hover {
+  border-color: rgba(245,240,230,0.45);
+  color: #f5f0e6;
+}
+
+.nav__cv {
+  background: #f5f0e6;
+  color: #0a0b09;
+  border: none;
+  border-radius: 100px;
+  padding: 0.5rem 1.3rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  white-space: nowrap;
+}
+.nav__cv:hover {
+  background: #7B9B73;
+  color: #f5f0e6;
+  transform: translateY(-1px);
+}
+
+/* Burger */
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 510;
+}
+.nav__burger span {
+  display: block;
+  width: 20px; height: 1.5px;
+  background: #f5f0e6;
+  transition: all 0.3s ease;
+}
+.nav__burger--open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav__burger--open span:nth-child(2) { opacity: 0; }
+.nav__burger--open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav__inner { padding: 0 1.5rem; }
+  .nav__links {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0a0b09;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 505;
+    gap: 1.2rem;
+  }
+  .nav__links--open { display: flex; }
+  .nav__link {
+    font-size: 1rem;
+    color: rgba(245,240,230,0.7);
+    padding: 0.6rem 1rem;
+  }
+  .nav__logo-name { display: none; }
+  .nav__cv { display: none; }
+  .nav__burger { display: flex; }
+}

@@ -1,0 +1,118 @@
+/* ── Process ── */
+.process {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
+  position: relative;
+}
+
+.process__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.process__header {
+  position: sticky;
+  top: 8rem;
+}
+
+.process__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1rem;
+}
+
+.process__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--lime);
+}
+
+.process__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--white);
+  margin: 0;
+}
+
+.process__left {
+  position: sticky;
+  top: 8rem;
+}
+
+.process__desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  line-height: 1.8;
+  color: rgba(240, 238, 230, 0.45);
+  margin: 1.5rem 0 0;
+}
+
+/* Steps */
+.process__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.process__step {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(240, 238, 230, 0.07);
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  transition: padding-left 0.4s ease;
+  cursor: none;
+}
+
+.process__step:hover {
+  padding-left: 0.75rem;
+}
+
+.process__step-num {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--lime);
+  margin-top: 0.35rem;
+}
+
+.process__step-body {}
+
+.process__step-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin: 0 0 0.6rem;
+}
+
+.process__step-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(240, 238, 230, 0.45);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .process__inner { grid-template-columns: 1fr; }
+  .process__left { position: static; }
+}

@@ -1,0 +1,20 @@
+﻿/* =============================================
+   APP — Global Layout
+   ============================================= */
+
+.app {
+  min-height: 100vh;
+  background: var(--ink);
+}
+
+/* Smooth section alternation is handled per-section */
+
+/* Scroll progress bar (optional, add via JS) */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7B9B73, #C8922A);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}

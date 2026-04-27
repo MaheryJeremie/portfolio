@@ -1,0 +1,42 @@
+/* ===== SHARED SECTION UTILITIES ===== */
+
+/* Legacy section classes used by some components */
+.section__container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.section__header { margin-bottom: 5rem; }
+.section__tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1.5rem;
+}
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0 0 1rem;
+}
+.section__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.8;
+  opacity: 0.45;
+  margin: 0;
+  max-width: 520px;
+}
+/* Dark section: cream text */
+.section { color: var(--cream); }
+.section .section__title { color: var(--cream); }
+.section .section__subtitle { color: var(--cream-dim); }
+/* Light alt section: ink text */
+.section--alt { color: var(--ink); background: var(--cream); }
+.section--alt .section__title { color: var(--ink); }
+.section--alt .section__subtitle { color: rgba(10,11,9,0.5); }
