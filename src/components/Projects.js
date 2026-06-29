@@ -23,9 +23,7 @@ export default function Projects() {
           <h2 className="projects__title">{t.projects.title}</h2>
         </motion.div>
 
-        {/* Bento grid */}
         <div className="projects__bento">
-          {/* Featured large card */}
           <motion.div
             className="project-card project-card--featured"
             initial={{ opacity: 0, y: 30 }}
@@ -35,7 +33,7 @@ export default function Projects() {
             whileHover={{ y: -6, transition: { duration: 0.2 } }}
           >
             <span className="project-card__tag">{feat.tag}</span>
-            <div className="project-card__badge">Featured</div>
+            <div className="project-card__badge">{t.projects.featured}</div>
             <h3 className="project-card__name">{feat.name}</h3>
             <p className="project-card__desc">{feat.description}</p>
             <div className="project-card__tech">
@@ -45,17 +43,16 @@ export default function Projects() {
             </div>
             {feat.github && (
               <a href={feat.github} target="_blank" rel="noopener noreferrer" className="project-card__link">
-                GitHub ↗
+                {t.common.github}
               </a>
             )}
             {feat.live && (
               <a href={feat.live} target="_blank" rel="noopener noreferrer" className="project-card__link project-card__link--live">
-                Live ↗
+                {t.common.live}
               </a>
             )}
           </motion.div>
 
-          {/* Smaller cards */}
           {rest.map((project, i) => (
             <motion.div
               key={project.name}
@@ -76,12 +73,12 @@ export default function Projects() {
               </div>
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-card__link">
-                  GitHub ↗
+                  {t.common.github}
                 </a>
               )}
               {project.live && (
                 <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-card__link project-card__link--live">
-                  Live ↗
+                  {t.common.live}
                 </a>
               )}
             </motion.div>

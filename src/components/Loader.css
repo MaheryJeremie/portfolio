@@ -5,8 +5,6 @@
   right: 0;
   bottom: 0;
   width: 100%;
-  /* dvh = dynamic viewport height (exclut l'UI du navigateur mobile)
-     avec fallback svh puis vh pour les vieux navigateurs */
   height: 100vh;
   height: 100svh;
   height: 100dvh;
@@ -16,6 +14,8 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  /* overflow: hidden sur un élément fixed full-viewport ne peut pas
+     couper le contenu centré — il évite juste un scroll parasite */
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -41,7 +41,9 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  /* clamp basé sur vh pour que la marge ne prenne pas trop de place
+     sur les écrans de petite hauteur (landscape / petits phones) */
+  margin-bottom: clamp(1rem, 3vh, 3.5rem);
 }
 
 .ldr__overflow {
@@ -62,12 +64,17 @@
    * Longest word RAMAHAY = 7 chars × 0.84 × fs ≤ 92vw
    * → fs ≤ 15.6vw  →  use 11vw for comfortable margin
    */
-  font-size: clamp(2rem, 11vw, 11rem);
+  /*
+   * vmin = min(vw, vh) — la taille s'adapte à la plus petite dimension.
+   * Sur portrait: vmin = vw → équivalent à 10vw (RAMAHAY 7 chars × 0.84 × fs ≤ 92vw ✓)
+   * Sur paysage: vmin = vh → empêche le texte d'être trop grand et de déborder verticalement.
+   * Min abaissé à 1.5rem pour les très petits écrans.
+   */
+  font-size: clamp(1.5rem, 10vmin, 9rem);
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: var(--white);
+  color: var(--ink);
   line-height: 1;
-  /* no white-space:nowrap — let font-size handle fit */
 }
 
 .ldr__line--lime {
@@ -88,7 +95,7 @@
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(246,244,255,0.2);
+  color: var(--dim);
 }
 
 .ldr__count {
@@ -101,9 +108,10 @@
 
 .ldr__bar {
   width: 100%;
-  height: 1px;
-  background: rgba(246,244,255,0.07);
+  height: 2px;
+  background: var(--border);
   overflow: hidden;
+  border-radius: 1px;
 }
 
 .ldr__fill {

@@ -1,4 +1,4 @@
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .cursor-dot {
     position: fixed;
     top: 0; left: 0;
@@ -14,7 +14,7 @@
 
   .cursor-dot--hover {
     width: 4px; height: 4px;
-    background: var(--white);
+    background: var(--ink);
   }
 
   .cursor-ring {
@@ -22,7 +22,7 @@
     top: 0; left: 0;
     width: 40px; height: 40px;
     border-radius: 50%;
-    border: 1.5px solid rgba(194,249,112,0.4);
+    border: 1.5px solid var(--lime-glow);
     pointer-events: none;
     z-index: 99998;
     will-change: transform;
@@ -37,10 +37,8 @@
   .cursor-ring--hover {
     width: 62px; height: 62px;
     border-color: var(--lime);
-    background: rgba(194,249,112,0.05);
+    background: var(--lime-dim);
   }
 
-  .cursor--active {
-    opacity: 1;
-  }
+  .cursor--active { opacity: 1; }
 }

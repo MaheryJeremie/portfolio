@@ -1,5 +1,13 @@
 export const en = {
   lang: 'en',
+  skipLink: 'Skip to content',
+  loader: {
+    initializing: 'Initializing',
+  },
+  common: {
+    github: 'GitHub ↗',
+    live: 'Live ↗',
+  },
   nav: {
     about: 'About',
     projects: 'Projects',
@@ -9,18 +17,30 @@ export const en = {
     process: 'Process',
     contact: 'Contact',
     downloadCV: 'Download CV',
+    themeLight: 'Light mode',
+    themeDark: 'Dark mode',
   },
   hero: {
     eyebrow: 'Junior Developer · 2026',
     available: 'Available',
     name1: 'Mahery',
     name2: 'Ramahay',
-    description: 'My job is to turn your ideas into digital tools.',
+    description: 'You imagine it. I code it.',
     cta: 'See my work',
     ctaGithub: 'GitHub ↗',
     marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
+    scroll: 'scroll',
+    photoAlt: 'Portrait of Mahery Ramahay',
   },
   about: {
+    meta: {
+      location: 'Location',
+      email: 'Email',
+      phone: 'Phone',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      status: 'Status',
+    },
     title: 'About',
     subtitle: 'The dev behind the terminal',
     paragraphs: [
@@ -45,11 +65,11 @@ export const en = {
         { lang: 'English', level: 'Intermediate' },
       ],
     },
-    stats: [],
   },
   projects: {
     title: 'Projects',
     subtitle: 'Things I shipped',
+    featured: 'Featured',
     items: [
       {
         name: 'Shopping Centre App',
@@ -179,6 +199,7 @@ export const en = {
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
         bullets: [
           'Redesign and modernisation of the ConsoMyZone website interface.',
+          'Optimisation of key business functions to improve performance and user experience.',
         ],
       },
       {
@@ -203,10 +224,22 @@ export const en = {
     btnCV: 'Download CV',
     btnContact: 'Get in touch',
     email: 'maheryramahay@gmail.com',
+    emailAria: 'Send an email to maheryramahay@gmail.com — opens your mail app',
+    form: {
+      title: 'Send a message',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      send: 'Send message',
+      sending: 'Sending…',
+      success: 'Message sent — I\'ll get back to you soon.',
+      error: 'Something went wrong. Try the email button above.',
+    },
   },
   footer: {
     built: 'Built with React, Three.js & too much coffee.',
     links: 'GitHub · LinkedIn',
-    copy: '© 2026 Mahery Ramahay Mandimby',
+    backToTop: 'Back to top',
+    copy: '© {year} Mahery Ramahay Mandimby',
   },
 };

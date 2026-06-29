@@ -3,6 +3,7 @@
   position: relative;
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem);
   border-top: 1px solid var(--border);
+  background: var(--surface);
 }
 
 .edu__num {
@@ -19,25 +20,27 @@
   user-select: none;
 }
 
-.edu__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ── Header ── */
-.edu__header {
-  margin-bottom: clamp(3rem, 5vw, 5rem);
-}
+.edu__inner { max-width: 1200px; margin: 0 auto; }
+.edu__header { margin-bottom: clamp(3rem, 5vw, 5rem); }
 
 .edu__eyebrow {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   color: var(--lime);
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-4);
+}
+
+.edu__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--lime);
 }
 
 .edu__title {
@@ -46,15 +49,10 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
-  color: var(--white);
+  color: var(--ink);
 }
 
-/* ── Timeline list ── */
-.edu__list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
+.edu__list { display: flex; flex-direction: column; }
 
 .edu__item {
   display: grid;
@@ -66,7 +64,6 @@
 
 .edu__item:first-child { border-top: 1px solid var(--border); }
 
-/* ── Left: date + location ── */
 .edu__item-left {
   display: flex;
   flex-direction: column;
@@ -87,47 +84,40 @@
   font-family: var(--font-body);
   font-size: 0.62rem;
   color: var(--dim);
-  letter-spacing: 0.04em;
 }
 
-/* ── Center: vertical line + dot ── */
 .edu__item-line {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
 }
 
 .edu__item-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background: var(--lime);
+  border-radius: 50%;
   flex-shrink: 0;
   margin-top: 0.25rem;
+  box-shadow: 0 0 0 3px var(--lime-dim);
 }
 
 .edu__item-track {
   flex: 1;
-  width: 1px;
+  width: 2px;
   background: var(--border-mid);
   margin-top: 6px;
+  border-radius: 1px;
 }
 
-.edu__item:last-child .edu__item-track {
-  background: transparent;
-}
-
-/* ── Right: content ── */
-.edu__item-right {
-  padding-bottom: 0.5rem;
-}
+.edu__item:last-child .edu__item-track { background: transparent; }
 
 .edu__degree {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.8vw, 1.35rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--white);
+  color: var(--ink);
   line-height: 1.15;
   margin-bottom: 0.35rem;
 }
@@ -135,9 +125,8 @@
 .edu__school {
   font-family: var(--font-body);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--lime);
-  letter-spacing: 0.04em;
   margin-bottom: 0.75rem;
 }
 
@@ -149,28 +138,15 @@
   max-width: 600px;
 }
 
-/* ── Responsive ── */
-
-/* Tablets (≤ 1024px) */
 @media (max-width: 1024px) {
-  .edu {
-    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem);
-  }
+  .edu { padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem); }
   .edu__num { display: none; }
 }
 
-/* Tablets portrait + phones (≤ 768px) */
 @media (max-width: 768px) {
-  .edu__item {
-    grid-template-columns: 140px 40px 1fr;
-    gap: 0 1rem;
-  }
-  .edu__period {
-    font-size: 0.68rem;
-  }
+  .edu__item { grid-template-columns: 140px 40px 1fr; gap: 0 1rem; }
 }
 
-/* Small phones (≤ 640px) — stack layout */
 @media (max-width: 640px) {
   .edu__item {
     grid-template-columns: 40px 1fr;
@@ -178,34 +154,16 @@
     gap: 0 1rem;
     padding: 1.75rem 0;
   }
-
   .edu__item-left {
     grid-column: 2;
     grid-row: 1;
     text-align: left;
     margin-bottom: 0.5rem;
   }
-
-  .edu__item-line {
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-
-  .edu__item-right {
-    grid-column: 2;
-    grid-row: 2;
-  }
+  .edu__item-line { grid-column: 1; grid-row: 1 / 3; }
+  .edu__item-right { grid-column: 2; grid-row: 2; }
 }
 
-/* Very small phones (≤ 380px) */
-@media (max-width: 380px) {
-  .edu {
-    padding: 3.5rem 1.25rem;
-  }
-  .edu__degree {
-    font-size: clamp(0.9rem, 4.5vw, 1.1rem);
-  }
-  .edu__desc {
-    font-size: 0.8rem;
-  }
+@media (max-width: 480px) {
+  .edu { padding: 3.5rem 1.25rem; }
 }

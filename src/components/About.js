@@ -14,12 +14,19 @@ const fadeUp = {
 export default function About() {
   const { t } = useLanguage();
 
+  const metaItems = [
+    { label: t.about.meta.location, value: t.about.location, href: null },
+    { label: t.about.meta.email, value: t.about.email, href: `mailto:${t.about.email}` },
+    { label: t.about.meta.phone, value: t.about.phone, href: `tel:${t.about.phone.replace(/\s/g, '')}` },
+    { label: t.about.meta.github, value: t.about.github, href: `https://${t.about.github}` },
+    { label: t.about.meta.linkedin, value: t.about.linkedin, href: `https://${t.about.linkedin}` },
+  ];
+
   return (
     <section id="about" className="about">
       <div className="about__num" aria-hidden="true">01</div>
 
       <div className="about__inner">
-        {/* Left */}
         <div className="about__left">
           <motion.p
             className="about__eyebrow"
@@ -40,7 +47,6 @@ export default function About() {
             {t.about.title}
           </motion.h2>
 
-          {/* Meta */}
           <motion.div
             className="about__meta"
             initial={{ opacity: 0 }}
@@ -48,41 +54,25 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ delay: 0.35, duration: 0.7 }}
           >
-            {[
-              ['Location', t.about.location],
-              ['Email', t.about.email],
-              ['GitHub', t.about.github],
-              ['LinkedIn', t.about.linkedin],
-            ].map(([k, v]) => (
-              <div className="about__meta-row" key={k}>
-                <span className="about__meta-k">{k}</span>
-                <span className="about__meta-v">{v}</span>
+            {metaItems.map(({ label, value, href }) => (
+              <div className="about__meta-row" key={label}>
+                <span className="about__meta-k">{label}</span>
+                {href ? (
+                  <a className="about__meta-v about__meta-link" href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                    {value}
+                  </a>
+                ) : (
+                  <span className="about__meta-v">{value}</span>
+                )}
               </div>
             ))}
             <div className="about__meta-row">
-              <span className="about__meta-k">Status</span>
-              <span className="about__meta-v about__meta-avail">● {t.hero?.available}</span>
+              <span className="about__meta-k">{t.about.meta.status}</span>
+              <span className="about__meta-v about__meta-avail">● {t.hero.available}</span>
             </div>
-          </motion.div>
-
-          {/* Stats row */}
-          <motion.div
-            className="about__stats"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-          >
-            {t.about.stats.map((s) => (
-              <div className="about__stat" key={s.label}>
-                <b>{s.value}</b>
-                <span>{s.label}</span>
-              </div>
-            ))}
           </motion.div>
         </div>
 
-        {/* Right */}
         <div className="about__right">
           <div className="about__bio">
             {t.about.paragraphs.map((p, i) => (
@@ -100,7 +90,6 @@ export default function About() {
             ))}
           </div>
 
-          {/* Interests */}
           <motion.div
             className="about__interests"
             initial={{ opacity: 0 }}
@@ -116,7 +105,6 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Languages */}
           <motion.div
             className="about__langs"
             initial={{ opacity: 0 }}

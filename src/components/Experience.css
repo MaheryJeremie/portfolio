@@ -19,25 +19,27 @@
   user-select: none;
 }
 
-.exp__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ── Header ── */
-.exp__header {
-  margin-bottom: clamp(3rem, 5vw, 5rem);
-}
+.exp__inner { max-width: 1200px; margin: 0 auto; }
+.exp__header { margin-bottom: clamp(3rem, 5vw, 5rem); }
 
 .exp__eyebrow {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   color: var(--lime);
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-4);
+}
+
+.exp__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--lime);
 }
 
 .exp__title {
@@ -46,22 +48,25 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
-  color: var(--white);
+  color: var(--ink);
 }
 
-/* ── Layout: tabs left, panel right ── */
 .exp__layout {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 0;
   border: 1px solid var(--border-mid);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--surface);
 }
 
-/* ── Sidebar tabs ── */
 .exp__tabs {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-mid);
+  background: var(--void);
 }
 
 .exp__tab {
@@ -70,11 +75,9 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1.4rem 1.25rem;
-  background: transparent;
-  border: none;
+  min-height: 44px;
   border-bottom: 1px solid var(--border);
   text-align: left;
-  cursor: none;
   transition: background 0.25s;
   position: relative;
 }
@@ -82,21 +85,17 @@
 .exp__tab::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
   background: var(--lime);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.3s var(--ease-expo);
 }
 
-.exp__tab:hover { background: var(--faint); }
-
-.exp__tab--active { background: var(--faint); }
+.exp__tab:hover { background: var(--lime-dim); }
+.exp__tab--active { background: var(--surface); }
 .exp__tab--active::before { transform: scaleY(1); }
-
 .exp__tab:last-child { border-bottom: none; }
 
 .exp__tab-index {
@@ -121,7 +120,7 @@
   font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -140,71 +139,54 @@
   font-family: var(--font-body);
   font-size: 0.55rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--dim);
   border: 1px solid var(--border-mid);
   padding: 0.2em 0.5em;
   white-space: nowrap;
 }
 
-/* ── Content panel ── */
-.exp__panel {
-  padding: 2.5rem 2.5rem 2.5rem;
-}
+.exp__panel { padding: 2.5rem; }
 
 .exp__panel-top {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
   border-bottom: 1px solid var(--border);
 }
 
-.exp__panel-meta {
-  margin-bottom: 1.25rem;
-}
+.exp__panel-meta { margin-bottom: 1.25rem; }
 
 .exp__role {
   font-family: var(--font-display);
   font-size: clamp(1.3rem, 2.5vw, 1.9rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--white);
+  color: var(--ink);
   line-height: 1.1;
   margin-bottom: 0.6rem;
 }
 
-.exp__company {
-  color: var(--lime);
-  font-weight: 700;
-}
+.exp__company { color: var(--lime); font-weight: 700; }
 
-.exp__badges {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
+.exp__badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
 .exp__badge {
   font-family: var(--font-body);
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--white);
-  background: var(--border-mid);
-  padding: 0.3em 0.75em;
+  color: var(--ink);
+  background: var(--void);
+  border: 1px solid var(--border);
+  padding: 0.35em 0.75em;
 }
 
 .exp__badge--dim {
   color: var(--muted);
   background: transparent;
-  border: 1px solid var(--border);
 }
 
-.exp__tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
+.exp__tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
 .exp__tech-tag {
   font-family: var(--font-body);
@@ -212,16 +194,13 @@
   font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--lime);
-  border: 1px solid rgba(194,249,112,0.25);
+  border: 1px solid var(--lime-glow);
   padding: 0.3em 0.7em;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s;
 }
 
-.exp__tech-tag:hover {
-  background: var(--lime-dim);
-}
+.exp__tech-tag:hover { background: var(--lime-dim); }
 
-/* ── Bullets ── */
 .exp__bullets {
   list-style: none;
   display: flex;
@@ -241,138 +220,68 @@
 
 .exp__bullet-dot {
   flex-shrink: 0;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   background: var(--lime);
-  margin-top: 0.58em;
+  border-radius: 50%;
+  margin-top: 0.55em;
 }
 
-/* ── Responsive ── */
-
-/* Tablets (≤ 1024px) — réduire sidebar */
 @media (max-width: 1024px) {
-  .exp {
-    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem);
-  }
+  .exp { padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem); }
   .exp__num { display: none; }
-  .exp__layout {
-    grid-template-columns: 220px 1fr;
-  }
+  .exp__layout { grid-template-columns: 220px 1fr; }
 }
 
-/* Tablets portrait + phones (≤ 768px) — stack tabs au-dessus du panel */
 @media (max-width: 768px) {
   .exp__layout {
     grid-template-columns: 1fr;
     border: none;
-    gap: 0;
+    box-shadow: none;
+    background: transparent;
   }
 
   .exp__tabs {
     flex-direction: row;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
     border-right: none;
     border-bottom: 1px solid var(--border-mid);
-    flex-wrap: nowrap;
+    border: 1px solid var(--border-mid);
+    border-radius: 4px 4px 0 0;
+    scrollbar-width: thin;
   }
-  .exp__tabs::-webkit-scrollbar { display: none; }
 
   .exp__tab {
     grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
     flex-shrink: 0;
-    min-width: 140px;
+    min-width: 150px;
     border-bottom: none;
     border-right: 1px solid var(--border);
-    padding: 1rem;
   }
 
   .exp__tab::before {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: auto;
-    height: 2px;
+    top: auto; bottom: 0; left: 0; right: 0;
+    width: auto; height: 3px;
     transform: scaleX(0);
     transform-origin: left;
   }
-  .exp__tab--active::before { transform: scaleX(1); }
 
+  .exp__tab--active::before { transform: scaleX(1); }
   .exp__tab-type { display: none; }
 
   .exp__panel {
-    padding: 1.75rem 0;
+    padding: 1.75rem 1.25rem;
     border: 1px solid var(--border-mid);
     border-top: none;
-    padding: 1.75rem 1.25rem;
+    border-radius: 0 0 4px 4px;
+    background: var(--surface);
   }
 }
 
-/* Small phones (≤ 480px) */
 @media (max-width: 480px) {
-  .exp {
-    padding: 3.5rem 1.25rem;
-  }
-  .exp__tab {
-    min-width: 120px;
-    padding: 0.85rem;
-  }
-  .exp__tab-role {
-    font-size: 0.72rem;
-  }
-  .exp__tab-company {
-    font-size: 0.6rem;
-  }
-  .exp__panel {
-    padding: 1.25rem 0.75rem;
-  }
-  .exp__bullet {
-    font-size: 0.83rem;
-  }
-  .exp__badges {
-    gap: 0.35rem;
-  }
-}
-@media (max-width: 768px) {
-  .exp__layout {
-    grid-template-columns: 1fr;
-  }
-
-  .exp__tabs {
-    border-right: none;
-    border-bottom: 1px solid var(--border-mid);
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .exp__tab {
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
-    gap: 0.3rem;
-    padding: 1rem 1.25rem;
-    border-bottom: none;
-    border-right: 1px solid var(--border);
-    min-width: 160px;
-    flex-shrink: 0;
-  }
-
-  .exp__tab::before {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: auto;
-    height: 2px;
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-
-  .exp__tab--active::before { transform: scaleX(1); }
-
-  .exp__tab-type { display: none; }
-
-  .exp__panel { padding: 1.75rem 1.25rem; }
+  .exp { padding: 3.5rem 1.25rem; }
+  .exp__tab { min-width: 130px; padding: 0.85rem; }
+  .exp__panel { padding: 1.25rem 0.75rem; }
+  .exp__bullet { font-size: 0.83rem; }
 }

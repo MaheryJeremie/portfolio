@@ -5,6 +5,10 @@ import './Footer.css';
 export default function Footer() {
   const { t } = useLanguage();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="footer">
       <div className="footer__inner">
@@ -30,9 +34,14 @@ export default function Footer() {
           >
             LinkedIn
           </a>
+          <button type="button" className="footer__top" onClick={scrollToTop} aria-label={t.footer.backToTop}>
+            ↑
+          </button>
         </div>
       </div>
-      <p className="footer__copy">{t.footer.copy}</p>
+      <p className="footer__copy">
+        {t.footer.copy.replace('{year}', new Date().getFullYear())}
+      </p>
     </footer>
   );
 }

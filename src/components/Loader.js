@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 import './Loader.css';
 
 export default function Loader({ onComplete }) {
-  const [count,   setCount]   = useState(0);
+  const { t } = useLanguage();
+  const [count, setCount] = useState(0);
   const [exiting, setExiting] = useState(false);
 
   const finish = useCallback(() => {
@@ -50,7 +52,6 @@ export default function Loader({ onComplete }) {
           <div className="ldr__grain" aria-hidden="true" />
 
           <div className="ldr__inner">
-            {/* Animated name */}
             <div className="ldr__name" aria-label="Mahery Ramahay">
               <div className="ldr__overflow">
                 <motion.span
@@ -74,14 +75,13 @@ export default function Loader({ onComplete }) {
               </div>
             </div>
 
-            {/* Counter bar */}
             <motion.div
               className="ldr__foot"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.55, duration: 0.4 }}
             >
-              <span className="ldr__label">INITIALIZING</span>
+              <span className="ldr__label">{t.loader.initializing}</span>
               <span className="ldr__count">{String(count).padStart(3, '0')}</span>
             </motion.div>
 

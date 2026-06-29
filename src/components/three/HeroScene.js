@@ -1,7 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 
-// Morphing icosphere — like a speaker membrane
 function SoundBlob() {
   const meshRef = useRef();
   const origPos = useRef(null);
@@ -30,19 +29,18 @@ function SoundBlob() {
 
   return (
     <mesh ref={meshRef}>
-      <icosahedronGeometry args={[1.5, 5]} />
+      <icosahedronGeometry args={[1.5, 4]} />
       <meshPhysicalMaterial
-        color="#1a0f3c"
-        metalness={0.8}
-        roughness={0.12}
-        emissive="#2d0f6b"
-        emissiveIntensity={0.5}
+        color="#E8E4FF"
+        metalness={0.6}
+        roughness={0.2}
+        emissive="#6D28D9"
+        emissiveIntensity={0.25}
       />
     </mesh>
   );
 }
 
-// Wireframe outer shell — like a hologram
 function HoloShell() {
   const ref = useRef();
   useFrame(({ clock }) => {
@@ -52,12 +50,11 @@ function HoloShell() {
   return (
     <mesh ref={ref}>
       <icosahedronGeometry args={[2.1, 1]} />
-      <meshBasicMaterial color="#8B5CF6" wireframe transparent opacity={0.18} />
+      <meshBasicMaterial color="#7AB800" wireframe transparent opacity={0.15} />
     </mesh>
   );
 }
 
-// Cyan ring — like a loading/scanning ring from a game HUD
 function HUDRing({ radius, speed, tiltX, tiltZ, color, opacity }) {
   const ref = useRef();
   useFrame(({ clock }) => {
@@ -71,12 +68,11 @@ function HUDRing({ radius, speed, tiltX, tiltZ, color, opacity }) {
   );
 }
 
-// Music EQ bars floating around — equalizer vibe
 function EQBars() {
   const groupRef = useRef();
   const bars = useMemo(() => {
-    return Array.from({ length: 12 }, (_, i) => ({
-      angle: (i / 12) * Math.PI * 2,
+    return Array.from({ length: 8 }, (_, i) => ({
+      angle: (i / 8) * Math.PI * 2,
       phase: Math.random() * Math.PI * 2,
       speed: 0.8 + Math.random() * 1.2,
     }));
@@ -103,9 +99,9 @@ function EQBars() {
           <mesh key={i} position={[x, 0, z]}>
             <boxGeometry args={[0.08, 1, 0.08]} />
             <meshBasicMaterial
-              color={i % 3 === 0 ? '#8B5CF6' : i % 3 === 1 ? '#22D3EE' : '#F59E0B'}
+              color={i % 3 === 0 ? '#6D28D9' : i % 3 === 1 ? '#7AB800' : '#F59E0B'}
               transparent
-              opacity={0.6}
+              opacity={0.5}
             />
           </mesh>
         );
@@ -114,10 +110,9 @@ function EQBars() {
   );
 }
 
-// Floating tech particles
 function TechParticles() {
   const ref = useRef();
-  const COUNT = 200;
+  const COUNT = 120;
   const positions = useMemo(() => {
     const arr = new Float32Array(COUNT * 3);
     for (let i = 0; i < COUNT; i++) {
@@ -141,35 +136,7 @@ function TechParticles() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" array={positions} count={COUNT} itemSize={3} />
       </bufferGeometry>
-      <pointsMaterial size={0.025} color="#8B5CF6" transparent opacity={0.5} sizeAttenuation />
-    </points>
-  );
-}
-
-// Gold accent particles — like coins in a game
-function GoldParticles() {
-  const ref = useRef();
-  const COUNT = 50;
-  const positions = useMemo(() => {
-    const arr = new Float32Array(COUNT * 3);
-    for (let i = 0; i < COUNT; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 12;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 8;
-    }
-    return arr;
-  }, []);
-
-  useFrame(({ clock }) => {
-    ref.current.rotation.y = -clock.elapsedTime * 0.015;
-  });
-
-  return (
-    <points ref={ref}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={COUNT} itemSize={3} />
-      </bufferGeometry>
-      <pointsMaterial size={0.055} color="#F59E0B" transparent opacity={0.65} sizeAttenuation />
+      <pointsMaterial size={0.025} color="#6D28D9" transparent opacity={0.35} sizeAttenuation />
     </points>
   );
 }
@@ -180,19 +147,19 @@ export default function HeroScene() {
       camera={{ position: [0, 0, 7.5], fov: 46 }}
       gl={{ antialias: true, alpha: true }}
       style={{ background: 'transparent', width: '100%', height: '100%' }}
+      dpr={[1, 1.5]}
     >
-      <ambientLight intensity={0.2} />
-      <pointLight position={[5, 5, 4]} intensity={3} color="#ffffff" />
-      <pointLight position={[-5, -3, -4]} intensity={1} color="#8B5CF6" />
-      <pointLight position={[0, 0, 5]} intensity={0.6} color="#22D3EE" />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[5, 5, 4]} intensity={2} color="#ffffff" />
+      <pointLight position={[-5, -3, -4]} intensity={0.8} color="#6D28D9" />
+      <pointLight position={[0, 0, 5]} intensity={0.4} color="#7AB800" />
       <SoundBlob />
       <HoloShell />
-      <HUDRing radius={3.2} speed={0.2} tiltX={Math.PI / 4} tiltZ={0} color="#8B5CF6" opacity={0.3} />
-      <HUDRing radius={3.9} speed={-0.13} tiltX={Math.PI / 3} tiltZ={0.4} color="#22D3EE" opacity={0.22} />
-      <HUDRing radius={2.7} speed={0.28} tiltX={Math.PI / 6} tiltZ={-0.3} color="#F59E0B" opacity={0.2} />
+      <HUDRing radius={3.2} speed={0.2} tiltX={Math.PI / 4} tiltZ={0} color="#6D28D9" opacity={0.25} />
+      <HUDRing radius={3.9} speed={-0.13} tiltX={Math.PI / 3} tiltZ={0.4} color="#7AB800" opacity={0.2} />
+      <HUDRing radius={2.7} speed={0.28} tiltX={Math.PI / 6} tiltZ={-0.3} color="#F59E0B" opacity={0.18} />
       <EQBars />
       <TechParticles />
-      <GoldParticles />
     </Canvas>
   );
 }

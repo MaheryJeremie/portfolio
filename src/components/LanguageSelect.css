@@ -1,29 +1,25 @@
-/* ── Language Select ── */
+/* ── Language Select — light ── */
 .ls {
   position: fixed;
   inset: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(160px, 240px) minmax(0, 1fr);
-  min-height: 100vh;
   min-height: 100dvh;
   background: var(--void);
   z-index: 9999;
   overflow: hidden;
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
            env(safe-area-inset-bottom) env(safe-area-inset-left);
-  align-items: stretch;
 }
 
-/* grain overlay */
 .ls__grain {
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
 }
 
-/* panels */
 .ls__panel {
   position: relative;
   display: flex;
@@ -33,13 +29,12 @@
   padding: clamp(2rem, 5vw, 4rem);
   min-height: 0;
   background: transparent;
-  border: none;
-  cursor: none;
   overflow: hidden;
   transition: background 0.5s ease;
   z-index: 1;
   width: 100%;
   height: 100%;
+  min-height: 44px;
 }
 
 .ls__panel-fill {
@@ -47,12 +42,13 @@
   inset: 0;
   background: var(--lime);
   transform: translateY(101%);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s var(--ease-expo);
   z-index: 0;
-  mix-blend-mode: normal;
 }
 
-.ls__panel:hover .ls__panel-fill {
+.ls__panel:hover .ls__panel-fill,
+.ls__panel:active .ls__panel-fill,
+.ls__panel:focus-visible .ls__panel-fill {
   transform: translateY(0);
 }
 
@@ -61,16 +57,15 @@
   font-family: var(--font-display);
   font-size: clamp(3rem, 10vmin, 9rem);
   font-weight: 800;
-  color: var(--white);
+  color: var(--ink);
   line-height: 0.95;
   letter-spacing: -0.04em;
   transition: color 0.4s ease;
   z-index: 1;
 }
 
-.ls__panel:hover .ls__panel-code {
-  color: var(--void);
-}
+.ls__panel:hover .ls__panel-code,
+.ls__panel:active .ls__panel-code { color: var(--on-lime); }
 
 .ls__panel-meta {
   position: relative;
@@ -85,29 +80,25 @@
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
+  letter-spacing: 0.08em;
+  color: var(--ink);
   transition: color 0.4s ease;
 }
 
 .ls__panel-sub {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(240, 238, 230, 0.4);
+  letter-spacing: 0.04em;
+  color: var(--muted);
   transition: color 0.4s ease;
   max-width: 20ch;
-  text-wrap: balance;
 }
 
 .ls__panel:hover .ls__panel-label,
-.ls__panel:hover .ls__panel-sub {
-  color: var(--void);
-}
+.ls__panel:hover .ls__panel-sub,
+.ls__panel:active .ls__panel-label,
+.ls__panel:active .ls__panel-sub { color: var(--on-lime); }
 
-/* center column */
 .ls__center {
   display: flex;
   flex-direction: column;
@@ -117,14 +108,13 @@
   position: relative;
   z-index: 2;
   min-width: 180px;
-  border-left: 1px solid rgba(240, 238, 230, 0.08);
-  border-right: 1px solid rgba(240, 238, 230, 0.08);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   gap: 0.5rem;
+  background: var(--surface);
 }
 
-.ls__overflow {
-  overflow: hidden;
-}
+.ls__overflow { overflow: hidden; }
 
 .ls__mono {
   font-family: var(--font-display);
@@ -147,37 +137,26 @@
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 800;
-  letter-spacing: 0.15em;
-  color: var(--white);
+  letter-spacing: 0.12em;
+  color: var(--ink);
   line-height: 1.1;
 }
 
-.ls__name-word--accent {
-  color: var(--lime);
-}
+.ls__name-word--accent { color: var(--lime); }
 
 .ls__tagline {
   font-family: var(--font-body);
   font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(240, 238, 230, 0.3);
+  letter-spacing: 0.12em;
+  color: var(--dim);
   margin-top: 1.5rem;
-  white-space: nowrap;
+  text-align: center;
 }
 
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .ls__center { min-width: 140px; padding: 1.5rem 1rem; }
-  .ls__panel-code { font-size: clamp(2.8rem, 9vmin, 7rem); }
-  .ls__panel-sub { max-width: 18ch; }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .ls {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
-    min-height: 100svh;
     overflow-y: auto;
   }
   .ls__panel {
@@ -185,56 +164,16 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: clamp(1rem, 4vw, 1.5rem);
   }
   .ls__center {
     border-left: none;
     border-right: none;
-    border-top: 1px solid rgba(240, 238, 230, 0.08);
-    border-bottom: 1px solid rgba(240, 238, 230, 0.08);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     min-width: unset;
-    padding: 1rem;
   }
-  .ls__name-word { font-size: 1.1rem; }
-  .ls__tagline { white-space: normal; text-align: center; }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .ls__panel-code { font-size: clamp(2.5rem, 14vw, 4rem); }
-  .ls__panel-meta { margin-top: 1rem; }
-  .ls__panel-label { font-size: 0.95rem; }
-  .ls__panel-sub { font-size: 0.68rem; letter-spacing: 0.05em; }
-}
-
-@media (max-height: 620px) {
-  .ls__panel {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  .ls__center {
-    gap: 0.35rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-  }
-  .ls__tagline {
-    margin-top: 0.8rem;
-    font-size: 0.58rem;
-  }
-}
-
-@media (max-height: 520px) {
-  .ls__panel {
-    min-height: min(30svh, 240px);
-  }
-  .ls__panel-code {
-    font-size: clamp(2rem, 8vmin, 5rem);
-  }
-  .ls__center {
-    padding: 0.6rem 1rem;
-  }
-}
-
-@media (min-width: 1400px) {
-  .ls__panel { padding: clamp(3rem, 6vw, 5rem); }
-  .ls__panel-code { font-size: clamp(4.5rem, 8vmin, 11rem); }
 }

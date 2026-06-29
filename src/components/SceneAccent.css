@@ -1,0 +1,15 @@
+.scene-accent {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+[data-theme="dark"] .scene-accent {
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .scene-accent { opacity: 0.35; }
+}

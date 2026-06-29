@@ -1,5 +1,13 @@
 export const fr = {
   lang: 'fr',
+  skipLink: 'Aller au contenu',
+  loader: {
+    initializing: 'Chargement',
+  },
+  common: {
+    github: 'GitHub ↗',
+    live: 'Live ↗',
+  },
   nav: {
     about: 'À Propos',
     projects: 'Projets',
@@ -9,6 +17,8 @@ export const fr = {
     process: 'Méthode',
     contact: 'Contact',
     downloadCV: 'Télécharger CV',
+    themeLight: 'Mode clair',
+    themeDark: 'Mode sombre',
   },
   hero: {
     eyebrow: 'Développeur Junior · 2026',
@@ -16,12 +26,22 @@ export const fr = {
     name1: 'Mahery',
     name2: 'Ramahay',
     description:
-      "Mon job, c'est de transformer vos idées en outils numériques.",
+      'Ce que vous imaginez, je le code.',
     cta: 'Voir mes projets',
     ctaGithub: 'GitHub ↗',
     marquee: ['Spring Boot', 'Node.js', 'Symfony' , 'React', 'Angular', 'Odoo'],
+    scroll: 'défiler',
+    photoAlt: 'Portrait de Mahery Ramahay',
   },
   about: {
+    meta: {
+      location: 'Lieu',
+      email: 'Email',
+      phone: 'Téléphone',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      status: 'Statut',
+    },
     title: 'À Propos',
     subtitle: 'Le dev derrière le terminal',
     paragraphs: [
@@ -46,12 +66,11 @@ export const fr = {
         { lang: 'Anglais', level: 'Intermédiaire' },
       ],
     },
-    stats: [
-    ],
   },
   projects: {
     title: 'Projets',
     subtitle: 'Ce que j\'ai construit',
+    featured: 'À la une',
     items: [
       {
         name: 'Application Centre Commercial',
@@ -180,7 +199,8 @@ export const fr = {
         type: 'Stage',
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
         bullets: [
-          'Refonte et modernisation de l\'interface du site ConsoMyZone'
+          'Refonte et modernisation de l\'interface du site ConsoMyZone.',
+          'Optimisation de certaines fonctions métiers pour améliorer les performances et l\'expérience utilisateur.',
         ],
       },
       {
@@ -205,10 +225,22 @@ export const fr = {
     btnCV: 'Télécharger CV',
     btnContact: 'Me contacter',
     email: 'maheryramahay@gmail.com',
+    emailAria: 'Envoyer un email à maheryramahay@gmail.com — ouvre votre application mail',
+    form: {
+      title: 'Envoyer un message',
+      name: 'Nom',
+      email: 'Email',
+      message: 'Message',
+      send: 'Envoyer',
+      sending: 'Envoi…',
+      success: 'Message envoyé — je te réponds rapidement.',
+      error: 'Une erreur est survenue. Utilise le bouton email ci-dessus.',
+    },
   },
   footer: {
     built: 'Construit avec React, Three.js & trop de café.',
     links: 'GitHub · LinkedIn',
-    copy: '© 2026 Mahery Ramahay Mandimby',
+    backToTop: 'Retour en haut',
+    copy: '© {year} Mahery Ramahay Mandimby',
   },
 };
