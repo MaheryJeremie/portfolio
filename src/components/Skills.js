@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
-import SceneAccent from './SceneAccent';
 import './Skills.css';
 
 export default function Skills() {
@@ -11,7 +10,6 @@ export default function Skills() {
 
   return (
     <section id="skills" className="skills">
-      <SceneAccent className="scene-accent--skills" />
       <div className="skills__num" aria-hidden="true">03</div>
 
       <div className="skills__inner">

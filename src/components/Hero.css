@@ -8,15 +8,10 @@
   padding-top: var(--nav-height);
 }
 
-.hero__canvas {
+.hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-
-.hero__canvas-fallback {
-  position: absolute;
-  inset: 0;
   background:
     radial-gradient(ellipse 55% 60% at 75% 45%, var(--violet-dim), transparent 70%),
     radial-gradient(ellipse 45% 50% at 65% 55%, var(--lime-dim), transparent 65%);
@@ -28,6 +23,7 @@
   background: radial-gradient(ellipse 60% 70% at 70% 50%, var(--lime-dim) 0%, transparent 70%);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.65;
 }
 
 .hero__body {
@@ -170,7 +166,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero__avail-dot { animation: none; }
-  .hero__marquee-track { animation: none; }
 }
 
 .hero__name-block {
@@ -271,7 +266,12 @@
 .hero__marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 25s linear infinite;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.hero__marquee-track.motion-persist {
+  animation: marquee 28s linear infinite;
 }
 
 @keyframes marquee {
@@ -281,9 +281,11 @@
 
 .hero__marquee-item {
   font-family: var(--font-body);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  color: var(--dim);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
   white-space: nowrap;
   padding: 0 0.5rem;
 }

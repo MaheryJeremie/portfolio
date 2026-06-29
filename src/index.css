@@ -162,7 +162,9 @@ a      { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  *, *::before, *::after {
+  *:not(.motion-persist):not(.motion-persist *),
+  *:not(.motion-persist)::before,
+  *:not(.motion-persist)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

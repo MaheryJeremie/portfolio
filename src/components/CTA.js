@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
-import SceneAccent from './SceneAccent';
 import ContactForm, { isContactFormEnabled } from './ContactForm';
 import './CTA.css';
 
@@ -34,7 +33,6 @@ export default function CTA({ onDownloadCV }) {
 
   return (
     <section id="contact" className="cta">
-      <SceneAccent className="scene-accent--cta" />
       <div className="cta__orb cta__orb--purple" aria-hidden="true" />
       <div className="cta__orb cta__orb--cyan" aria-hidden="true" />
 

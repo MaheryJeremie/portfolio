@@ -1,41 +1,16 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import ProfileImage from './ProfileImage';
-import HeroScene from './three/HeroScene';
 import './Hero.css';
 
 export default function Hero() {
   const { t } = useLanguage();
-  const [show3d, setShow3d] = useState(false);
-
-  useEffect(() => {
-    const mqMobile = window.matchMedia('(max-width: 768px)');
-    const mqMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    const update = () => setShow3d(!mqMobile.matches && !mqMotion.matches);
-    update();
-
-    mqMobile.addEventListener('change', update);
-    mqMotion.addEventListener('change', update);
-    return () => {
-      mqMobile.removeEventListener('change', update);
-      mqMotion.removeEventListener('change', update);
-    };
-  }, []);
+  const year = new Date().getFullYear();
 
   return (
     <section id="hero" className="hero">
-      <div className="hero__canvas" aria-hidden="true">
-        {show3d ? (
-          <Suspense fallback={<div className="hero__canvas-fallback" />}>
-            <HeroScene />
-          </Suspense>
-        ) : (
-          <div className="hero__canvas-fallback" />
-        )}
-      </div>
-
+      <div className="hero__bg" aria-hidden="true" />
       <div className="hero__glow" aria-hidden="true" />
 
       <div className="hero__body">
@@ -48,7 +23,7 @@ export default function Hero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15, duration: 0.7 }}
               >
-                {t.hero.eyebrow}
+                {t.hero.eyebrow.replace('{year}', year)}
               </motion.span>
               <motion.div
                 className="hero__avail"
@@ -129,8 +104,8 @@ export default function Hero() {
       </div>
 
       <div className="hero__marquee" aria-hidden="true">
-        <div className="hero__marquee-track">
-          {[...t.hero.marquee, ...t.hero.marquee].map((item, i) => (
+        <div className="hero__marquee-track motion-persist">
+          {[...t.hero.marquee, ...t.hero.marquee, ...t.hero.marquee, ...t.hero.marquee].map((item, i) => (
             <span key={i} className="hero__marquee-item">
               {item}<span className="hero__marquee-sep">·</span>
             </span>

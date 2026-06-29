@@ -21,7 +21,7 @@ export const en = {
     themeDark: 'Dark mode',
   },
   hero: {
-    eyebrow: 'Junior Developer · 2026',
+    eyebrow: 'Junior Developer · {year}',
     available: 'Available',
     name1: 'Mahery',
     name2: 'Ramahay',
@@ -93,8 +93,8 @@ export const en = {
       {
         name: 'Personal Portfolio',
         description:
-          'This portfolio — built with React, Framer Motion, Three.js, bilingual EN/FR, with 3D scenes inspired by music, gaming & tech.',
-        tech: ['React', 'Three.js', 'Framer Motion'],
+          'This portfolio — built with React, Framer Motion, bilingual EN/FR, with a clean responsive design.',
+        tech: ['React', 'Framer Motion', 'CSS'],
         github: 'https://github.com/MaheryJeremie',
         live: null,
         highlight: true,
@@ -220,7 +220,7 @@ export const en = {
   },
   cta: {
     title: "Let's build\nsomething.",
-    subtitle: 'Open to opportunities — internships, junior positions, freelance projects.',
+    subtitle: 'Open to opportunities — full-time roles, internships, freelance projects, ... .',
     btnCV: 'Download CV',
     btnContact: 'Get in touch',
     email: 'maheryramahay@gmail.com',
@@ -237,7 +237,7 @@ export const en = {
     },
   },
   footer: {
-    built: 'Built with React, Three.js & too much coffee.',
+    built: 'Built with React & too much coffee.',
     links: 'GitHub · LinkedIn',
     backToTop: 'Back to top',
     copy: '© {year} Mahery Ramahay Mandimby',
