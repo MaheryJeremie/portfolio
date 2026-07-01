@@ -67,7 +67,7 @@ export default function CTA({ onDownloadCV }) {
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.7 }}
         >
-          <button type="button" className="cta__btn cta__btn--primary" onClick={onDownloadCV}>
+          <button type="button" className="cta__btn cta__btn--primary btn-glow" onClick={onDownloadCV}>
             {t.cta.btnCV}
           </button>
           <a

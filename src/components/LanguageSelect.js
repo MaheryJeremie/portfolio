@@ -28,7 +28,7 @@ export default function LanguageSelect({ onSelect }) {
           <span className="ls__panel-label">English</span>
           <span className="ls__panel-sub">Continue in English</span>
         </div>
-        <span className="ls__panel-arrow" aria-hidden="true">→</span>
+        <span className="ls__panel-arrow ls__panel-arrow--en" aria-hidden="true">←</span>
       </motion.button>
 
       <div className="ls__center">
@@ -44,7 +44,7 @@ export default function LanguageSelect({ onSelect }) {
 
           <div className="ls__name-stack">
             {['MAHERY', 'RAMAHAY'].map((w, i) => (
-              <div key={w} className="ls__overflow">
+              <div key={w} className="ls__clip">
                 <motion.span
                   className={`ls__name-word${i === 1 ? ' ls__name-word--accent' : ''}`}
                   initial={{ y: '110%' }}
@@ -80,7 +80,7 @@ export default function LanguageSelect({ onSelect }) {
           <span className="ls__panel-label">Français</span>
           <span className="ls__panel-sub">Continuer en Français</span>
         </div>
-        <span className="ls__panel-arrow" aria-hidden="true">→</span>
+        <span className="ls__panel-arrow ls__panel-arrow--fr" aria-hidden="true">→</span>
       </motion.button>
     </div>
   );

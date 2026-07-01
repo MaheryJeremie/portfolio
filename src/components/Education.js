@@ -6,7 +6,7 @@ export default function Education() {
   const { t } = useLanguage();
 
   return (
-    <section id="education" className="edu">
+    <section id="education" className="edu section--airy">
       <div className="edu__num" aria-hidden="true">05</div>
       <div className="edu__inner">
 

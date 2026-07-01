@@ -112,7 +112,7 @@ export const fr = {
       {
         key: 'languages',
         label: 'Langages',
-        items: ['Java', 'PHP', 'Python', 'JavaScript', 'C', 'C#', 'C++'],
+        items: ['Java', 'PHP', 'Python', 'JavaScript', 'C', 'C#'],
       },
       {
         key: 'database',
@@ -122,7 +122,7 @@ export const fr = {
       {
         key: 'tools',
         label: 'Outils',
-        items: ['Gitlab / GitHub', 'Docker', 'Firebase'],
+        items: ['Gitlab / GitHub', 'Docker', 'Firebase', 'Photoshop'],
       },
     ],
   },

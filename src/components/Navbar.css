@@ -7,6 +7,20 @@
   transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
+.nav__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-soft), var(--lime));
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1001;
+}
+
 .nav--scrolled {
   padding: var(--space-4) clamp(1.5rem, 5vw, 4rem);
   background: var(--glass-bg);
@@ -142,7 +156,6 @@
 
 .nav__cv:hover {
   background: var(--lime-bright);
-  transform: translateY(-1px);
 }
 
 .nav__burger {

@@ -111,7 +111,7 @@ export const en = {
       {
         key: 'languages',
         label: 'Languages',
-        items: ['Java', 'PHP', 'Python', 'JavaScript', 'C', 'C#', 'C++'],
+        items: ['Java', 'PHP', 'Python', 'JavaScript', 'C', 'C#'],
       },
       {
         key: 'database',
@@ -121,7 +121,7 @@ export const en = {
       {
         key: 'tools',
         label: 'Tools',
-        items: ['Gitlab / GitHub', 'Docker', 'Firebase'],
+        items: ['Gitlab / GitHub', 'Docker', 'Firebase', 'Photoshop'],
       },
     ],
   },

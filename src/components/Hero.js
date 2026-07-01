@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import ProfileImage from './ProfileImage';
@@ -7,12 +7,33 @@ import './Hero.css';
 export default function Hero() {
   const { t } = useLanguage();
   const year = new Date().getFullYear();
+  const [parallax, setParallax] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => setParallax(window.scrollY);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const orbShift = parallax * 0.06;
 
   return (
     <section id="hero" className="hero">
       <div className="hero__bg" aria-hidden="true" />
-      <div className="hero__orb hero__orb--blue" aria-hidden="true" />
-      <div className="hero__orb hero__orb--purple" aria-hidden="true" />
+      <div
+        className="hero__orb-wrap hero__orb-wrap--blue"
+        aria-hidden="true"
+        style={{ transform: `translate(${orbShift * 0.5}px, ${orbShift}px)` }}
+      >
+        <div className="hero__orb hero__orb--blue" />
+      </div>
+      <div
+        className="hero__orb-wrap hero__orb-wrap--purple"
+        aria-hidden="true"
+        style={{ transform: `translate(${-orbShift * 0.4}px, ${-orbShift * 0.6}px)` }}
+      >
+        <div className="hero__orb hero__orb--purple" />
+      </div>
       <div className="hero__glow" aria-hidden="true" />
 
       <div className="hero__body">
@@ -70,7 +91,7 @@ export default function Hero() {
               <div className="hero__cta">
                 <button
                   type="button"
-                  className="hero__btn hero__btn--primary"
+                  className="hero__btn hero__btn--primary btn-glow"
                   onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   {t.hero.cta}

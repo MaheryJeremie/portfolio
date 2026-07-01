@@ -7,7 +7,7 @@ export default function Process() {
   const { t } = useLanguage();
 
   return (
-    <section id="process" className="process">
+    <section id="process" className="process section--airy">
       <div className="process__inner">
         <motion.div
           className="process__header"

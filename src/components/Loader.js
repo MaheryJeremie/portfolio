@@ -50,49 +50,62 @@ export default function Loader({ onComplete }) {
           exit={{ y: '-100%' }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
         >
+          <div className="ldr__ambient" aria-hidden="true">
+            <div className="ldr__orb ldr__orb--chrome" />
+            <div className="ldr__orb ldr__orb--blue" />
+          </div>
           <div className="ldr__grain" aria-hidden="true" />
 
           <div className="ldr__inner">
-            <div className="ldr__name" aria-label="Mahery Ramahay">
-              <div className="ldr__overflow">
-                <motion.span
-                  className="ldr__line"
-                  initial={{ y: reduceMotion ? 0 : '105%' }}
-                  animate={{ y: 0 }}
-                  transition={{ delay: reduceMotion ? 0 : 0.12, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  MAHERY
-                </motion.span>
-              </div>
-              <div className="ldr__overflow">
-                <motion.span
-                  className="ldr__line ldr__line--lime"
-                  initial={{ y: reduceMotion ? 0 : '105%' }}
-                  animate={{ y: 0 }}
-                  transition={{ delay: reduceMotion ? 0 : 0.22, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  RAMAHAY
-                </motion.span>
-              </div>
-            </div>
-
             <motion.div
-              className="ldr__foot"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.55, duration: 0.4 }}
+              className="ldr__card"
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 20, scale: reduceMotion ? 1 : 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="ldr__label">{t.loader.initializing}</span>
-              <span className="ldr__count">{String(count).padStart(3, '0')}</span>
-            </motion.div>
+              <span className="ldr__logo logo-mark">MR</span>
 
-            <div className="ldr__bar">
+              <div className="ldr__name" aria-label="Mahery Ramahay">
+                <div className="ldr__clip">
+                  <motion.span
+                    className="ldr__line"
+                    initial={{ y: reduceMotion ? 0 : '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ delay: reduceMotion ? 0 : 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    MAHERY
+                  </motion.span>
+                </div>
+                <div className="ldr__clip">
+                  <motion.span
+                    className="ldr__line"
+                    initial={{ y: reduceMotion ? 0 : '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ delay: reduceMotion ? 0 : 0.25, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <em>RAMAHAY</em>
+                  </motion.span>
+                </div>
+              </div>
+
               <motion.div
-                className="ldr__fill"
-                animate={{ width: `${count}%` }}
-                transition={{ duration: 0.18, ease: 'linear' }}
-              />
-            </div>
+                className="ldr__foot"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+              >
+                <span className="ldr__label">{t.loader.initializing}</span>
+                <span className="ldr__count">{String(count).padStart(3, '0')}</span>
+              </motion.div>
+
+              <div className="ldr__bar">
+                <motion.div
+                  className="ldr__fill"
+                  animate={{ width: `${count}%` }}
+                  transition={{ duration: 0.18, ease: 'linear' }}
+                />
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       )}

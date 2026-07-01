@@ -160,7 +160,6 @@
 .cta__btn--primary:hover,
 .cta__btn--primary:active {
   background: var(--lime-bright);
-  transform: translateY(-3px);
 }
 
 .cta__btn--outline {

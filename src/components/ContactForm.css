@@ -116,16 +116,18 @@
   letter-spacing: 0.1em;
   color: var(--on-lime);
   background: var(--lime-btn);
-  padding: 0.95em 2em;
-  min-height: 44px;
-  align-self: flex-start;
+  padding: 0.95em 2.25em;
+  min-height: 48px;
+  min-width: 11rem;
+  align-self: center;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-md);
   transition: background 0.25s, transform 0.2s;
   box-shadow: 0 4px 20px var(--lime-glow), var(--glass-shine);
 }
 
 .contact-form__submit:hover:not(:disabled) {
   background: var(--lime-bright);
-  transform: translateY(-2px);
 }
 
 .contact-form__submit:disabled {
@@ -138,6 +140,7 @@
   font-size: 0.82rem;
   line-height: 1.5;
   margin: 0;
+  text-align: center;
 }
 
 .contact-form__status--success { color: var(--lime); }

@@ -1,9 +1,9 @@
 /* ── Education ── */
-.edu {
+.edu.section--airy {
   position: relative;
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 6rem);
-  border-top: 1px solid var(--border);
-  background: var(--surface-solid);
+  background: color-mix(in srgb, var(--surface-solid) 78%, transparent);
+  border-top: none;
 }
 
 .edu__num {

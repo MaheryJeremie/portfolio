@@ -109,7 +109,7 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="contact-form__submit"
+          className="contact-form__submit btn-glow"
           disabled={status === 'sending'}
         >
           {status === 'sending' ? t.cta.form.sending : t.cta.form.send}

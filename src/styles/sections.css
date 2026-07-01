@@ -1,0 +1,40 @@
+/* ── Section rhythm — dense vs airy ── */
+.section--dense {
+  position: relative;
+  background: color-mix(in srgb, var(--chrome) 14%, var(--void));
+}
+
+.section--airy {
+  position: relative;
+  background: transparent;
+}
+
+.section--dense::before,
+.section--airy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(920px, 88vw);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--border-mid) 80%, transparent) 18%,
+    color-mix(in srgb, var(--lime) 28%, var(--border-mid)) 50%,
+    color-mix(in srgb, var(--border-mid) 80%, transparent) 82%,
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section--airy {
+  padding-top: clamp(7rem, 14vw, 11rem) !important;
+  padding-bottom: clamp(7rem, 14vw, 11rem) !important;
+}
+
+[data-theme="dark"] .section--dense {
+  background: color-mix(in srgb, var(--chrome) 22%, var(--void));
+}

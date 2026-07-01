@@ -8,7 +8,7 @@ export default function Projects() {
   const [feat, ...rest] = t.projects.items;
 
   return (
-    <section id="projects" className="projects">
+    <section id="projects" className="projects section--dense">
       <div className="projects__num" aria-hidden="true">02</div>
 
       <div className="projects__inner">

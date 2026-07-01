@@ -18,11 +18,18 @@ export default function Navbar({ onDownloadCV }) {
   const { t, language, selectLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      const { scrollHeight, clientHeight } = document.documentElement;
+      const max = scrollHeight - clientHeight;
+      setScrollProgress(max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -71,6 +78,11 @@ export default function Navbar({ onDownloadCV }) {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       aria-label="Main navigation"
     >
+      <div
+        className="nav__progress"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+        aria-hidden="true"
+      />
       <div className="nav__inner">
         <a href="#hero" className="nav__logo" onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}>
           <span className="nav__logo-mark logo-mark">MR</span>
@@ -100,7 +112,7 @@ export default function Navbar({ onDownloadCV }) {
             <button type="button" className="nav__lang" onClick={toggleLang}>
               {language === 'en' ? 'FR' : 'EN'}
             </button>
-            <button type="button" className="nav__cv" onClick={onDownloadCV}>
+            <button type="button" className="nav__cv btn-glow" onClick={onDownloadCV}>
               {t.nav.downloadCV}
             </button>
           </li>
@@ -119,7 +131,7 @@ export default function Navbar({ onDownloadCV }) {
           <button type="button" className="nav__lang nav__lang--desktop" onClick={toggleLang}>
             {language === 'en' ? 'FR' : 'EN'}
           </button>
-          <button type="button" className="nav__cv nav__cv--desktop" onClick={onDownloadCV}>
+          <button type="button" className="nav__cv nav__cv--desktop btn-glow" onClick={onDownloadCV}>
             {t.nav.downloadCV}
           </button>
           <button

@@ -9,7 +9,7 @@ export default function Experience() {
   const job = t.experience.jobs[active];
 
   return (
-    <section id="experience" className="exp">
+    <section id="experience" className="exp section--dense">
       <div className="exp__num" aria-hidden="true">04</div>
       <div className="exp__inner">
 
@@ -49,10 +49,10 @@ export default function Experience() {
             <motion.div
               key={active}
               className="exp__panel"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -24 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="exp__panel-top">
                 <div className="exp__panel-meta">

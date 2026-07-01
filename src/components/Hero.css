@@ -17,12 +17,27 @@
     radial-gradient(ellipse 40% 46% at 64% 60%, var(--liquid-blue), transparent 64%);
 }
 
-.hero__orb {
+.hero__orb-wrap {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(72px);
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
+}
+
+.hero__orb-wrap--blue {
+  top: 12%;
+  right: 8%;
+}
+
+.hero__orb-wrap--purple {
+  bottom: 18%;
+  left: 5%;
+}
+
+.hero__orb {
+  position: relative;
+  border-radius: 50%;
+  filter: blur(72px);
   opacity: 0.75;
 }
 
@@ -30,21 +45,21 @@
   width: min(420px, 55vw);
   height: min(420px, 55vw);
   background: var(--liquid-blue);
-  top: 12%;
-  right: 8%;
 }
 
 .hero__orb--purple {
   width: min(340px, 45vw);
   height: min(340px, 45vw);
   background: var(--liquid-chrome);
-  bottom: 18%;
-  left: 5%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero__orb--blue { animation: hero-orb-drift 14s ease-in-out infinite; }
-  .hero__orb--purple { animation: hero-orb-drift 18s ease-in-out infinite reverse; }
+  .hero__orb-wrap--blue .hero__orb { animation: hero-orb-drift 14s ease-in-out infinite; }
+  .hero__orb-wrap--purple .hero__orb { animation: hero-orb-drift 18s ease-in-out infinite reverse; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__orb { animation: none !important; }
 }
 
 @keyframes hero-orb-drift {
@@ -231,7 +246,15 @@
 
 .hero__name em {
   font-style: normal;
-  color: var(--lime);
+  background: linear-gradient(
+    120deg,
+    var(--chrome) 0%,
+    var(--accent-soft) 42%,
+    var(--lime) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero__desc {
@@ -286,7 +309,6 @@
 .hero__btn--primary:hover,
 .hero__btn--primary:active {
   background: var(--lime-bright);
-  transform: translateY(-2px);
 }
 
 .hero__btn--outline:hover,

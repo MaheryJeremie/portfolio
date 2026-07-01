@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.process.section--airy {
+  border-top: none;
+}
+
 .process__inner {
   max-width: 1200px;
   margin: 0 auto;
