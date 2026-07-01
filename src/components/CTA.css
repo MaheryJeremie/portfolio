@@ -1,33 +1,56 @@
-/* ── CTA ── */
+/* ── CTA — liquid glass ambient (no hard card) ── */
 .cta {
   padding: clamp(6rem, 14vw, 12rem) clamp(1.5rem, 6vw, 6rem);
   position: relative;
   overflow: hidden;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
+  background: transparent;
+  border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(920px, 95vw);
+  height: min(720px, 85%);
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse 70% 55% at 30% 35%, var(--liquid-chrome), transparent 72%),
+    radial-gradient(ellipse 60% 50% at 72% 65%, var(--liquid-blue), transparent 70%);
+  filter: blur(48px);
+  opacity: 0.48;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .cta__orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(96px);
   pointer-events: none;
+  z-index: 0;
 }
 
 .cta__orb--purple {
-  width: 500px; height: 500px;
-  background: var(--violet-dim);
-  left: 50%;
-  top: -120px;
-  transform: translateX(calc(-50% - 280px));
+  width: min(560px, 70vw);
+  height: min(560px, 70vw);
+  background: var(--liquid-chrome);
+  left: 8%;
+  top: 5%;
+  transform: none;
+  opacity: 0.55;
 }
 
 .cta__orb--cyan {
-  width: 400px; height: 400px;
-  background: var(--lime-dim);
-  left: 50%;
-  bottom: -80px;
-  transform: translateX(calc(-50% + 280px));
+  width: min(480px, 60vw);
+  height: min(480px, 60vw);
+  background: var(--liquid-blue);
+  right: 6%;
+  bottom: 0;
+  left: auto;
+  transform: none;
+  opacity: 0.5;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -36,19 +59,19 @@
 }
 
 @keyframes orb-float-left {
-  0%, 100% { transform: translateX(calc(-50% - 280px)) translateY(0); }
-  50% { transform: translateX(calc(-50% - 260px)) translateY(-12px); }
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(12px, -16px); }
 }
 
 @keyframes orb-float-right {
-  0%, 100% { transform: translateX(calc(-50% + 280px)) translateY(0); }
-  50% { transform: translateX(calc(-50% + 300px)) translateY(10px); }
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 14px); }
 }
 
 .cta__inner {
   max-width: 900px;
   margin: 0 auto;
-  padding-inline: var(--space-4);
+  padding: 0 var(--space-4);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,6 +79,10 @@
   position: relative;
   width: 100%;
   z-index: 1;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .cta__title-wrap {
@@ -127,7 +154,7 @@
 .cta__btn--primary {
   background: var(--lime-btn);
   color: var(--on-lime);
-  box-shadow: 0 4px 24px var(--lime-glow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 24px var(--lime-glow), var(--glass-shine);
 }
 
 .cta__btn--primary:hover,
@@ -137,9 +164,9 @@
 }
 
 .cta__btn--outline {
-  background: var(--void);
+  background: color-mix(in srgb, var(--glass-bg) 80%, transparent);
   color: var(--ink);
-  border: 1px solid var(--border-bright);
+  border: 1px solid var(--glass-border);
 }
 
 .cta__btn--outline:hover,
@@ -150,13 +177,15 @@
 }
 
 .cta__btn--email {
-  background: var(--surface);
+  background: color-mix(in srgb, var(--glass-bg) 35%, transparent);
   color: var(--ink);
-  border: 1px solid var(--border-mid);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 55%, transparent);
   font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.02em;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .cta__btn--email:hover,
@@ -177,8 +206,9 @@
   .cta { padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 3rem); }
   .cta__actions { flex-direction: column; align-items: center; }
   .cta__btn { width: 100%; max-width: 320px; justify-content: center; }
-  .cta__orb--purple { width: 250px; height: 250px; }
-  .cta__orb--cyan { width: 200px; height: 200px; }
+  .cta::before { opacity: 0.45; filter: blur(36px); }
+  .cta__orb--purple { width: 220px; height: 220px; left: -5%; }
+  .cta__orb--cyan { width: 200px; height: 200px; right: -5%; }
 }
 
 @media (max-width: 480px) {

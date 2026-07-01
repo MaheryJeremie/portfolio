@@ -3,13 +3,36 @@
   padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
   position: relative;
   overflow: hidden;
-  background: var(--surface);
+  background: transparent;
   border-top: 1px solid var(--border);
 }
 
-.scene-accent--skills {
-  opacity: 0.35;
-  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+.skills::before,
+.skills::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skills::before {
+  width: 320px;
+  height: 320px;
+  background: var(--liquid-blue);
+  top: 10%;
+  right: -5%;
+  opacity: 0.4;
+}
+
+.skills::after {
+  width: 260px;
+  height: 260px;
+  background: var(--liquid-chrome);
+  bottom: 5%;
+  left: -3%;
+  opacity: 0.5;
 }
 
 .skills__num {
@@ -113,15 +136,24 @@
 .skills__items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
+  gap: var(--space-3);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  padding: var(--space-4);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), var(--glass-shine);
 }
 
 .skills__item {
-  background: var(--void);
+  background: color-mix(in srgb, var(--void) 70%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   padding: 1.2rem 1rem;
   font-family: var(--font-body);
   font-size: 0.78rem;
@@ -132,13 +164,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .skills__item:hover,
 .skills__item:active {
   background: var(--lime-dim);
   color: var(--lime);
+  border-color: color-mix(in srgb, var(--lime) 30%, var(--border));
+  box-shadow: 0 4px 16px var(--lime-glow);
 }
 
 @media (max-width: 1024px) {

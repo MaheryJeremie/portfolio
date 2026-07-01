@@ -1,4 +1,4 @@
-/* ── Hero — light impactful ── */
+/* ── Hero — liquid glass ── */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -13,17 +13,52 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 55% 60% at 75% 45%, var(--violet-dim), transparent 70%),
-    radial-gradient(ellipse 45% 50% at 65% 55%, var(--lime-dim), transparent 65%);
+    radial-gradient(ellipse 52% 58% at 78% 40%, var(--liquid-chrome), transparent 70%),
+    radial-gradient(ellipse 40% 46% at 64% 60%, var(--liquid-blue), transparent 64%);
+}
+
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+}
+
+.hero__orb--blue {
+  width: min(420px, 55vw);
+  height: min(420px, 55vw);
+  background: var(--liquid-blue);
+  top: 12%;
+  right: 8%;
+}
+
+.hero__orb--purple {
+  width: min(340px, 45vw);
+  height: min(340px, 45vw);
+  background: var(--liquid-chrome);
+  bottom: 18%;
+  left: 5%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__orb--blue { animation: hero-orb-drift 14s ease-in-out infinite; }
+  .hero__orb--purple { animation: hero-orb-drift 18s ease-in-out infinite reverse; }
+}
+
+@keyframes hero-orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-18px, 14px) scale(1.06); }
 }
 
 .hero__glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 70% at 70% 50%, var(--lime-dim) 0%, transparent 70%);
+  background: radial-gradient(ellipse 55% 65% at 72% 48%, var(--liquid-chrome) 0%, transparent 72%);
   pointer-events: none;
   z-index: 1;
-  opacity: 0.28;
+  opacity: 0.45;
 }
 
 .hero__body {
@@ -66,7 +101,10 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-photo);
-  background: var(--card-hover);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
 }
 
 .hero__portrait-img {
@@ -156,7 +194,7 @@
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--lime-btn);
-  box-shadow: 0 0 0 3px rgba(188, 212, 42, 0.22);
+  box-shadow: 0 0 0 3px var(--lime-glow);
   animation: pulse-dot 2s infinite;
 }
 
@@ -233,19 +271,22 @@
 .hero__btn--primary {
   background: var(--lime-btn);
   color: var(--on-lime);
-  box-shadow: 0 4px 20px var(--lime-glow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 24px var(--lime-glow), var(--glass-shine);
+}
+
+.hero__btn--outline {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm), var(--glass-shine);
 }
 
 .hero__btn--primary:hover,
 .hero__btn--primary:active {
   background: var(--lime-bright);
   transform: translateY(-2px);
-}
-
-.hero__btn--outline {
-  background: var(--surface);
-  color: var(--ink);
-  border: 1px solid var(--border-bright);
 }
 
 .hero__btn--outline:hover,
@@ -259,9 +300,12 @@
   position: relative;
   z-index: 2;
   overflow: hidden;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--glass-border);
   padding: var(--space-4) 0;
-  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--glass-shine);
 }
 
 .hero__marquee-track {

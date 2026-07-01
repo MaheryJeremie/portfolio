@@ -73,8 +73,8 @@ export default function Navbar({ onDownloadCV }) {
     >
       <div className="nav__inner">
         <a href="#hero" className="nav__logo" onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}>
-          <span className="nav__logo-mark">MR</span>
-          <span className="nav__logo-name">Mahery</span>
+          <span className="nav__logo-mark logo-mark">MR</span>
+          <span className="nav__logo-name"></span>
         </a>
 
         <ul

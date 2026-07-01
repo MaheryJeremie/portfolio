@@ -52,8 +52,10 @@ export const fr = {
     location: 'Antananarivo, Madagascar',
     email: 'maheryramahay@gmail.com',
     phone: '+261 38 72 721 78',
-    github: 'github.com/MaheryJeremie',
-    linkedin: 'linkedin.com/in/mahery-ramahay-mandimby-823b6b315',
+    github: 'MaheryJeremie',
+    githubUrl: 'https://github.com/MaheryJeremie',
+    linkedin: 'Mahery Ramahay Mandimby',
+    linkedinUrl: 'https://www.linkedin.com/in/mahery-ramahay-mandimby-823b6b315/',
     interests: {
       title: "Centres d'intérêt",
       items: ['Musique', 'Jeux Vidéo', 'Produits Tech'],
@@ -228,7 +230,7 @@ export const fr = {
     },
   },
   footer: {
-    built: 'Construit avec React & trop de café.',
+    built: 'Oser c\'est faire.',
     links: 'GitHub · LinkedIn',
     backToTop: 'Retour en haut',
     copy: '© {year} Mahery Ramahay Mandimby',

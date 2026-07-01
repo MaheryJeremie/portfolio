@@ -18,8 +18,8 @@ export default function About() {
     { label: t.about.meta.location, value: t.about.location, href: null },
     { label: t.about.meta.email, value: t.about.email, href: `mailto:${t.about.email}` },
     { label: t.about.meta.phone, value: t.about.phone, href: `tel:${t.about.phone.replace(/\s/g, '')}` },
-    { label: t.about.meta.github, value: t.about.github, href: `https://${t.about.github}` },
-    { label: t.about.meta.linkedin, value: t.about.linkedin, href: `https://${t.about.linkedin}` },
+    { label: t.about.meta.github, value: t.about.github, href: t.about.githubUrl },
+    { label: t.about.meta.linkedin, value: t.about.linkedin, href: t.about.linkedinUrl },
   ];
 
   return (

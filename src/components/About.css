@@ -2,7 +2,7 @@
 .about {
   padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
   position: relative;
-  background: var(--surface);
+  background: transparent;
   border-top: 1px solid var(--border);
 }
 
@@ -60,10 +60,13 @@
 .about__meta {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
-  border-radius: 2px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md), var(--glass-shine);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 .about__meta-row {
@@ -73,7 +76,7 @@
   padding: 0.85rem 1rem;
   border-bottom: 1px solid var(--border);
   align-items: center;
-  background: var(--void);
+  background: color-mix(in srgb, var(--glass-bg) 60%, transparent);
 }
 
 .about__meta-row:last-child { border-bottom: none; }
@@ -138,10 +141,13 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--ink);
-  border: 1px solid var(--border-mid);
-  background: var(--void);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 0.4em 0.9em;
-  transition: border-color 0.3s, color 0.3s, background 0.3s;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.3s, color 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
 .about__chip:hover {

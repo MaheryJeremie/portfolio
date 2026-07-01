@@ -11,6 +11,8 @@ export default function Hero() {
   return (
     <section id="hero" className="hero">
       <div className="hero__bg" aria-hidden="true" />
+      <div className="hero__orb hero__orb--blue" aria-hidden="true" />
+      <div className="hero__orb hero__orb--purple" aria-hidden="true" />
       <div className="hero__glow" aria-hidden="true" />
 
       <div className="hero__body">

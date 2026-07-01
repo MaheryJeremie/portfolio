@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="MR">
+  <rect width="192" height="192" rx="28" fill="#E6EAEF"/>
+  <rect x="28" y="28" width="136" height="136" rx="14" fill="#F2F4F8" stroke="#B4BCC8" stroke-width="2"/>
+  <rect x="28" y="28" width="136" height="136" rx="14" fill="url(#shine)" opacity="0.55"/>
+  <text x="96" y="108" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="800" letter-spacing="4" fill="#3B5BDB" text-anchor="middle">MR</text>
+  <rect x="66" y="122" width="60" height="3" rx="1.5" fill="url(#accent)"/>
+  <defs>
+    <linearGradient id="shine" x1="28" y1="28" x2="164" y2="164" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="66" y1="123" x2="126" y2="123" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B5BDB" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#3B5BDB"/>
+      <stop offset="1" stop-color="#3B5BDB" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

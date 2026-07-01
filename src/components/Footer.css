@@ -1,8 +1,11 @@
 /* ── Footer ── */
 .footer {
   padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 6vw, 6rem);
-  border-top: 1px solid var(--border);
-  background: var(--void);
+  border-top: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--glass-shine);
 }
 
 .footer__inner {
@@ -22,14 +25,8 @@
 }
 
 .footer__mark {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--on-lime);
-  background: var(--lime-btn);
-  padding: 0.2em 0.5em;
-  line-height: 1.4;
+  font-size: 0.75rem;
+  padding: 0.35em 0.45em;
 }
 
 .footer__built {
@@ -68,10 +65,13 @@
   font-size: 1rem;
   font-weight: 700;
   color: var(--ink);
-  border: 1px solid var(--border-mid);
-  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--glass-bg) 70%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   width: 44px;
   height: 44px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__left">
-          <span className="footer__mark">MR</span>
+          <span className="footer__mark logo-mark">MR</span>
           <p className="footer__built">{t.footer.built}</p>
         </div>
         <div className="footer__right">
