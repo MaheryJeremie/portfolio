@@ -1,12 +1,18 @@
 /* ── Hero — editorial portrait + typographic stack ── */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: auto;
   display: grid;
   grid-template-rows: 1fr auto;
   overflow: hidden;
   padding-top: var(--nav-height);
   isolation: isolate;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    min-height: 100svh;
+  }
 }
 
 .hero__bg {
@@ -135,7 +141,8 @@
 .hero__content {
   width: 100%;
   max-width: 1240px;
-  margin: 0 auto;
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
 .hero__name-block {
@@ -144,6 +151,8 @@
   flex-direction: column;
   gap: clamp(1.75rem, 4vh, 2.75rem);
   max-width: min(100%, 52rem);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hero__name {
@@ -447,7 +456,7 @@
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 900px) and (max-width: 1024px) {
   .hero__name-block {
     --hero-name-size: clamp(3.25rem, 7vw, 5.5rem);
   }
@@ -457,29 +466,205 @@
   }
 }
 
-/* ── Mobile — stacked: name → badges → photo → tagline → CTAs ── */
-@media (max-width: 899px) {
+/* ── Tablet — compact side-by-side (shorter than stacked) ── */
+@media (min-width: 768px) and (max-width: 899px) {
   .hero__body {
-    justify-content: flex-start;
-    min-height: auto;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 1rem;
+    padding-bottom: 1.25rem;
+    padding-inline: max(1.5rem, env(safe-area-inset-left, 0px)) max(1.25rem, env(safe-area-inset-right, 0px));
   }
 
   .hero__content {
-    padding-right: 0;
+    display: block;
+    align-items: flex-start;
+    padding-right: clamp(10.5rem, 30vw, 15rem);
   }
 
   .hero__name-block {
-    --hero-name-size: clamp(2.6rem, 12.5vw, 3.75rem);
+    --hero-name-size: clamp(2.35rem, 5.2vw, 3.35rem);
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.1rem;
+    max-width: 100%;
+  }
+
+  .hero__name {
+    text-align: left;
+  }
+
+  .hero__name-line {
+    width: auto;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  .hero__name-line--bottom {
+    padding-left: calc(var(--hero-name-size) * 0.42);
+  }
+
+  .hero__details {
+    align-items: flex-start;
+    padding-left: calc(var(--hero-name-size) * 0.48);
+    max-width: min(24rem, 100%);
+    gap: 0.95rem;
+  }
+
+  .hero__meta {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .hero__eyebrow,
+  .hero__avail {
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .hero__photo {
+    position: absolute;
+    top: var(--nav-height);
+    right: clamp(0.5rem, 2vw, 1rem);
+    width: clamp(175px, 25vw, 240px);
+    height: calc(100% - 4.25rem);
+    aspect-ratio: unset;
+    margin: 0;
+    z-index: 2;
+    overflow: hidden;
+    transform: none !important;
+    pointer-events: none;
+  }
+
+  .hero__photo-img {
+    object-position: 52% 10%;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 8%,
+      #000 20%,
+      #000 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 8%,
+      #000 20%,
+      #000 88%,
+      transparent 100%
+    );
+  }
+
+  .hero__photo-scrim {
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--void) 50%, transparent) 0%,
+      transparent 22%
+    );
+  }
+
+  [data-theme="light"] .hero__photo-scrim {
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--void) 45%, transparent) 0%,
+      transparent 20%
+    );
+  }
+
+  .hero__desc {
+    text-align: left;
+    padding-left: 1rem;
+    border-left: 2px solid color-mix(in srgb, var(--lime) 38%, transparent);
+    border-top: none;
+    padding-top: 0;
+    max-width: 22rem;
+    margin-inline: 0;
+  }
+
+  .hero__foot {
+    max-width: 100%;
+    justify-content: flex-start;
+    margin-inline: 0;
+  }
+
+  .hero__cta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .hero__btn {
+    width: auto;
+    justify-content: center;
+  }
+
+  .hero__scroll {
+    bottom: 3.75rem;
+  }
+}
+
+/* ── Mobile — stacked layout ── */
+@media (max-width: 767px) {
+  .hero {
+    padding-top: var(--nav-height);
+  }
+
+  .hero__body {
+    justify-content: flex-start;
+    align-items: center;
+    min-height: auto;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1.25rem;
+    padding-inline: max(1.15rem, env(safe-area-inset-left, 0px)) max(1.15rem, env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 0;
+    margin-inline: auto;
+  }
+
+  .hero__name-block {
+    --hero-name-size: clamp(1.85rem, 8.8vw, 2.65rem);
     align-items: center;
     text-align: center;
     max-width: 100%;
-    gap: 1.35rem;
+    width: 100%;
+    gap: 1.1rem;
+    container-type: inline-size;
+  }
+
+  .hero__name {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    font-size: min(var(--hero-name-size), 17.5cqi);
+    overflow-wrap: normal;
+  }
+
+  .hero__name-line {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    overflow: hidden;
+    text-overflow: clip;
   }
 
   .hero__name-line--bottom {
     padding-left: 0;
+  }
+
+  .hero__name em {
+    filter: none;
   }
 
   .hero__details {
@@ -487,11 +672,20 @@
     padding-left: 0;
     max-width: 100%;
     width: 100%;
-    gap: 1.25rem;
+    gap: 1rem;
+    box-sizing: border-box;
   }
 
   .hero__meta {
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__eyebrow,
+  .hero__avail {
+    white-space: normal;
+    text-align: center;
   }
 
   .hero__photo {
@@ -499,10 +693,12 @@
     top: auto;
     right: auto;
     bottom: auto;
-    width: min(68vw, 260px);
+    left: auto;
+    width: min(62vw, 220px);
+    max-width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
-    margin: 0.25rem auto 0;
+    margin: 0.15rem auto 0;
     z-index: auto;
     transform: none !important;
     pointer-events: auto;
@@ -537,18 +733,22 @@
     border-top: 2px solid color-mix(in srgb, var(--lime) 35%, transparent);
     padding-top: 0.85rem;
     width: 100%;
-    max-width: 22rem;
+    max-width: min(22rem, 100%);
+    margin-inline: auto;
+    box-sizing: border-box;
   }
 
   .hero__foot {
     width: 100%;
+    max-width: min(300px, 100%);
     justify-content: center;
+    margin-inline: auto;
   }
 
   .hero__cta {
     flex-direction: column;
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
     align-items: stretch;
   }
 
@@ -561,6 +761,7 @@
     display: flex;
     bottom: 4.25rem;
     left: 50%;
+    right: auto;
     transform: translateX(-50%);
   }
 
@@ -570,35 +771,78 @@
   }
 }
 
-@media (max-width: 480px) {
-  .hero {
-    padding-top: 4.5rem;
-  }
-
-  .hero__body {
-    padding: 1rem 1.25rem 1.5rem;
-  }
-
+/* iPhone SE / petits écrans */
+@media (max-width: 420px) {
   .hero__name-block {
-    --hero-name-size: clamp(2.25rem, 13.5vw, 3rem);
-    gap: 1.15rem;
+    --hero-name-size: clamp(1.7rem, 8.2vw, 2.15rem);
+  }
+
+  .hero__name {
+    font-size: min(var(--hero-name-size), 16.5cqi);
+    letter-spacing: -0.045em;
+  }
+
+  .hero__meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hero__eyebrow,
+  .hero__avail {
+    font-size: 0.6rem;
+    padding: 0.45em 0.8em;
   }
 
   .hero__photo {
-    width: min(72vw, 240px);
+    width: min(58vw, 200px);
+  }
+
+  .hero__desc {
+    font-size: 0.9rem;
+    padding-top: 0.7rem;
   }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (max-width: 380px) {
   .hero__body {
-    padding: 0 1.5rem 2rem;
+    padding-inline: max(0.85rem, env(safe-area-inset-left, 0px)) max(0.85rem, env(safe-area-inset-right, 0px));
+    padding-top: 0.85rem;
+  }
+
+  .hero__name-block {
+    --hero-name-size: clamp(1.55rem, 7.8vw, 1.95rem);
+    gap: 0.95rem;
+  }
+
+  .hero__name {
+    font-size: min(var(--hero-name-size), 15.5cqi);
+  }
+
+  .hero__photo {
+    width: min(54vw, 185px);
+  }
+
+  .hero__foot {
+    max-width: 100%;
+  }
+}
+
+/* iPhone SE 1ère gen (320px) */
+@media (max-width: 340px) {
+  .hero__name-block {
+    --hero-name-size: clamp(1.45rem, 7.2vw, 1.8rem);
+  }
+
+  .hero__name {
+    font-size: min(var(--hero-name-size), 14.8cqi);
+    letter-spacing: -0.05em;
   }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
   .hero {
     min-height: auto;
-    padding-top: 4rem;
   }
 
   .hero__body {
@@ -608,6 +852,7 @@
 
   .hero__name-block {
     --hero-name-size: clamp(1.85rem, 6.5vw, 3rem);
+    gap: 1rem;
   }
 
   .hero__photo {
