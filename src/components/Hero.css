@@ -758,16 +758,7 @@
   }
 
   .hero__scroll {
-    display: flex;
-    bottom: 4.25rem;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-
-  .hero__scroll-label {
-    writing-mode: horizontal-tb;
-    letter-spacing: 0.22em;
+    display: none;
   }
 }
 
