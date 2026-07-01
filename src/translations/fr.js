@@ -77,7 +77,7 @@ export const fr = {
       {
         name: 'Application Centre Commercial',
         description: 'Application pour un centre commercial du style Akoor:\n— Admin : gestion globale du centre (utilisateurs, commerces, événements, ...)\n— Commerçants : gestion de leur boutique (informations, promotions, ...)\n— Clients : consultation du site (liste des boutiques, avis, favoris, ...)',
-        tech: ['Node.js', 'Express', 'Angular JS', 'MongoDB'],
+        tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
         github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
         highlight: true,
@@ -102,7 +102,7 @@ export const fr = {
       {
         key: 'frontend',
         label: 'Frontend',
-        items: ['React', 'Angular JS', 'React Native', 'Vue.js', 'HTML/CSS', 'Bootstrap'],
+        items: ['React', 'Angular', 'React Native', 'Vue.js', 'HTML/CSS', 'Bootstrap'],
       },
       {
         key: 'backend',

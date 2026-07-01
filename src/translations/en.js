@@ -76,7 +76,7 @@ export const en = {
       {
         name: 'Shopping Centre App',
         description: 'App for an Akoor-style shopping centre:\n— Admin: global management of the centre (users, shops, events, ...)\n— Merchants: manage their shop (info, promotions, ...)\n— Clients: browse the site (shop listings, reviews, favourites, ...)',
-        tech: ['Node.js', 'Express', 'Angular JS', 'MongoDB'],
+        tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
         github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
         highlight: true,
@@ -101,7 +101,7 @@ export const en = {
       {
         key: 'frontend',
         label: 'Frontend',
-        items: ['React', 'Angular JS', 'React Native', 'Vue.js', 'HTML/CSS', 'Bootstrap'],
+        items: ['React', 'Angular', 'React Native', 'Vue.js', 'HTML/CSS', 'Bootstrap'],
       },
       {
         key: 'backend',
