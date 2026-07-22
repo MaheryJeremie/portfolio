@@ -89,6 +89,15 @@ export const en = {
         highlight: true,
         tag: 'Degree project',
       },
+      {
+        name: 'AI Study Assistant',
+        description: 'SaaS learning platform built around educational PDFs:\n— Upload & processing: text extraction, chunking, embeddings\n— AI study tools: summary, RAG chat with sources, quizzes, flashcards, revision sheets\n— Progress: dashboard (documents, scores, study time, activity)',
+        tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
+        github: 'https://github.com/MaheryJeremie/ai-study-assistant',
+        live: '',
+        highlight: true,
+        tag: 'Personal project',
+      },
     ],
   },
   skills: {
