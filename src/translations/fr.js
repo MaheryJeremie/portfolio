@@ -79,7 +79,7 @@ export const fr = {
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
         highlight: true,
         tag: 'Projet académique',
-        image: '/images/projects/shopping-centre.png',
+        image: '/images/projects/shopping-centre.webp',
         imageAlt: 'Aperçu Application Centre Commercial',
       },
       {
@@ -91,7 +91,7 @@ export const fr = {
         live: null,
         highlight: true,
         tag: 'Projet de Licence',
-        image: '/images/projects/odoo-budget.png',
+        image: '/images/projects/odoo-budget.webp',
         imageAlt: 'Aperçu Module Gestion Budgétaire Odoo',
       },
       {
@@ -102,7 +102,7 @@ export const fr = {
         live: '',
         highlight: true,
         tag: 'Projet personnel',
-        image: '/images/projects/ai-study-assistant.png',
+        image: '/images/projects/ai-study-assistant.webp',
         imageAlt: 'Aperçu AI Study Assistant',
       },
       {
@@ -114,7 +114,7 @@ export const fr = {
         live: null,
         highlight: true,
         tag: 'Projet personnel',
-        image: '/images/projects/asafinder.png',
+        image: '/images/projects/asafinder.webp',
         imageAlt: 'Aperçu AsaFinder',
       },
     ],
