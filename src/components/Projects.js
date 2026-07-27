@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { publicUrl } from '../utils/publicUrl';
 import './Projects.css';
 
 function ProjectCard({ project, featured, featuredLabel, t, index }) {
@@ -34,7 +35,7 @@ function ProjectCard({ project, featured, featuredLabel, t, index }) {
     >
       <div className="project-card__media">
         <img
-          src={project.image}
+          src={publicUrl(project.image)}
           alt={project.imageAlt || project.name}
           className="project-card__image"
           loading="lazy"
