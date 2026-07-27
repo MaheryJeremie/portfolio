@@ -78,6 +78,8 @@ export const en = {
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
         highlight: true,
         tag: 'Academic project',
+        image: '/images/projects/shopping-centre.png',
+        imageAlt: 'Shopping Centre App preview',
       },
       {
         name: 'Budget Management Module (Odoo)',
@@ -88,6 +90,8 @@ export const en = {
         live: null,
         highlight: true,
         tag: 'Degree project',
+        image: '/images/projects/odoo-budget.png',
+        imageAlt: 'Odoo Budget Management module preview',
       },
       {
         name: 'AI Study Assistant',
@@ -97,6 +101,20 @@ export const en = {
         live: '',
         highlight: true,
         tag: 'Personal project',
+        image: '/images/projects/ai-study-assistant.png',
+        imageAlt: 'AI Study Assistant preview',
+      },
+      {
+        name: 'AsaFinder',
+        description:
+          'Job offer centralization tool: multi-source aggregation (PortalJob, Asako, Eldora, Job2Mada, LinkedIn), CV import, advanced search filters, score-based matching, and a unified dashboard to streamline offers.',
+        tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS'],
+        github: 'https://github.com/MaheryJeremie/job-finder',
+        live: null,
+        highlight: true,
+        tag: 'Personal project',
+        image: '/images/projects/asafinder.png',
+        imageAlt: 'AsaFinder preview',
       },
     ],
   },
