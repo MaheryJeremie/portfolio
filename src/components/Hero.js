@@ -33,34 +33,50 @@ export default function Hero() {
   const { t } = useLanguage();
   const { isDark } = useTheme();
   const trackRef = useRef(null);
-  const [progress, setProgress] = useState(0);
-  const active = chapterIndex(progress);
+  const progressRef = useRef(0);
+  const activeRef = useRef(0);
+  const showScrollRef = useRef(true);
+  const [active, setActive] = useState(0);
+  const [showScroll, setShowScroll] = useState(true);
   const story = t.hero.story ?? {};
   const stackItems = useMemo(() => story.stack?.items ?? [], [story]);
   const iconColor = isDark ? '8FA3C4' : '3B5BDB';
 
   useEffect(() => {
     let raf = 0;
-    const measure = () => {
+
+    const read = () => {
       const track = trackRef.current;
-      if (!track) return;
+      if (!track) return 0;
       const maxScroll = track.offsetHeight - window.innerHeight;
-      if (maxScroll <= 0) {
-        setProgress(0);
-        return;
+      if (maxScroll <= 0) return 0;
+      return Math.min(1, Math.max(0, -track.getBoundingClientRect().top / maxScroll));
+    };
+
+    const syncChapter = (next) => {
+      const chapter = chapterIndex(next);
+      if (chapter !== activeRef.current) {
+        activeRef.current = chapter;
+        setActive(chapter);
       }
-      const top = track.getBoundingClientRect().top;
-      setProgress(Math.min(1, Math.max(0, -top / maxScroll)));
+      const show = next < 0.92;
+      if (show !== showScrollRef.current) {
+        showScrollRef.current = show;
+        setShowScroll(show);
+      }
     };
 
     const onScroll = () => {
+      // Sync immediately so the frame scrubber never reads a stale value
+      progressRef.current = read();
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(measure);
+      raf = requestAnimationFrame(() => syncChapter(progressRef.current));
     };
 
-    measure();
+    progressRef.current = read();
+    syncChapter(progressRef.current);
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('scroll', onScroll);
@@ -117,7 +133,10 @@ export default function Hero() {
                 <div className="hero__details">
                   <div className="hero__photo">
                     <div className="hero__photo-glow" aria-hidden="true" />
-                    <ScrollFrameAnim progress={progress} className="hero__photo-img hero__frame" />
+                    <ScrollFrameAnim
+                      progressRef={progressRef}
+                      className="hero__photo-img hero__frame"
+                    />
                     <div className="hero__photo-scrim" aria-hidden="true" />
                   </div>
 
@@ -208,7 +227,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {progress < 0.92 && (
+          {showScroll && (
             <div className="hero__scroll" aria-hidden="true">
               <div className="hero__scroll-line" />
               <span className="hero__scroll-label">{t.hero.scroll}</span>

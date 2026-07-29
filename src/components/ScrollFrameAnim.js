@@ -2,131 +2,96 @@ import { useEffect, useRef } from 'react';
 import { publicUrl } from '../utils/publicUrl';
 
 const FRAME_COUNT = 151;
-const WINDOW = 20;
-const EVICT_BEYOND = 32;
+const MAX_EDGE_DESKTOP = 720;
+const MAX_EDGE_MOBILE = 560;
+const LOAD_CONCURRENCY = 4;
+const PREFETCH = 20;
 
 function framePath(i) {
   return publicUrl(`/animation/frames/frame-${String(i).padStart(3, '0')}.webp`);
 }
 
-function knockOutWhite(img) {
-  const c = document.createElement('canvas');
-  c.width = img.naturalWidth;
-  c.height = img.naturalHeight;
-  const x = c.getContext('2d', { willReadFrequently: true });
-  if (!x) return img;
-  x.drawImage(img, 0, 0);
-  const imageData = x.getImageData(0, 0, c.width, c.height);
-  const d = imageData.data;
-  for (let i = 0; i < d.length; i += 4) {
-    const r = d[i];
-    const g = d[i + 1];
-    const b = d[i + 2];
-    const min = Math.min(r, g, b);
-    const max = Math.max(r, g, b);
-    const avg = (r + g + b) / 3;
-    if (avg > 228 && max - min < 20) {
-      d[i + 3] = 0;
-    } else if (avg > 198 && max - min < 28) {
-      const t = (avg - 198) / 30;
-      d[i + 3] = Math.round(d[i + 3] * (1 - t));
-    }
-  }
-  x.putImageData(imageData, 0, 0);
-  return c;
-}
-
-function scheduleIdle(fn) {
-  if (typeof requestIdleCallback === 'function') {
-    return requestIdleCallback(fn, { timeout: 400 });
-  }
-  return setTimeout(fn, 0);
-}
-
 /**
- * Scroll-scrubbed image sequence. `progress` is 0–1 from the parent sticky track.
+ * Scroll-scrubbed frame sequence.
+ * Prefer `progressRef` so the parent can avoid React re-renders on scroll.
  */
-export default function ScrollFrameAnim({ progress = 0, className = '' }) {
+export default function ScrollFrameAnim({
+  progress = 0,
+  progressRef = null,
+  className = '',
+}) {
   const canvasRef = useRef(null);
-  const stateRef = useRef({
-    frames: new Array(FRAME_COUNT),
-    loading: new Set(),
-    currentFrame: 0,
-    targetFrame: 0,
-    ready: false,
-    lastDrawn: -1,
-    rafId: 0,
-    ensureQueued: 0,
-    isMobile: false,
-  });
+  const fallbackProgress = useRef(progress);
+  fallbackProgress.current = progress;
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
 
-    const s = stateRef.current;
-    s.isMobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
+    const isMobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
+    const maxEdge = isMobile ? MAX_EDGE_MOBILE : MAX_EDGE_DESKTOP;
+    const maxDpr = isMobile ? 1 : 1.25;
+
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (!ctx) return undefined;
 
-    const maxDpr = s.isMobile ? 1.25 : 1.5;
+    const bitmaps = new Array(FRAME_COUNT);
+    const loading = new Set();
+    const queue = [];
+    let activeLoads = 0;
+    let currentFrame = 0;
+    let lastDrawn = -1;
+    let lastGood = 0;
+    let ready = false;
+    let rafId = 0;
+    let running = false;
+    let cancelled = false;
+    let srcW = 0;
+    let srcH = 0;
+    let drawW = 0;
+    let drawH = 0;
+    let drawX = 0;
+    let drawY = 0;
 
-    function sourceSize(img) {
-      return {
-        w: img.naturalWidth || img.width || 0,
-        h: img.naturalHeight || img.height || 0,
-      };
-    }
+    const readProgress = () => {
+      const raw = progressRef ? progressRef.current : fallbackProgress.current;
+      return Math.min(1, Math.max(0, Number(raw) || 0));
+    };
 
-    function isReady(img) {
-      if (!img) return false;
-      if (img instanceof HTMLCanvasElement) return img.width > 0;
-      return Boolean(img.complete && img.naturalWidth);
-    }
+    const isReady = (bmp) => Boolean(bmp && bmp.width > 0);
 
-    function drawFrame(index) {
-      const { frames } = s;
+    const layoutDraw = (iw, ih) => {
+      if (iw === srcW && ih === srcH && drawW) return;
+      srcW = iw;
+      srcH = ih;
+      const scale = Math.max(canvas.width / iw, canvas.height / ih);
+      drawW = iw * scale;
+      drawH = ih * scale;
+      drawX = (canvas.width - drawW) / 2;
+      drawY = (canvas.height - drawH) / 2 - drawH * 0.04;
+    };
+
+    const drawFrame = (index) => {
       let idx = index;
-      let img = frames[idx];
+      let bmp = bitmaps[idx];
 
-      if (!isReady(img)) {
-        for (let d = 1; d <= WINDOW; d += 1) {
-          const a = frames[idx - d];
-          const b = frames[idx + d];
-          if (isReady(a)) {
-            idx = idx - d;
-            img = a;
-            break;
-          }
-          if (isReady(b)) {
-            idx = idx + d;
-            img = b;
-            break;
-          }
-        }
-        if (!isReady(img)) return;
+      if (!isReady(bmp)) {
+        bmp = bitmaps[lastGood];
+        idx = lastGood;
+        if (!isReady(bmp)) return;
+      } else {
+        lastGood = idx;
       }
 
-      if (idx === s.lastDrawn) return;
-      s.lastDrawn = idx;
+      if (idx === lastDrawn) return;
+      lastDrawn = idx;
 
-      const { w: iw, h: ih } = sourceSize(img);
-      if (!iw || !ih) return;
+      layoutDraw(bmp.width, bmp.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(bmp, drawX, drawY, drawW, drawH);
+    };
 
-      const cw = canvas.width;
-      const ch = canvas.height;
-      // contain — no hard crop that reads as a "cadre"
-      const scale = Math.min(cw / iw, ch / ih);
-      const w = iw * scale;
-      const h = ih * scale;
-      const x = (cw - w) / 2;
-      const y = (ch - h) / 2;
-
-      ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(img, x, y, w, h);
-    }
-
-    function resize() {
+    const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
       const rect = canvas.getBoundingClientRect();
       const w = Math.max(1, Math.floor(rect.width * dpr));
@@ -134,116 +99,187 @@ export default function ScrollFrameAnim({ progress = 0, className = '' }) {
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
+        srcW = 0;
+        lastDrawn = -1;
       }
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = s.isMobile ? 'medium' : 'high';
-      s.lastDrawn = -1;
-      if (s.ready) drawFrame(Math.round(s.currentFrame));
-    }
+      ctx.imageSmoothingQuality = 'medium';
+      if (ready) drawFrame(Math.round(currentFrame));
+    };
 
-    function loadFrame(index) {
-      if (index < 0 || index >= FRAME_COUNT) return;
-      if (s.frames[index] || s.loading.has(index)) return;
+    const decodeToBitmap = async (img) => {
+      const iw = img.naturalWidth || img.width;
+      const ih = img.naturalHeight || img.height;
+      const scale = Math.min(1, maxEdge / Math.max(iw, ih));
+      const rw = Math.max(1, Math.round(iw * scale));
+      const rh = Math.max(1, Math.round(ih * scale));
 
-      s.loading.add(index);
-      const img = new Image();
-      img.decoding = 'async';
-      img.onload = () => {
-        s.loading.delete(index);
-        // Show raw frame immediately (keeps scroll fluid)
-        s.frames[index] = img;
-        if (!s.ready && index === 0) {
-          s.ready = true;
-          resize();
-        } else if (Math.round(s.currentFrame) === index) {
-          s.lastDrawn = -1;
+      if (typeof createImageBitmap === 'function') {
+        try {
+          return await createImageBitmap(img, {
+            resizeWidth: rw,
+            resizeHeight: rh,
+            resizeQuality: 'medium',
+          });
+        } catch {
+          /* fall through */
         }
+      }
 
-        // Knock out studio white off the critical path
-        scheduleIdle(() => {
-          if (s.frames[index] !== img) return;
-          try {
-            s.frames[index] = knockOutWhite(img);
-            if (Math.round(s.currentFrame) === index) s.lastDrawn = -1;
-          } catch {
-            /* keep raw image */
+      const c = document.createElement('canvas');
+      c.width = rw;
+      c.height = rh;
+      c.getContext('2d').drawImage(img, 0, 0, rw, rh);
+      return c;
+    };
+
+    const pumpQueue = () => {
+      while (activeLoads < LOAD_CONCURRENCY && queue.length) {
+        const index = queue.shift();
+        if (index == null) break;
+        if (bitmaps[index] || loading.has(index)) continue;
+
+        loading.add(index);
+        activeLoads += 1;
+
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = () => {
+          if (cancelled) {
+            activeLoads -= 1;
+            loading.delete(index);
+            return;
           }
-        });
-      };
-      img.onerror = () => s.loading.delete(index);
-      img.src = framePath(index + 1);
-    }
+          decodeToBitmap(img)
+            .then((bmp) => {
+              if (cancelled) {
+                bmp.close?.();
+                return;
+              }
+              const prev = bitmaps[index];
+              bitmaps[index] = bmp;
+              prev?.close?.();
+              if (!ready && index === 0) {
+                ready = true;
+                resize();
+              } else if (Math.round(currentFrame) === index) {
+                lastDrawn = -1;
+              }
+            })
+            .catch(() => {})
+            .finally(() => {
+              loading.delete(index);
+              activeLoads -= 1;
+              img.src = '';
+              pumpQueue();
+              kick();
+            });
+        };
+        img.onerror = () => {
+          loading.delete(index);
+          activeLoads -= 1;
+          pumpQueue();
+        };
+        img.src = framePath(index + 1);
+      }
+    };
 
-    function evictFar(center) {
-      for (let i = 0; i < FRAME_COUNT; i += 1) {
-        if (!s.frames[i]) continue;
-        if (Math.abs(i - center) > EVICT_BEYOND) {
-          const f = s.frames[i];
-          if (f instanceof HTMLImageElement) f.src = '';
-          s.frames[i] = undefined;
+    const enqueue = (index, urgent = false) => {
+      if (index < 0 || index >= FRAME_COUNT) return;
+      if (bitmaps[index] || loading.has(index)) return;
+      const pos = queue.indexOf(index);
+      if (pos !== -1) {
+        if (urgent && pos > 0) {
+          queue.splice(pos, 1);
+          queue.unshift(index);
         }
+        return;
       }
-    }
+      if (urgent) queue.unshift(index);
+      else queue.push(index);
+      pumpQueue();
+    };
 
-    function ensureAround(center) {
-      const from = Math.max(0, center - WINDOW);
-      const to = Math.min(FRAME_COUNT - 1, center + WINDOW);
-      loadFrame(center);
-      for (let d = 1; d <= WINDOW; d += 1) {
-        if (center - d >= from) loadFrame(center - d);
-        if (center + d <= to) loadFrame(center + d);
+    const ensureAround = (center) => {
+      enqueue(center, true);
+      for (let d = 1; d <= PREFETCH; d += 1) {
+        enqueue(center + d, d <= 4);
+        enqueue(center - d, d <= 4);
       }
-      evictFar(center);
-    }
+    };
 
-    function scheduleEnsure(center) {
-      if (s.ensureQueued) return;
-      s.ensureQueued = requestAnimationFrame(() => {
-        s.ensureQueued = 0;
-        ensureAround(center);
-      });
-    }
+    const tick = () => {
+      rafId = 0;
+      const target = readProgress() * (FRAME_COUNT - 1);
+      const diff = target - currentFrame;
 
-    function tick() {
-      const diff = s.targetFrame - s.currentFrame;
-      s.currentFrame += diff * 0.22;
-      if (Math.abs(diff) < 0.0015) s.currentFrame = s.targetFrame;
+      if (Math.abs(diff) < 0.4) currentFrame = target;
+      else currentFrame += diff * 0.6;
 
       const index = Math.min(
         FRAME_COUNT - 1,
-        Math.max(0, Math.round(s.currentFrame))
+        Math.max(0, Math.round(currentFrame))
       );
-      scheduleEnsure(index);
-      if (s.ready) drawFrame(index);
-      s.rafId = requestAnimationFrame(tick);
-    }
+
+      ensureAround(index);
+      if (ready) drawFrame(index);
+
+      const moving = Math.abs(target - currentFrame) > 0.05;
+      const busy = !bitmaps[index] || activeLoads > 0 || queue.length > 0;
+
+      if (moving || busy) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        running = false;
+        currentFrame = target;
+        if (ready) drawFrame(Math.round(currentFrame));
+      }
+    };
+
+    const kick = () => {
+      if (running || cancelled) return;
+      running = true;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    let scrollRaf = 0;
+    const onScroll = () => {
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0;
+        kick();
+      });
+    };
 
     resize();
-    ensureAround(0);
-    s.rafId = requestAnimationFrame(tick);
+    for (let i = 0; i < Math.min(28, FRAME_COUNT); i += 1) enqueue(i, i < 6);
+    kick();
 
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-    window.addEventListener('resize', resize);
+    const ro = new ResizeObserver(() => {
+      resize();
+      kick();
+    });
+    ro.observe(canvas.parentElement || canvas);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
 
     return () => {
-      cancelAnimationFrame(s.rafId);
-      if (s.ensureQueued) cancelAnimationFrame(s.ensureQueued);
+      cancelled = true;
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
       ro.disconnect();
-      window.removeEventListener('resize', resize);
-      s.frames.forEach((f) => {
-        if (f instanceof HTMLImageElement) f.src = '';
-      });
-      s.frames = new Array(FRAME_COUNT);
-      s.loading.clear();
-      s.ready = false;
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      queue.length = 0;
+      bitmaps.forEach((b) => b?.close?.());
     };
-  }, []);
+  }, [progressRef]);
 
+  // Keep fallback progress in sync + nudge when parent re-renders with new progress
   useEffect(() => {
-    const s = stateRef.current;
-    s.targetFrame = Math.min(1, Math.max(0, progress)) * (FRAME_COUNT - 1);
+    fallbackProgress.current = progress;
   }, [progress]);
 
   return (

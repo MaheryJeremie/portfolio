@@ -998,6 +998,7 @@
 
 .hero--story .hero__photo {
   /* Absolute top ignores pin padding ? offset under the navbar */
+  position: absolute;
   top: calc(var(--nav-height) + 0.35rem);
   right: clamp(0.25rem, 1.5vw, 1.25rem);
   width: clamp(220px, 32vw, 420px);
@@ -1005,6 +1006,7 @@
   max-height: none;
   aspect-ratio: unset;
   bottom: auto;
+  overflow: hidden;
 }
 
 @media (max-width: 1100px) {
@@ -1014,6 +1016,19 @@
     width: clamp(200px, 28vw, 360px);
     max-height: none;
     aspect-ratio: unset;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .hero--story .hero__photo {
+    top: calc(var(--nav-height) + 0.25rem) !important;
+    right: clamp(0.15rem, 1vw, 0.65rem);
+    width: clamp(150px, 24vw, 230px);
+    height: calc(100% - var(--nav-height) - 4.5rem) !important;
+  }
+
+  .hero--story .hero__content {
+    padding-right: clamp(9.5rem, 28vw, 14rem);
   }
 }
 
@@ -1049,13 +1064,13 @@
   display: block;
   background: transparent;
   filter: none;
-  /* Soft silhouette ? kills the rectangular plate */
+  /* Soft silhouette ? hides remaining studio fringe */
   -webkit-mask-image:
-    radial-gradient(ellipse 72% 78% at 50% 42%, #000 42%, transparent 78%),
-    linear-gradient(to bottom, #000 72%, transparent 100%);
+    radial-gradient(ellipse 68% 74% at 50% 40%, #000 38%, transparent 76%),
+    linear-gradient(to bottom, #000 70%, transparent 100%);
   mask-image:
-    radial-gradient(ellipse 72% 78% at 50% 42%, #000 42%, transparent 78%),
-    linear-gradient(to bottom, #000 72%, transparent 100%);
+    radial-gradient(ellipse 68% 74% at 50% 40%, #000 38%, transparent 76%),
+    linear-gradient(to bottom, #000 70%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
@@ -1068,6 +1083,10 @@
 .hero--story .scroll-frame-anim {
   --frame-fill: transparent;
   background: transparent;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 .hero__progress {
@@ -1239,30 +1258,155 @@
 
 @media (max-width: 900px) {
   .hero--story .hero__track {
-    height: 220vh;
+    height: 240vh;
   }
 
   .hero--story .hero__name-block:not(:has(.hero__name)) {
     gap: 0.35rem;
   }
+}
+
+/* Mobile: stack the scroll portrait ? don't float over the copy */
+@media (max-width: 767px) {
+  .hero--story .hero__track {
+    height: 260vh;
+  }
+
+  .hero--story .hero__pin {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .hero--story .hero__body {
+    justify-content: flex-start;
+    padding-top: 0.35rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero--story .hero__name-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Lift photo above name in the flex flow */
+  .hero--story .hero__details {
+    display: contents;
+  }
 
   .hero--story .hero__photo {
-    top: calc(var(--nav-height) + 0.25rem) !important;
-    width: clamp(160px, 34vw, 260px);
-    height: calc(100% - var(--nav-height) - 5rem) !important;
-    max-height: none;
-    aspect-ratio: unset;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: min(52vw, 200px);
+    max-width: min(52vw, 200px);
+    height: auto !important;
+    max-height: min(42svh, 280px);
+    aspect-ratio: 3 / 4;
+    margin: 0.15rem auto 0.45rem;
+    overflow: hidden;
+    order: -2;
+  }
+
+  .hero--story .hero__progress {
+    justify-content: center;
+    order: -1;
+  }
+
+  .hero--story .hero__name {
+    order: 0;
+  }
+
+  .hero--story .hero__story-slot {
+    order: 1;
+    min-height: 7.5rem;
+    width: 100%;
+  }
+
+  .hero--story .hero__photo-img.hero__frame,
+  .hero--story .hero__frame {
+    -webkit-mask-image:
+      radial-gradient(ellipse 78% 82% at 50% 42%, #000 48%, transparent 82%),
+      linear-gradient(to bottom, #000 82%, transparent 100%);
+    mask-image:
+      radial-gradient(ellipse 78% 82% at 50% 42%, #000 48%, transparent 82%),
+      linear-gradient(to bottom, #000 82%, transparent 100%);
+  }
+
+  .hero--story .hero__photo-scrim {
+    background: linear-gradient(
+      to top,
+      var(--void) 0%,
+      color-mix(in srgb, var(--void) 55%, transparent) 18%,
+      transparent 42%
+    );
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 420px) {
   .hero--story .hero__photo {
-    position: absolute;
-    top: calc(var(--nav-height) + 0.5rem) !important;
-    bottom: auto;
-    right: 0.75rem;
-    width: min(44vw, 180px);
-    height: calc(100% - var(--nav-height) - 6rem) !important;
+    width: min(50vw, 168px);
+    max-width: min(50vw, 168px);
+    max-height: min(38svh, 240px);
+  }
+
+  .hero--story .hero__track {
+    height: 240vh;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero--story .hero__photo {
+    width: min(48vw, 152px);
+    max-width: min(48vw, 152px);
+    max-height: min(36svh, 220px);
+  }
+}
+
+/* Short landscape phones: keep a compact side portrait */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero--story .hero__track {
+    height: 220vh;
+  }
+
+  .hero--story .hero__name-block {
+    display: block;
+    align-items: stretch;
+  }
+
+  .hero--story .hero__details {
+    display: block;
+  }
+
+  .hero--story .hero__photo {
+    position: absolute !important;
+    top: calc(var(--nav-height) + 0.2rem) !important;
+    right: 0.5rem !important;
+    left: auto !important;
+    width: min(28vw, 150px) !important;
+    max-width: min(28vw, 150px);
+    height: calc(100% - var(--nav-height) - 2.5rem) !important;
+    max-height: none;
+    aspect-ratio: unset;
+    margin: 0;
+    order: unset;
+  }
+
+  .hero--story .hero__progress,
+  .hero--story .hero__name,
+  .hero--story .hero__story-slot {
+    order: unset;
+  }
+
+  .hero--story .hero__content {
+    padding-right: clamp(7rem, 32vw, 11rem);
+  }
+
+  .hero--story .hero__details {
+    align-items: flex-start;
   }
 }
 
