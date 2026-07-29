@@ -23,7 +23,7 @@ export const fr = {
     name1: 'Mahery',
     name2: 'Ramahay',
     description:
-      "Je ne prétends pas tout savoir — j'apprends vite et je m'adapte.",
+      "Je construis en apprenant — et j'apprends en construisant.",
     cta: 'Voir mes projets',
     ctaContact: 'Me contacter',
     marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
