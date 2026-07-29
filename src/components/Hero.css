@@ -264,9 +264,11 @@
 .hero__meta {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: clamp(0.7rem, 1.6vh, 1rem);
+  flex-wrap: nowrap;
+  gap: 0.65rem;
+  margin-bottom: clamp(1rem, 2.1vh, 1.35rem);
+  width: max-content;
+  max-width: none;
 }
 
 .hero__eyebrow {
@@ -284,6 +286,7 @@
   border-radius: 999px;
   box-shadow: var(--glass-shine);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hero__avail {
@@ -303,7 +306,8 @@
   border: 1px solid color-mix(in srgb, var(--lime) 20%, var(--glass-border));
   border-radius: 999px;
   box-shadow: var(--glass-shine);
-  white-space: normal;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hero__avail-dot {
@@ -336,9 +340,9 @@
 .hero__desc {
   font-family: var(--font-body);
   font-size: clamp(0.92rem, 1.25vw, 1.05rem);
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--muted);
-  margin: 0 0 clamp(0.55rem, 1.3vh, 0.85rem);
+  margin: 0 0 clamp(0.95rem, 2vh, 1.3rem);
   padding-left: 1rem;
   border-left: 2px solid color-mix(in srgb, var(--lime) 38%, transparent);
 }
@@ -351,7 +355,7 @@
 
 .hero__cta {
   display: flex;
-  gap: 0.65rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
 }
 
@@ -585,8 +589,8 @@
 
   .hero__meta {
     justify-content: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: 0.75rem;
+    flex-wrap: nowrap;
+    margin-bottom: 1rem;
   }
 
   .hero__eyebrow,
@@ -766,14 +770,15 @@
 
   .hero__meta {
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
     max-width: 100%;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.05rem;
   }
 
   .hero__eyebrow,
   .hero__avail {
-    white-space: normal;
+    white-space: nowrap;
     text-align: center;
   }
 
@@ -832,9 +837,9 @@
     padding-left: 0;
     border-left: none;
     border-top: 2px solid color-mix(in srgb, var(--lime) 35%, transparent);
-    padding-top: 0.7rem;
-    margin-bottom: 0.65rem;
-    line-height: 1.45;
+    padding-top: 0.85rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
     width: 100%;
     max-width: min(22rem, 100%);
     margin-inline: auto;
