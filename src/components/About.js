@@ -24,7 +24,7 @@ export default function About() {
 
   return (
     <section id="about" className="about">
-      <div className="about__num" aria-hidden="true">01</div>
+      <div className="about__num" aria-hidden="true">04</div>
 
       <div className="about__inner">
         <div className="about__left">

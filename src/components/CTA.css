@@ -201,6 +201,25 @@
   flex-shrink: 0;
 }
 
+.cta__email-hint {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.cta__email-hint a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease;
+}
+
+.cta__email-hint a:hover,
+.cta__email-hint a:focus-visible {
+  color: var(--lime);
+}
+
 @media (max-width: 768px) {
   .cta { padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 3rem); }
   .cta__actions { flex-direction: column; align-items: center; }

@@ -11,22 +11,21 @@ export const fr = {
     skills: 'Compétences',
     education: 'Formation',
     experience: 'Expérience',
-    process: 'Méthode',
     contact: 'Contact',
     downloadCV: 'Télécharger CV',
     themeLight: 'Mode clair',
     themeDark: 'Mode sombre',
   },
   hero: {
-    eyebrow: 'Développeur FULL-STACK',
+    eyebrow: 'Développeur Fullstack Junior',
     available: 'Disponible',
     name1: 'Mahery',
     name2: 'Ramahay',
     description:
-      'Ce que vous imaginez, je le code.',
+      "Je ne prétends pas tout savoir — j'apprends vite et je m'adapte.",
     cta: 'Voir mes projets',
-    ctaGithub: 'GitHub ↗',
-    marquee: ['Spring Boot', 'Node.js', 'Symfony' , 'React', 'Angular', 'Odoo'],
+    ctaContact: 'Me contacter',
+    marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
     scroll: 'défiler',
     photoAlt: 'Portrait de Mahery Ramahay',
   },
@@ -85,7 +84,7 @@ export const fr = {
       {
         name: 'Module Gestion Budgétaire (Odoo)',
         description:
-          'Module Odoo 8 sur mesure : planification budgétaire, suivi des dépenses en temps réel, analyse comparative, tableau de bord et notifications automatiques.',
+          'Module Odoo 8 sur mesure: planification budgétaire, suivi des dépenses en temps réel, analyse comparative, tableau de bord et notifications automatiques.',
         tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
         github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
         live: null,
@@ -150,32 +149,6 @@ export const fr = {
       },
     ],
   },
-  process: {
-    title: 'Ma Méthode',
-    subtitle: 'Comment j\'aborde chaque projet',
-    steps: [
-      {
-        num: '01',
-        title: 'Comprendre',
-        desc: 'Je commence par bien comprendre le problème — besoins utilisateurs, logique métier, contraintes. Pas de code avant la clarté.',
-      },
-      {
-        num: '02',
-        title: 'Concevoir',
-        desc: "L'architecture d'abord. Schéma propre, contrat API solide, structure des composants. Penser avant de taper.",
-      },
-      {
-        num: '03',
-        title: 'Construire',
-        desc: 'Développement itératif, commits propres, code lisible. Des features qui marchent, pas juste des features qui partent.',
-      },
-      {
-        num: '04',
-        title: 'Affiner',
-        desc: "Code review, performances, finitions UX. Ces 20% qui font la différence entre bien et excellent.",
-      },
-    ],
-  },
   education: {
     title: 'Formation',
     subtitle: 'Mon parcours académique',
@@ -197,7 +170,7 @@ export const fr = {
       {
         degree: 'Baccalauréat — Série D',
         school: 'Collège Saint Michel',
-        period: '2010  - 2022',
+        period: '2010 — 2022',
         location: 'Amparibe, Madagascar',
         description: 'Série scientifique.',
       },
@@ -237,7 +210,8 @@ export const fr = {
   },
   cta: {
     title: 'Construisons\nquelque chose.',
-    subtitle: 'Ouvert aux opportunités — collaborations à plein temps, stages, projets freelance, ... .',
+    subtitle:
+      'Ouvert aux opportunités — stages, CDI, projets freelance.',
     btnCV: 'Télécharger CV',
     btnContact: 'Me contacter',
     email: 'maheryramahay@gmail.com',

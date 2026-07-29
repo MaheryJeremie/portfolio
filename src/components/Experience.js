@@ -10,7 +10,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="exp section--dense">
-      <div className="exp__num" aria-hidden="true">04</div>
+      <div className="exp__num" aria-hidden="true">02</div>
       <div className="exp__inner">
 
         <motion.div

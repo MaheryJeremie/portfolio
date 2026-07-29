@@ -11,20 +11,20 @@ export const en = {
     skills: 'Skills',
     education: 'Education',
     experience: 'Experience',
-    process: 'Process',
     contact: 'Contact',
     downloadCV: 'Download CV',
     themeLight: 'Light mode',
     themeDark: 'Dark mode',
   },
   hero: {
-    eyebrow: 'FULL-STACK Developer',
+    eyebrow: 'Junior Fullstack Developer',
     available: 'Available',
     name1: 'Mahery',
     name2: 'Ramahay',
-    description: 'You imagine it. I code it.',
+    description:
+      "I don't claim to know it all — I learn fast and adapt quickly.",
     cta: 'See my work',
-    ctaGithub: 'GitHub ↗',
+    ctaContact: 'Get in touch',
     marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
     scroll: 'scroll',
     photoAlt: 'Portrait of Mahery Ramahay',
@@ -149,32 +149,6 @@ export const en = {
       },
     ],
   },
-  process: {
-    title: 'How I Work',
-    subtitle: 'My approach to every project',
-    steps: [
-      {
-        num: '01',
-        title: 'Understand',
-        desc: 'I start by deeply understanding the problem — user needs, business logic, constraints. No code before clarity.',
-      },
-      {
-        num: '02',
-        title: 'Design',
-        desc: 'Architecture first. Clean schema, solid API contract, component structure. Think before typing.',
-      },
-      {
-        num: '03',
-        title: 'Build',
-        desc: 'Iterative development, clean commits, readable code. Features that work, not just features that ship.',
-      },
-      {
-        num: '04',
-        title: 'Refine',
-        desc: 'Code review, performance, UX polish. The last 20% that makes the difference between good and great.',
-      },
-    ],
-  },
   education: {
     title: 'Education',
     subtitle: 'My academic background',
@@ -196,7 +170,7 @@ export const en = {
       {
         degree: 'High School Diploma (Baccalauréat) — Science',
         school: 'Collège Saint Michel',
-        period: '2010 - 2022',
+        period: '2010 — 2022',
         location: 'Amparibe, Madagascar',
         description: 'Science track.',
       },
@@ -236,7 +210,8 @@ export const en = {
   },
   cta: {
     title: "Let's build\nsomething.",
-    subtitle: 'Open to opportunities — full-time roles, internships, freelance projects, ... .',
+    subtitle:
+      'Open to opportunities — internships, full-time roles, freelance projects.',
     btnCV: 'Download CV',
     btnContact: 'Get in touch',
     email: 'maheryramahay@gmail.com',

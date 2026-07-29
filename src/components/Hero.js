@@ -35,6 +35,7 @@ export default function Hero() {
         <div className="hero__orb hero__orb--purple" />
       </div>
       <div className="hero__glow" aria-hidden="true" />
+      <div className="hero__mark" aria-hidden="true">MR</div>
 
       <div className="hero__body">
         <div className="hero__content">
@@ -72,6 +73,7 @@ export default function Hero() {
                 transition={{ delay: 0.35, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                 style={{ y: photoShift }}
               >
+                <div className="hero__photo-glow" aria-hidden="true" />
                 <ProfileImage
                   className="hero__photo-img"
                   alt={t.hero.photoAlt}
@@ -103,14 +105,13 @@ export default function Hero() {
                   >
                     {t.hero.cta}
                   </button>
-                  <a
-                    href="https://github.com/MaheryJeremie"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
                     className="hero__btn hero__btn--outline"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   >
-                    {t.hero.ctaGithub}
-                  </a>
+                    {t.hero.ctaContact}
+                  </button>
                 </div>
               </motion.div>
             </div>

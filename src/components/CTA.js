@@ -67,18 +67,22 @@ export default function CTA({ onDownloadCV }) {
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.7 }}
         >
-          <button type="button" className="cta__btn cta__btn--primary btn-glow" onClick={onDownloadCV}>
-            {t.cta.btnCV}
-          </button>
           <a
             href={mailtoHref}
-            className="cta__btn cta__btn--email"
+            className="cta__btn cta__btn--primary btn-glow"
             aria-label={t.cta.emailAria}
           >
             <MailIcon />
-            <span>{t.cta.email}</span>
+            <span>{t.cta.btnContact}</span>
           </a>
+          <button type="button" className="cta__btn cta__btn--email" onClick={onDownloadCV}>
+            {t.cta.btnCV}
+          </button>
         </motion.div>
+
+        <p className="cta__email-hint">
+          <a href={mailtoHref}>{t.cta.email}</a>
+        </p>
 
         {showForm && <ContactForm />}
       </div>
