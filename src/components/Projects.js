@@ -4,12 +4,17 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { publicUrl } from '../utils/publicUrl';
 import './Projects.css';
 
-function ProjectCard({ project, featured, featuredLabel, t, index }) {
+function repoLabel(url, t) {
+  if (url && /gitlab\.com/i.test(url)) return t.common.gitlab;
+  return t.common.github;
+}
+
+function ProjectCard({ project, featured, featuredLabel, problemLabel, resultLabel, t, index }) {
   const links = (
     <div className="project-card__links">
       {project.github && (
         <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-card__link">
-          {t.common.github}
+          {repoLabel(project.github, t)}
         </a>
       )}
       {project.live && (
@@ -50,7 +55,16 @@ function ProjectCard({ project, featured, featuredLabel, t, index }) {
       <div className="project-card__body">
         <span className="project-card__tag">{project.tag}</span>
         <h3 className="project-card__name">{project.name}</h3>
-        <p className="project-card__desc">{project.description}</p>
+        <div className="project-card__desc">
+          <p className="project-card__block">
+            <span className="project-card__block-label">{problemLabel}</span>
+            {project.problem}
+          </p>
+          <p className="project-card__block">
+            <span className="project-card__block-label">{resultLabel}</span>
+            {project.result}
+          </p>
+        </div>
         <div className="project-card__tech">
           {project.tech.map((tech) => (
             <span key={tech} className="project-card__tech-tag">{tech}</span>
@@ -87,11 +101,20 @@ export default function Projects() {
             project={feat}
             featured
             featuredLabel={t.projects.featured}
+            problemLabel={t.projects.problem}
+            resultLabel={t.projects.result}
             t={t}
             index={0}
           />
           {rest.map((project, i) => (
-            <ProjectCard key={project.name} project={project} t={t} index={i} />
+            <ProjectCard
+              key={project.name}
+              project={project}
+              problemLabel={t.projects.problem}
+              resultLabel={t.projects.result}
+              t={t}
+              index={i}
+            />
           ))}
         </div>
       </div>

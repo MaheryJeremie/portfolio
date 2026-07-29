@@ -3,6 +3,7 @@ export const en = {
   skipLink: 'Skip to content',
   common: {
     github: 'GitHub ↗',
+     gitlab: 'GitLab ↗',
     live: 'Live ↗',
   },
   nav: {
@@ -69,10 +70,15 @@ export const en = {
     title: 'Projects',
     subtitle: 'Things I shipped',
     featured: 'Featured',
+    problem: 'Problem',
+    result: 'Result',
     items: [
       {
         name: 'Shopping Centre App',
-        description: 'App for an Akoor-style shopping centre:\n— Admin: global management of the centre (users, shops, events, ...)\n— Merchants: manage their shop (info, promotions, ...)\n— Clients: browse the site (shop listings, reviews, favourites, ...)',
+        problem:
+          'An Akoor-style shopping centre needed one shared tool for admins, merchants, and clients — without juggling separate systems.',
+        result:
+          'Multi-role app: admin (users, shops, events), merchants (store info, promotions), and clients (listings, reviews, favourites).',
         tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
         github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
@@ -83,8 +89,10 @@ export const en = {
       },
       {
         name: 'Budget Management Module (Odoo)',
-        description:
-          'Custom Odoo 8 module: budget planning, real-time expense tracking, comparative analysis, dashboard and automated notifications.',
+        problem:
+          'Odoo 8’s built-in budget management module did not meet the needs of the host company.',
+        result:
+          'Custom module: budget planning, expense tracking, comparative analysis, dashboard, and automated notifications.',
         tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
         github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
         live: null,
@@ -95,7 +103,10 @@ export const en = {
       },
       {
         name: 'AI Study Assistant',
-        description: 'SaaS learning platform built around educational PDFs:\n— Upload & processing: text extraction, chunking, embeddings\n— AI study tools: summary, RAG chat with sources, quizzes, flashcards, revision sheets\n— Progress: dashboard (documents, scores, study time, activity)',
+        problem:
+          'Long PDFs are hard to study: you waste time rereading, summarising, and checking what stuck.',
+        result:
+          'A platform that turns PDFs into AI study tools: summary, sourced RAG chat, quizzes, flashcards, and progress tracking.',
         tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
         github: 'https://github.com/MaheryJeremie/ai-study-assistant',
         live: '',
@@ -106,8 +117,10 @@ export const en = {
       },
       {
         name: 'AsaFinder',
-        description:
-          'Job offer centralization tool: multi-source aggregation (PortalJob, Asako, Eldora, Job2Mada, LinkedIn), CV import, advanced search filters, score-based matching, and a unified dashboard to streamline offers.',
+        problem:
+          'Job offers are scattered across multiple platforms, which makes searching difficult.',
+        result:
+          'One search to find matching offers — without juggling between sites.',
         tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS'],
         github: 'https://github.com/MaheryJeremie/job-finder',
         live: null,

@@ -3,6 +3,7 @@ export const fr = {
   skipLink: 'Aller au contenu',
   common: {
     github: 'GitHub ↗',
+    gitlab: 'GitLab ↗',
     live: 'Live ↗',
   },
   nav: {
@@ -69,10 +70,15 @@ export const fr = {
     title: 'Projets',
     subtitle: 'Ce que j\'ai construit',
     featured: 'À la une',
+    problem: 'Problème',
+    result: 'Résultat',
     items: [
       {
         name: 'Application Centre Commercial',
-        description: 'Application pour un centre commercial du style Akoor:\n— Admin : gestion globale du centre (utilisateurs, commerces, événements, ...)\n— Commerçants : gestion de leur boutique (informations, promotions, ...)\n— Clients : consultation du site (liste des boutiques, avis, favoris, ...)',
+        problem:
+          'Un centre commercial style Akoor a besoin d’un outil unique pour admin, commerçants et clients, sans multiplier les canaux de gestion.',
+        result:
+          'App multi-rôles : admin (utilisateurs, commerces, événements), commerçants (boutique, promotions) et clients (boutiques, avis, favoris).',
         tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
         github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
@@ -83,8 +89,10 @@ export const fr = {
       },
       {
         name: 'Module Gestion Budgétaire (Odoo)',
-        description:
-          'Module Odoo 8 sur mesure: planification budgétaire, suivi des dépenses en temps réel, analyse comparative, tableau de bord et notifications automatiques.',
+        problem:
+          'Le module de gestion de budget d’Odoo 8 ne répondait pas aux besoins de l’entreprise d’accueil.',
+        result:
+          'Module sur mesure : planification budgétaire, suivi des dépenses, analyse comparative, tableau de bord et notifications automatiques.',
         tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
         github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
         live: null,
@@ -95,7 +103,10 @@ export const fr = {
       },
       {
         name: 'AI Study Assistant',
-        description: 'SaaS d\'apprentissage à partir de PDF éducatifs :\n— Upload & traitement : extraction texte, chunks, embeddings\n— Étude IA : résumé, chat RAG avec sources, quiz, flashcards, fiches de révision\n— Suivi : dashboard (documents, scores, temps d\'étude, activité)',
+        problem:
+          'Les PDF longs sont difficiles à étudier : on perd du temps à relire, résumer et vérifier qu’on a bien retenu.',
+        result:
+          'Plateforme qui transforme les PDF en outils d’étude IA : résumé, chat RAG avec sources, quiz, flashcards et suivi de progression.',
         tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
         github: 'https://github.com/MaheryJeremie/ai-study-assistant',
         live: '',
@@ -106,8 +117,10 @@ export const fr = {
       },
       {
         name: 'AsaFinder',
-        description:
-          'Outil de centralisation d\'offres d\'emploi : agrégation multi-sources (PortalJob, Asako, Eldora, Job2Mada, LinkedIn), import de CV, critères de recherche avancés, matching par score et tableau de bord unifié pour filtrer les offres.',
+        problem:
+          'Les offres sont dispersées sur plusieurs plateformes, ce qui rend la recherche difficile.',
+        result:
+          'Une seule recherche pour trouver les offres adaptées, sans jongler entre les sites.',
         tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS'],
         github: 'https://github.com/MaheryJeremie/job-finder',
         live: null,
