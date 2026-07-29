@@ -38,8 +38,8 @@ export default function Hero() {
   const showScrollRef = useRef(true);
   const [active, setActive] = useState(0);
   const [showScroll, setShowScroll] = useState(true);
-  const story = t.hero.story ?? {};
-  const stackItems = useMemo(() => story.stack?.items ?? [], [story]);
+  const story = t.hero.story;
+  const stackItems = useMemo(() => story?.stack?.items ?? [], [story]);
   const iconColor = isDark ? '8FA3C4' : '3B5BDB';
 
   useEffect(() => {
@@ -155,7 +155,7 @@ export default function Hero() {
                         </motion.div>
                       )}
 
-                      {active === 1 && story.stack && (
+                      {active === 1 && story?.stack && (
                         <motion.div key="stack" className="hero__story-panel hero__story-panel--stack" {...panelMotion}>
                           <p className="hero__panel-label">{story.stack.label}</p>
                           <p className="hero__panel-title">{story.stack.title}</p>
@@ -199,9 +199,9 @@ export default function Hero() {
 
                       {active === 2 && (
                         <motion.div key="cta" className="hero__story-panel" {...panelMotion}>
-                          <p className="hero__panel-label">{story.cta?.label}</p>
-                          <p className="hero__panel-title">{story.cta?.title}</p>
-                          <p className="hero__desc">{story.cta?.body}</p>
+                          <p className="hero__panel-label">{story?.cta?.label}</p>
+                          <p className="hero__panel-title">{story?.cta?.title}</p>
+                          <p className="hero__desc">{story?.cta?.body}</p>
                           <div className="hero__cta">
                             <button
                               type="button"

@@ -134,54 +134,57 @@ export default function ScrollFrameAnim({
       return c;
     };
 
+    const startLoad = (index) => {
+      loading.add(index);
+      activeLoads += 1;
+
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => {
+        if (cancelled) {
+          activeLoads -= 1;
+          loading.delete(index);
+          return;
+        }
+        decodeToBitmap(img)
+          .then((bmp) => {
+            if (cancelled) {
+              bmp.close?.();
+              return;
+            }
+            const prev = bitmaps[index];
+            bitmaps[index] = bmp;
+            prev?.close?.();
+            if (!ready && index === 0) {
+              ready = true;
+              resize();
+            } else if (Math.round(currentFrame) === index) {
+              lastDrawn = -1;
+            }
+          })
+          .catch(() => {})
+          .finally(() => {
+            loading.delete(index);
+            activeLoads -= 1;
+            img.src = '';
+            pumpQueue();
+            kick();
+          });
+      };
+      img.onerror = () => {
+        loading.delete(index);
+        activeLoads -= 1;
+        pumpQueue();
+      };
+      img.src = framePath(index + 1);
+    };
+
     const pumpQueue = () => {
       while (activeLoads < LOAD_CONCURRENCY && queue.length) {
         const index = queue.shift();
         if (index == null) break;
         if (bitmaps[index] || loading.has(index)) continue;
-
-        loading.add(index);
-        activeLoads += 1;
-
-        const img = new Image();
-        img.decoding = 'async';
-        img.onload = () => {
-          if (cancelled) {
-            activeLoads -= 1;
-            loading.delete(index);
-            return;
-          }
-          decodeToBitmap(img)
-            .then((bmp) => {
-              if (cancelled) {
-                bmp.close?.();
-                return;
-              }
-              const prev = bitmaps[index];
-              bitmaps[index] = bmp;
-              prev?.close?.();
-              if (!ready && index === 0) {
-                ready = true;
-                resize();
-              } else if (Math.round(currentFrame) === index) {
-                lastDrawn = -1;
-              }
-            })
-            .catch(() => {})
-            .finally(() => {
-              loading.delete(index);
-              activeLoads -= 1;
-              img.src = '';
-              pumpQueue();
-              kick();
-            });
-        };
-        img.onerror = () => {
-          loading.delete(index);
-          activeLoads -= 1;
-          pumpQueue();
-        };
-        img.src = framePath(index + 1);
+        startLoad(index);
       }
     };
 
