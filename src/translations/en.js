@@ -29,6 +29,24 @@ export const en = {
     marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
     scroll: 'scroll',
     photoAlt: 'Portrait of Mahery Ramahay',
+    story: {
+      stack: {
+        label: 'Core stack',
+        title: 'What I build with',
+        items: ['React', 'Java', 'PostgreSQL', 'GitHub'],
+      },
+      intent: {
+        label: 'Approach',
+        title: 'Learn fast. Ship clean.',
+        body:
+          'Junior fullstack, curious and adaptable — I understand the problem before writing the fix.',
+      },
+      cta: {
+        label: 'Next',
+        title: 'Shall we continue?',
+        body: 'Browse my projects, or just reach out.',
+      },
+    },
   },
   about: {
     meta: {

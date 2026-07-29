@@ -21,6 +21,7 @@ const SKILL_ICON_SLUGS = {
   MongoDB: 'mongodb',
   Firebase: 'firebase',
   'Gitlab / GitHub': 'github',
+  GitHub: 'github',
   Docker: 'docker',
 };
 
