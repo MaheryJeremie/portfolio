@@ -4,8 +4,10 @@ import { publicUrl } from '../utils/publicUrl';
 const FRAME_COUNT = 151;
 const MAX_EDGE_DESKTOP = 720;
 const MAX_EDGE_MOBILE = 560;
-const LOAD_CONCURRENCY = 4;
-const PREFETCH = 20;
+const LOAD_CONCURRENCY = 6;
+const PREFETCH = 24;
+/** Contiguous frames required from 0 before scrub is fully unlocked. */
+const BOOTSTRAP = 36;
 
 function framePath(i) {
   return publicUrl(`/animation/frames/frame-${String(i).padStart(3, '0')}.webp`);
@@ -42,7 +44,10 @@ export default function ScrollFrameAnim({
     let currentFrame = 0;
     let lastDrawn = -1;
     let lastGood = 0;
+    /** Highest index with every frame [0..n] ready. */
+    let contiguous = -1;
     let ready = false;
+    let bootstrapped = false;
     let rafId = 0;
     let running = false;
     let cancelled = false;
@@ -60,6 +65,24 @@ export default function ScrollFrameAnim({
 
     const isReady = (bmp) => Boolean(bmp && bmp.width > 0);
 
+    const refreshContiguous = () => {
+      let n = contiguous;
+      while (n + 1 < FRAME_COUNT && isReady(bitmaps[n + 1])) n += 1;
+      contiguous = n;
+      if (!bootstrapped && contiguous >= BOOTSTRAP - 1) bootstrapped = true;
+    };
+
+    const nearestReady = (index) => {
+      if (isReady(bitmaps[index])) return index;
+      for (let d = 1; d < FRAME_COUNT; d += 1) {
+        const hi = index + d;
+        const lo = index - d;
+        if (hi < FRAME_COUNT && isReady(bitmaps[hi])) return hi;
+        if (lo >= 0 && isReady(bitmaps[lo])) return lo;
+      }
+      return -1;
+    };
+
     const layoutDraw = (iw, ih) => {
       if (iw === srcW && ih === srcH && drawW) return;
       srcW = iw;
@@ -76,13 +99,12 @@ export default function ScrollFrameAnim({
       let bmp = bitmaps[idx];
 
       if (!isReady(bmp)) {
-        bmp = bitmaps[lastGood];
-        idx = lastGood;
-        if (!isReady(bmp)) return;
-      } else {
-        lastGood = idx;
+        idx = nearestReady(index);
+        if (idx < 0) return;
+        bmp = bitmaps[idx];
       }
 
+      lastGood = idx;
       if (idx === lastDrawn) return;
       lastDrawn = idx;
 
@@ -155,6 +177,7 @@ export default function ScrollFrameAnim({
             const prev = bitmaps[index];
             bitmaps[index] = bmp;
             prev?.close?.();
+            refreshContiguous();
             if (!ready && index === 0) {
               ready = true;
               resize();
@@ -204,21 +227,43 @@ export default function ScrollFrameAnim({
       pumpQueue();
     };
 
+    /** Prioritize every missing frame between from→to so scrub never jumps over holes. */
+    const enqueueRange = (from, to) => {
+      const a = Math.max(0, Math.min(from, to));
+      const b = Math.min(FRAME_COUNT - 1, Math.max(from, to));
+      for (let i = a; i <= b; i += 1) enqueue(i, true);
+    };
+
     const ensureAround = (center) => {
       enqueue(center, true);
       for (let d = 1; d <= PREFETCH; d += 1) {
-        enqueue(center + d, d <= 4);
-        enqueue(center - d, d <= 4);
+        enqueue(center + d, d <= 6);
+        enqueue(center - d, d <= 6);
       }
     };
 
     const tick = () => {
       rafId = 0;
-      const target = readProgress() * (FRAME_COUNT - 1);
-      const diff = target - currentFrame;
+      const targetRaw = readProgress() * (FRAME_COUNT - 1);
 
+      // Until bootstrap buffer is ready, hold near the start so fast scroll
+      // cannot outrun the loader. After that, never scrub past contiguous.
+      const maxPlayable = bootstrapped
+        ? Math.max(0, contiguous)
+        : Math.min(Math.max(0, contiguous), BOOTSTRAP - 1);
+      const target = Math.min(targetRaw, maxPlayable);
+
+      // Urgently fill the gap the user is trying to reach
+      if (targetRaw > contiguous + 1) {
+        enqueueRange(contiguous + 1, Math.ceil(targetRaw) + PREFETCH);
+      }
+
+      const diff = target - currentFrame;
       if (Math.abs(diff) < 0.4) currentFrame = target;
-      else currentFrame += diff * 0.6;
+      else currentFrame += diff * 0.55;
+
+      // Soft-clamp playhead so we never sit on unloaded indices
+      if (currentFrame > maxPlayable) currentFrame = maxPlayable;
 
       const index = Math.min(
         FRAME_COUNT - 1,
@@ -228,8 +273,9 @@ export default function ScrollFrameAnim({
       ensureAround(index);
       if (ready) drawFrame(index);
 
+      const catchingUp = targetRaw > contiguous + 0.5;
       const moving = Math.abs(target - currentFrame) > 0.05;
-      const busy = !bitmaps[index] || activeLoads > 0 || queue.length > 0;
+      const busy = !bitmaps[index] || activeLoads > 0 || queue.length > 0 || catchingUp;
 
       if (moving || busy) {
         rafId = requestAnimationFrame(tick);
@@ -256,7 +302,10 @@ export default function ScrollFrameAnim({
     };
 
     resize();
-    for (let i = 0; i < Math.min(28, FRAME_COUNT); i += 1) enqueue(i, i < 6);
+    // Bootstrap: load a solid prefix first, then the rest of the sequence.
+    for (let i = 0; i < Math.min(BOOTSTRAP + PREFETCH, FRAME_COUNT); i += 1) {
+      enqueue(i, i < BOOTSTRAP);
+    }
     kick();
 
     const ro = new ResizeObserver(() => {
