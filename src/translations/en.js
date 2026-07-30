@@ -33,7 +33,7 @@ export const en = {
       stack: {
         label: 'Core stack',
         title: 'What I build with',
-        items: ['React', 'Java', 'PostgreSQL', 'GitHub'],
+        items: ['React', 'Spring Boot', 'PostgreSQL', 'GitHub'],
       },
       intent: {
         label: 'Approach',
