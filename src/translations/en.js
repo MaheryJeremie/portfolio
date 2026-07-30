@@ -214,7 +214,7 @@ export const en = {
       {
         role: 'Fullstack Developer',
         company: 'GeoMadagascar',
-        period: 'April 2026 - Present',
+        period: 'April 2026 - July 2026',
         location: 'Antananarivo, Madagascar',
         type: 'Internship',
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
