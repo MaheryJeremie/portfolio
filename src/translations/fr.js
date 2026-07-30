@@ -156,12 +156,12 @@ export const fr = {
       {
         key: 'frontend',
         label: 'Frontend',
-        items: ['React', 'Angular', 'React Native', 'Vue.js', 'HTML/CSS', 'Bootstrap'],
+        items: ['React', 'Angular', 'React Native', 'Bootstrap'],
       },
       {
         key: 'backend',
         label: 'Backend',
-        items: ['Spring Boot', 'Node.js / Express', 'Symfony', '.NET', 'Odoo'],
+        items: ['Spring Boot', 'Node.js', 'Symfony', '.NET', 'Odoo'],
       },
       {
         key: 'languages',
@@ -171,7 +171,7 @@ export const fr = {
       {
         key: 'database',
         label: 'Bases de données',
-        items: ['PostgreSQL', 'MySQL', 'Oracle', 'MongoDB', 'Firebase'],
+        items: ['PostgreSQL', 'MySQL', 'Oracle', 'MongoDB'],
       },
       {
         key: 'tools',
