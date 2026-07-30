@@ -5,9 +5,10 @@ const FRAME_COUNT = 151;
 /** Native frame size — used to pick resize targets without a first decode pass. */
 const SRC_W = 960;
 const SRC_H = 768;
-const MAX_EDGE_DESKTOP = 720;
-/** Keep enough pixels for retina phones (CSS ~200px × DPR 2–3). */
-const MAX_EDGE_MOBILE = 720;
+/** Desktop: keep native res — downscaling to 720 made cover-fill look soft on large hero slots. */
+const MAX_EDGE_DESKTOP = 960;
+/** Mobile: still decode full-ish; CSS box is smaller but DPR 2–3 needs pixels. */
+const MAX_EDGE_MOBILE = 960;
 /** Parallel fetches; webps are ~15KB so bandwidth is fine. */
 const LOAD_CONCURRENCY_DESKTOP = 14;
 const LOAD_CONCURRENCY_MOBILE = 8;
@@ -70,8 +71,10 @@ export default function ScrollFrameAnim({
     const isMobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
     const maxEdge = isMobile ? MAX_EDGE_MOBILE : MAX_EDGE_DESKTOP;
     const maxLoads = isMobile ? LOAD_CONCURRENCY_MOBILE : LOAD_CONCURRENCY_DESKTOP;
-    const maxDpr = isMobile ? 2 : 1.5;
+    // Cap at 2 so retina desktops stay sharp (1.5 undersampled the canvas buffer).
+    const maxDpr = 2;
     const { rw, rh } = targetSize(maxEdge);
+    const useNativeDecode = rw >= SRC_W && rh >= SRC_H;
 
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (!ctx) return undefined;
@@ -153,17 +156,21 @@ export default function ScrollFrameAnim({
       }
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = isMobile ? 'high' : 'medium';
+      ctx.imageSmoothingQuality = 'high';
       if (ready) drawFrame(Math.round(currentFrame));
     };
 
     const decodeBlob = async (blob) => {
       if (typeof createImageBitmap === 'function') {
         try {
+          // Native size: skip resize so the browser keeps the sharpest decode.
+          if (useNativeDecode) {
+            return await createImageBitmap(blob);
+          }
           return await createImageBitmap(blob, {
             resizeWidth: rw,
             resizeHeight: rh,
-            resizeQuality: isMobile ? 'high' : 'medium',
+            resizeQuality: 'high',
           });
         } catch {
           /* fall through */
@@ -178,10 +185,14 @@ export default function ScrollFrameAnim({
           el.onerror = reject;
           el.src = url;
         });
+        if (useNativeDecode) return img;
         const c = document.createElement('canvas');
         c.width = rw;
         c.height = rh;
-        c.getContext('2d').drawImage(img, 0, 0, rw, rh);
+        const cctx = c.getContext('2d');
+        cctx.imageSmoothingEnabled = true;
+        cctx.imageSmoothingQuality = 'high';
+        cctx.drawImage(img, 0, 0, rw, rh);
         return c;
       } finally {
         URL.revokeObjectURL(url);
