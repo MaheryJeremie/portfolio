@@ -6,7 +6,8 @@ const FRAME_COUNT = 151;
 const SRC_W = 960;
 const SRC_H = 768;
 const MAX_EDGE_DESKTOP = 720;
-const MAX_EDGE_MOBILE = 480;
+/** Keep enough pixels for retina phones (CSS ~200px × DPR 2–3). */
+const MAX_EDGE_MOBILE = 720;
 /** Parallel fetches; webps are ~15KB so bandwidth is fine. */
 const LOAD_CONCURRENCY_DESKTOP = 14;
 const LOAD_CONCURRENCY_MOBILE = 8;
@@ -69,7 +70,7 @@ export default function ScrollFrameAnim({
     const isMobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
     const maxEdge = isMobile ? MAX_EDGE_MOBILE : MAX_EDGE_DESKTOP;
     const maxLoads = isMobile ? LOAD_CONCURRENCY_MOBILE : LOAD_CONCURRENCY_DESKTOP;
-    const maxDpr = isMobile ? 1 : 1.25;
+    const maxDpr = isMobile ? 2 : 1.5;
     const { rw, rh } = targetSize(maxEdge);
 
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
@@ -152,7 +153,7 @@ export default function ScrollFrameAnim({
       }
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'medium';
+      ctx.imageSmoothingQuality = isMobile ? 'high' : 'medium';
       if (ready) drawFrame(Math.round(currentFrame));
     };
 
@@ -162,7 +163,7 @@ export default function ScrollFrameAnim({
           return await createImageBitmap(blob, {
             resizeWidth: rw,
             resizeHeight: rh,
-            resizeQuality: 'low',
+            resizeQuality: isMobile ? 'high' : 'medium',
           });
         } catch {
           /* fall through */
