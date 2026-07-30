@@ -253,6 +253,7 @@ export const fr = {
       message: 'Message',
       send: 'Envoyer',
       sending: 'Envoi…',
+      captchaRequired: 'Valide le captcha avant d’envoyer.',
       success: 'Message envoyé — je te réponds rapidement.',
       error: 'Une erreur est survenue. Utilise le bouton email ci-dessus.',
     },

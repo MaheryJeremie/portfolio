@@ -250,6 +250,7 @@ export const siteSettings = defineType({
             defineField({name: 'message', type: 'localeString'}),
             defineField({name: 'send', type: 'localeString'}),
             defineField({name: 'sending', type: 'localeString'}),
+            defineField({name: 'captchaRequired', type: 'localeString'}),
             defineField({name: 'success', type: 'localeText'}),
             defineField({name: 'error', type: 'localeText'}),
           ],

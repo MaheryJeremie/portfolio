@@ -109,6 +109,12 @@
   min-height: 120px;
 }
 
+.contact-form__captcha {
+  display: flex;
+  justify-content: flex-start;
+  min-height: 78px;
+}
+
 .contact-form__submit {
   font-family: var(--font-display);
   font-size: 0.75rem;
@@ -145,6 +151,7 @@
 
 .contact-form__status--success { color: var(--lime); }
 .contact-form__status--error,
+.contact-form__status--captcha,
 .contact-form__status--unconfigured { color: var(--amber); }
 
 @media (max-width: 560px) {
