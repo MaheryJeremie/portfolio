@@ -126,7 +126,6 @@ export const fr = {
         result:
           'Plateforme qui transforme les PDF en outils d’étude IA : résumé, chat RAG avec sources, quiz, flashcards et suivi de progression.',
         tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
-        github: 'https://github.com/MaheryJeremie/ai-study-assistant',
         live: '',
         highlight: true,
         tag: 'Projet personnel',
