@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './LanguageSelect.css';
-
-const PROFILE_SRC = `${process.env.PUBLIC_URL}/images/profile.png`;
 
 const panelMotion = (dir) => ({
   initial: { opacity: 0, x: dir === 'left' ? -48 : 48 },
@@ -11,12 +8,6 @@ const panelMotion = (dir) => ({
 });
 
 export default function LanguageSelect({ onSelect }) {
-  useEffect(() => {
-    const img = new Image();
-    img.src = PROFILE_SRC;
-    img.srcset = `${process.env.PUBLIC_URL}/images/profile.webp`;
-  }, []);
-
   return (
     <div className="ls">
       <div className="ls__ambient" aria-hidden="true">
