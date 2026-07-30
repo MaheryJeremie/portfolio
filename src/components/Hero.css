@@ -1232,6 +1232,18 @@
 }
 
 @media (max-width: 700px) {
+  .hero__story-panel--stack {
+    align-items: center;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero__story-panel--stack .hero__panel-label,
+  .hero__story-panel--stack .hero__panel-title {
+    text-align: center;
+    width: 100%;
+  }
+
   .hero__story-panel--stack .hero__panel-title {
     font-size: clamp(1.4rem, 6.5vw, 1.85rem);
   }
@@ -1239,6 +1251,7 @@
   .hero__stack-grid {
     width: min(100%, 18rem);
     gap: 0.55rem;
+    margin-inline: auto;
   }
 
   .hero__stack-card {
@@ -1323,6 +1336,30 @@
   .hero--story .hero__story-slot {
     order: 1;
     min-height: 7.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero--story .hero__story-panel {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .hero--story .hero__story-panel--stack {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .hero--story .hero__stack-grid {
+    margin-inline: auto;
+    width: min(100%, 18rem);
+  }
+
+  .hero--story .hero__panel-title,
+  .hero--story .hero__panel-label {
+    text-align: center;
     width: 100%;
   }
 
