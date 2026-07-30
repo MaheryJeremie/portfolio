@@ -5,8 +5,8 @@ import { useTheme } from '../contexts/ThemeContext';
 import './Navbar.css';
 
 const SECTIONS = [
-  'projects',
   'experience',
+  'projects',
   'skills',
   'about',
   'education',

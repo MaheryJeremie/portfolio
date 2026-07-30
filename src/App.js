@@ -39,8 +39,8 @@ function Portfolio() {
         <Navbar onDownloadCV={handleDownloadCV} />
         <main id="main-content">
           <Hero />
-          <Projects />
           <Experience />
+          <Projects />
           <Skills />
           <About />
           <Education />

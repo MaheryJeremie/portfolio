@@ -18,7 +18,7 @@ export const fr = {
     themeDark: 'Mode sombre',
   },
   hero: {
-    eyebrow: 'Développeur Fullstack Junior',
+    eyebrow: 'Développeur Fullstack',
     available: 'Disponible',
     name1: 'Mahery',
     name2: 'Ramahay',
@@ -39,7 +39,7 @@ export const fr = {
         label: 'Approche',
         title: 'Apprendre vite. Livrer propre.',
         body:
-          'Fullstack junior, curieux et adaptable — je préfère comprendre le problème avant de coder la solution.',
+          'Fullstack, curieux et adaptable — je préfère comprendre le problème avant de coder la solution.',
       },
       cta: {
         label: 'Ensuite',

@@ -18,7 +18,7 @@ export const en = {
     themeDark: 'Dark mode',
   },
   hero: {
-    eyebrow: 'Junior Fullstack Developer',
+    eyebrow: 'Fullstack Developer',
     available: 'Available',
     name1: 'Mahery',
     name2: 'Ramahay',
@@ -39,7 +39,7 @@ export const en = {
         label: 'Approach',
         title: 'Learn fast. Ship clean.',
         body:
-          'Junior fullstack, curious and adaptable — I understand the problem before writing the fix.',
+          'Fullstack, curious and adaptable — I understand the problem before writing the fix.',
       },
       cta: {
         label: 'Next',
