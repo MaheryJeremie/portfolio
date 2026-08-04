@@ -1,95 +1,82 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import SectionRail from './layout/SectionRail';
 import './Experience.css';
+
+function jobMarker(period, index, nowLabel) {
+  if (index === 0) return nowLabel;
+  const years = period.match(/\d{4}/g) || [];
+  if (years.length >= 2) {
+    const a = years[0].slice(2);
+    const b = years[1].slice(2);
+    return a === b ? years[0] : `${a}→${b}`;
+  }
+  return years[0] || String(index + 1).padStart(2, '0');
+}
 
 export default function Experience() {
   const { t } = useLanguage();
-  const [active, setActive] = useState(0);
-  const job = t.experience.jobs[active];
 
   return (
-    <section id="experience" className="exp section--dense">
-      <div className="exp__num" aria-hidden="true">01</div>
-      <div className="exp__inner">
+    <section id="experience" className="section section--exp">
+      <SectionRail marker="01" label={t.nav.experience} />
 
-        <motion.div
-          className="exp__header"
-          initial={{ opacity: 0, y: 24 }}
+      <div className="section__body">
+        <motion.h2
+          className="section__headline"
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="exp__eyebrow">{t.experience.subtitle}</span>
-          <h2 className="exp__title">{t.experience.title}</h2>
-        </motion.div>
+          {t.experience.subtitle}
+        </motion.h2>
 
-        <div className="exp__layout">
-
-          {/* ── Sidebar tabs ── */}
-          <div className="exp__tabs">
-            {t.experience.jobs.map((j, i) => (
-              <button
-                key={i}
-                className={`exp__tab${active === i ? ' exp__tab--active' : ''}`}
-                onClick={() => setActive(i)}
-              >
-                <span className="exp__tab-index">{String(i + 1).padStart(2, '0')}</span>
-                <span className="exp__tab-info">
-                  <span className="exp__tab-role">{j.role}</span>
-                  <span className="exp__tab-company">{j.company}</span>
-                </span>
-                <span className="exp__tab-type">{j.type}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* ── Content panel ── */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              className="exp__panel"
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -24 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+        <div className="timeline">
+          {t.experience.jobs.map((job, i) => (
+            <motion.article
+              key={`${job.company}-${job.role}`}
+              className="job"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{
+                delay: i * 0.08,
+                duration: 0.55,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
-              <div className="exp__panel-top">
-                <div className="exp__panel-meta">
-                  <h3 className="exp__role">
-                    {job.role}
-                    <span className="exp__company"> @ {job.company}</span>
-                  </h3>
-                  <div className="exp__badges">
-                    <span className="exp__badge">{job.period}</span>
-                    <span className="exp__badge exp__badge--dim">{job.location}</span>
-                  </div>
-                </div>
+              <div className="job__time">
+                {jobMarker(job.period, i, t.ui.now)}
+                <small>{job.period}</small>
+              </div>
 
-                <div className="exp__tech">
-                  {job.tech.map((tag) => (
-                    <span key={tag} className="exp__tech-tag">{tag}</span>
+              <div className="job__content">
+                <h3 className="job__role">{job.role}</h3>
+                <p className="job__company">
+                  {job.company}
+                  {job.type ? <span className="job__type">{job.type}</span> : null}
+                </p>
+                {job.location ? (
+                  <p className="job__location">{job.location}</p>
+                ) : null}
+
+                <ul className="job__bullets">
+                  {job.bullets.map((b) => (
+                    <li key={b.slice(0, 48)}>{b}</li>
+                  ))}
+                </ul>
+
+                <div className="job__tech">
+                  {job.tech.map((tech) => (
+                    <span key={tech} className="job__chip">
+                      {tech}
+                    </span>
                   ))}
                 </div>
               </div>
-
-              <ul className="exp__bullets">
-                {job.bullets.map((b, i) => (
-                  <motion.li
-                    key={i}
-                    className="exp__bullet"
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.07, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <span className="exp__bullet-dot" aria-hidden="true" />
-                    {b}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
-
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import {localize, deepMerge} from './localize'
 const SETTINGS_QUERY = `*[_type == "siteSettings" && _id == "siteSettings"][0]`
 
 const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) {
-  name, problem, result, tech, github, live, highlight, tag,
+  name, problem, result, tech, github, live, tag,
   imagePath, imageAlt, "imageUrl": image.asset->url
 }`
 
@@ -33,7 +33,6 @@ function mapProject(project, lang) {
     tech: localized.tech || [],
     github: localized.github || null,
     live: localized.live || null,
-    highlight: Boolean(localized.highlight),
     tag: localized.tag,
     image: projectImage(project),
     imageAlt: localized.imageAlt,
@@ -78,7 +77,6 @@ function mapSettings(settings, lang) {
   const s = localize(settings, lang)
 
   return {
-    lang,
     skipLink: s.skipLink,
     common: s.common,
     nav: s.nav,
@@ -106,28 +104,23 @@ function mapSettings(settings, lang) {
       : undefined,
     projects: s.projectsSection
       ? {
-          title: s.projectsSection.title,
           subtitle: s.projectsSection.subtitle,
-          featured: s.projectsSection.featured,
           problem: s.projectsSection.problem,
           result: s.projectsSection.result,
         }
       : undefined,
     skills: s.skillsSection
       ? {
-          title: s.skillsSection.title,
           subtitle: s.skillsSection.subtitle,
         }
       : undefined,
     education: s.educationSection
       ? {
-          title: s.educationSection.title,
           subtitle: s.educationSection.subtitle,
         }
       : undefined,
     experience: s.experienceSection
       ? {
-          title: s.experienceSection.title,
           subtitle: s.experienceSection.subtitle,
         }
       : undefined,
@@ -193,5 +186,9 @@ export async function fetchSanityContent(lang) {
 /** Merge Sanity overlay onto local translation (local stays as fallback). */
 export function mergeContent(local, sanityOverlay) {
   if (!sanityOverlay) return local
-  return deepMerge(local, sanityOverlay)
+  const merged = deepMerge(local, sanityOverlay)
+  // Brand name spelling stays local (avoid CMS typos clipping letters like “y”)
+  if (local?.hero?.name1 && merged?.hero) merged.hero.name1 = local.hero.name1
+  if (local?.hero?.name2 && merged?.hero) merged.hero.name2 = local.hero.name2
+  return merged
 }

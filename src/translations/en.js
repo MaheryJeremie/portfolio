@@ -1,5 +1,4 @@
 export const en = {
-  lang: 'en',
   skipLink: 'Skip to content',
   common: {
     github: 'GitHub ↗',
@@ -17,33 +16,26 @@ export const en = {
     themeLight: 'Light mode',
     themeDark: 'Dark mode',
   },
+  ui: {
+    now: 'Now',
+    principeMark: 'Principle',
+    principe: 'Learn fast. Ship clean. Stay curious.',
+  },
   hero: {
     eyebrow: 'Fullstack Developer',
     available: 'Available',
     name1: 'Mahery',
     name2: 'Ramahay',
-    description:
-      "I build while learning — and I learn by building.",
     cta: 'See my work',
     ctaContact: 'Get in touch',
-    marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
     scroll: 'scroll',
-    photoAlt: 'Portrait of Mahery Ramahay',
     story: {
       stack: {
         label: 'Core stack',
-        title: 'What I build with',
-        items: ['React', 'Spring Boot', 'PostgreSQL', 'GitHub'],
-      },
-      intent: {
-        label: 'Approach',
-        title: 'Learn fast. Ship clean.',
-        body:
-          'Fullstack, curious and adaptable — I understand the problem before writing the fix.',
+        items: ['React', 'Spring Boot', 'PostgreSQL'],
       },
       cta: {
         label: 'Next',
-        title: 'Shall we continue?',
         body: 'Browse my projects, or just reach out.',
       },
     },
@@ -57,7 +49,6 @@ export const en = {
       linkedin: 'LinkedIn',
       status: 'Status',
     },
-    title: 'About',
     subtitle: 'The dev behind the terminal',
     paragraphs: [
       'Code runs in the family.',
@@ -85,9 +76,7 @@ export const en = {
     },
   },
   projects: {
-    title: 'Projects',
     subtitle: 'Things I shipped',
-    featured: 'Featured',
     problem: 'Problem',
     result: 'Result',
     items: [
@@ -100,7 +89,6 @@ export const en = {
         tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
         github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
-        highlight: true,
         tag: 'Academic project',
         image: '/images/projects/shopping-centre.webp',
         imageAlt: 'Shopping Centre App preview',
@@ -114,7 +102,6 @@ export const en = {
         tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
         github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
         live: null,
-        highlight: true,
         tag: 'Degree project',
         image: '/images/projects/odoo-budget.webp',
         imageAlt: 'Odoo Budget Management module preview',
@@ -127,7 +114,6 @@ export const en = {
           'A platform that turns PDFs into AI study tools: summary, sourced RAG chat, quizzes, flashcards, and progress tracking.',
         tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
         live: '',
-        highlight: true,
         tag: 'Personal project',
         image: '/images/projects/ai-study-assistant.webp',
         imageAlt: 'AI Study Assistant preview',
@@ -141,7 +127,6 @@ export const en = {
         tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS'],
         github: 'https://github.com/MaheryJeremie/job-finder',
         live: null,
-        highlight: true,
         tag: 'Personal project',
         image: '/images/projects/asafinder.webp',
         imageAlt: 'AsaFinder preview',
@@ -149,7 +134,6 @@ export const en = {
     ],
   },
   skills: {
-    title: 'Skills',
     subtitle: 'My technical stack',
     categories: [
       {
@@ -180,7 +164,6 @@ export const en = {
     ],
   },
   education: {
-    title: 'Education',
     subtitle: 'My academic background',
     items: [
       {
@@ -207,7 +190,6 @@ export const en = {
     ],
   },
   experience: {
-    title: 'Experience',
     subtitle: "Where I've worked",
     jobs: [
       {
@@ -260,7 +242,6 @@ export const en = {
   },
   footer: {
     built: 'To dare is to do.',
-    links: 'GitHub · LinkedIn',
     backToTop: 'Back to top',
     copy: '© {year} Mahery Ramahay Mandimby',
   },

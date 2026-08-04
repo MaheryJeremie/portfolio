@@ -1,111 +1,92 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { getSkillIcon } from '../utils/skillIcons';
+import SectionRail from './layout/SectionRail';
 import './Skills.css';
+
+function SkillMark({ name, color }) {
+  const icon = getSkillIcon(name, color);
+
+  if (icon?.type === 'cdn' && icon.tinted) {
+    return (
+      <span
+        className="atlas__icon atlas__icon--tinted"
+        style={{
+          backgroundColor: `#${icon.color}`,
+          WebkitMaskImage: `url(${icon.src})`,
+          maskImage: `url(${icon.src})`,
+        }}
+        aria-hidden="true"
+      />
+    );
+  }
+
+  if (icon?.type === 'cdn') {
+    return (
+      <img
+        src={icon.src}
+        alt=""
+        className="atlas__icon"
+        width={15}
+        height={15}
+        loading="lazy"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return null;
+}
 
 export default function Skills() {
   const { t } = useLanguage();
   const { isDark } = useTheme();
-  const [active, setActive] = useState(t.skills.categories[0].key);
-  const category = t.skills.categories.find((c) => c.key === active);
   const iconColor = isDark ? '8FA3C4' : '3B5BDB';
 
   return (
-    <section id="skills" className="skills section--dense">
-      <div className="skills__num" aria-hidden="true">03</div>
+    <section id="skills" className="section skills section--skills">
+      <SectionRail marker="03" label={t.nav.skills} />
 
-      <div className="skills__inner">
-        <motion.div
-          className="skills__header"
-          initial={{ opacity: 0, y: 20 }}
+      <div className="section__body skills__inner">
+        <motion.h2
+          className="section__headline"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="skills__eyebrow">{t.skills.subtitle}</span>
-          <h2 className="skills__title">{t.skills.title}</h2>
-        </motion.div>
+          {t.skills.subtitle}
+        </motion.h2>
 
-        <div className="skills__body">
-          <motion.div
-            className="skills__tabs"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            {t.skills.categories.map((cat) => (
-              <button
-                key={cat.key}
-                type="button"
-                className={`skills__tab ${active === cat.key ? 'skills__tab--active' : ''}`}
-                onClick={() => setActive(cat.key)}
-              >
-                {cat.label}
-                {active === cat.key && (
-                  <motion.span
-                    className="skills__tab-indicator"
-                    layoutId="skills-tab"
-                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                  />
-                )}
-              </button>
-            ))}
-          </motion.div>
-
-          <AnimatePresence mode="wait">
+        <div className="atlas">
+          {t.skills.categories.map((cat, i) => (
             <motion.div
-              key={active}
-              className="skills__items"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              key={cat.key}
+              className="atlas__col"
+              style={{ '--atlas-i': i }}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                delay: i * 0.06,
+                duration: 0.55,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
-              {category.items.map((item, i) => {
-                const icon = getSkillIcon(item, iconColor);
-                return (
-                  <motion.div
-                    key={item}
-                    className="skills__item"
-                    initial={{ opacity: 0, scale: 0.92 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.04, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    whileHover={{ y: -4, transition: { duration: 0.15 } }}
-                  >
-                    {icon?.type === 'cdn' && icon.tinted ? (
-                      <span
-                        className="skills__item-icon skills__item-icon--tinted"
-                        style={{
-                          backgroundColor: `#${icon.color}`,
-                          WebkitMaskImage: `url(${icon.src})`,
-                          maskImage: `url(${icon.src})`,
-                        }}
-                        aria-hidden="true"
-                      />
-                    ) : icon?.type === 'cdn' ? (
-                      <img
-                        src={icon.src}
-                        alt=""
-                        className="skills__item-icon"
-                        width={22}
-                        height={22}
-                        loading="lazy"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <span className="skills__item-fallback" aria-hidden="true">
-                        {item.charAt(0)}
-                      </span>
-                    )}
-                    <span className="skills__item-label">{item}</span>
-                  </motion.div>
-                );
-              })}
+
+              <h3 className="atlas__title">{cat.label}</h3>
+
+              <ul className="atlas__list">
+                {cat.items.map((item) => (
+                  <li key={item} className="atlas__item">
+                    <SkillMark name={item} color={iconColor} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
-          </AnimatePresence>
+          ))}
         </div>
       </div>
     </section>

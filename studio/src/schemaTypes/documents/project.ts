@@ -39,12 +39,6 @@ export const project = defineType({
       type: 'url',
     }),
     defineField({
-      name: 'highlight',
-      title: 'À la une',
-      type: 'boolean',
-      initialValue: true,
-    }),
-    defineField({
       name: 'tag',
       title: 'Tag',
       type: 'localeString',

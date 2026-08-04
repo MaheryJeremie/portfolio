@@ -58,18 +58,9 @@ export const siteSettings = defineType({
         defineField({name: 'available', type: 'localeString', title: 'Disponible'}),
         defineField({name: 'name1', type: 'string', title: 'Prénom'}),
         defineField({name: 'name2', type: 'string', title: 'Nom'}),
-        defineField({name: 'description', type: 'localeText', title: 'Description'}),
         defineField({name: 'cta', type: 'localeString', title: 'CTA projets'}),
         defineField({name: 'ctaContact', type: 'localeString', title: 'CTA contact'}),
-        defineField({
-          name: 'marquee',
-          title: 'Marquee',
-          type: 'array',
-          of: [defineArrayMember({type: 'string'})],
-          options: {layout: 'tags'},
-        }),
         defineField({name: 'scroll', type: 'localeString', title: 'Scroll'}),
-        defineField({name: 'photoAlt', type: 'localeString', title: 'Alt photo'}),
         defineField({
           name: 'story',
           title: 'Story cards',
@@ -80,7 +71,6 @@ export const siteSettings = defineType({
               type: 'object',
               fields: [
                 defineField({name: 'label', type: 'localeString'}),
-                defineField({name: 'title', type: 'localeString'}),
                 defineField({
                   name: 'items',
                   type: 'array',
@@ -90,20 +80,10 @@ export const siteSettings = defineType({
               ],
             }),
             defineField({
-              name: 'intent',
-              type: 'object',
-              fields: [
-                defineField({name: 'label', type: 'localeString'}),
-                defineField({name: 'title', type: 'localeString'}),
-                defineField({name: 'body', type: 'localeText'}),
-              ],
-            }),
-            defineField({
               name: 'cta',
               type: 'object',
               fields: [
                 defineField({name: 'label', type: 'localeString'}),
-                defineField({name: 'title', type: 'localeString'}),
                 defineField({name: 'body', type: 'localeText'}),
               ],
             }),
@@ -129,7 +109,6 @@ export const siteSettings = defineType({
             defineField({name: 'status', type: 'localeString'}),
           ],
         }),
-        defineField({name: 'title', type: 'localeString'}),
         defineField({name: 'subtitle', type: 'localeString'}),
         defineField({
           name: 'paragraphs',
@@ -187,9 +166,7 @@ export const siteSettings = defineType({
       type: 'object',
       group: 'sections',
       fields: [
-        defineField({name: 'title', type: 'localeString'}),
         defineField({name: 'subtitle', type: 'localeString'}),
-        defineField({name: 'featured', type: 'localeString'}),
         defineField({name: 'problem', type: 'localeString'}),
         defineField({name: 'result', type: 'localeString'}),
       ],
@@ -199,30 +176,21 @@ export const siteSettings = defineType({
       title: 'Section Compétences',
       type: 'object',
       group: 'sections',
-      fields: [
-        defineField({name: 'title', type: 'localeString'}),
-        defineField({name: 'subtitle', type: 'localeString'}),
-      ],
+      fields: [defineField({name: 'subtitle', type: 'localeString'})],
     }),
     defineField({
       name: 'educationSection',
       title: 'Section Formation',
       type: 'object',
       group: 'sections',
-      fields: [
-        defineField({name: 'title', type: 'localeString'}),
-        defineField({name: 'subtitle', type: 'localeString'}),
-      ],
+      fields: [defineField({name: 'subtitle', type: 'localeString'})],
     }),
     defineField({
       name: 'experienceSection',
       title: 'Section Expérience',
       type: 'object',
       group: 'sections',
-      fields: [
-        defineField({name: 'title', type: 'localeString'}),
-        defineField({name: 'subtitle', type: 'localeString'}),
-      ],
+      fields: [defineField({name: 'subtitle', type: 'localeString'})],
     }),
     defineField({
       name: 'cta',
@@ -264,7 +232,6 @@ export const siteSettings = defineType({
       group: 'footer',
       fields: [
         defineField({name: 'built', type: 'localeString'}),
-        defineField({name: 'links', type: 'localeString'}),
         defineField({name: 'backToTop', type: 'localeString'}),
         defineField({
           name: 'copy',

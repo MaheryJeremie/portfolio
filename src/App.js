@@ -1,8 +1,8 @@
-import React from 'react';
 import './App.css';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Analytics from './components/Analytics';
+import SmoothScroll from './components/motion/SmoothScroll';
 import LanguageSelect from './components/LanguageSelect';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -13,6 +13,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import QuoteBand from './components/layout/QuoteBand';
 
 function Portfolio() {
   const { language, selectLanguage, t } = useLanguage();
@@ -30,7 +31,7 @@ function Portfolio() {
   }
 
   return (
-    <>
+    <SmoothScroll>
       <Analytics />
       <a href="#main-content" className="skip-link">
         {t.skipLink}
@@ -40,6 +41,7 @@ function Portfolio() {
         <main id="main-content">
           <Hero />
           <Experience />
+          <QuoteBand mark={t.ui.principeMark}>{t.ui.principe}</QuoteBand>
           <Projects />
           <Skills />
           <About />
@@ -48,7 +50,7 @@ function Portfolio() {
         </main>
         <Footer />
       </div>
-    </>
+    </SmoothScroll>
   );
 }
 

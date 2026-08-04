@@ -223,6 +223,7 @@
 @media (max-width: 768px) {
   .cta { padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 3rem); }
   .cta__actions { flex-direction: column; align-items: center; }
+  .cta__actions .magnetic { width: 100%; max-width: 320px; }
   .cta__btn { width: 100%; max-width: 320px; justify-content: center; }
   .cta::before { opacity: 0.45; filter: blur(36px); }
   .cta__orb--purple { width: 220px; height: 220px; left: -5%; }

@@ -1,7 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { publicUrl } from '../utils/publicUrl';
+import SectionRail from './layout/SectionRail';
 import './Projects.css';
 
 function repoLabel(url, t) {
@@ -9,68 +9,83 @@ function repoLabel(url, t) {
   return t.common.github;
 }
 
-function ProjectCard({ project, featured, featuredLabel, problemLabel, resultLabel, t, index }) {
-  const links = (
-    <div className="project-card__links">
-      {project.github && (
-        <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-card__link">
-          {repoLabel(project.github, t)}
-        </a>
-      )}
-      {project.live && (
-        <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-card__link project-card__link--live">
-          {t.common.live}
-        </a>
-      )}
-    </div>
-  );
+function ProjectCase({ project, index, problemLabel, resultLabel, t }) {
+  const n = String(index + 1).padStart(2, '0');
+  const flip = index % 2 === 1;
 
   return (
     <motion.article
-      className={`project-card${featured ? ' project-card--featured' : ''}`}
-      initial={{ opacity: 0, y: featured ? 30 : 25 }}
+      className={`case${flip ? ' case--flip' : ''}`}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
-        delay: featured ? 0 : 0.15 + index * 0.1,
-        duration: featured ? 0.7 : 0.6,
+        delay: index * 0.06,
+        duration: 0.6,
         ease: [0.16, 1, 0.3, 1],
       }}
-      whileHover={{ y: featured ? -6 : -5, transition: { duration: 0.2 } }}
     >
-      <div className="project-card__media">
+      <div className="case__index" aria-hidden="true">
+        <span className="case__num">{n}</span>
+        <span className="case__rule" />
+      </div>
+
+      <div className="case__media">
         <img
           src={publicUrl(project.image)}
           alt={project.imageAlt || project.name}
-          className="project-card__image"
+          className="case__image"
           loading="lazy"
           decoding="async"
         />
-        <div className="project-card__media-overlay" aria-hidden="true" />
-        {featured && (
-          <div className="project-card__badge">{featuredLabel}</div>
-        )}
       </div>
 
-      <div className="project-card__body">
-        <span className="project-card__tag">{project.tag}</span>
-        <h3 className="project-card__name">{project.name}</h3>
-        <div className="project-card__desc">
-          <p className="project-card__block">
-            <span className="project-card__block-label">{problemLabel}</span>
-            {project.problem}
-          </p>
-          <p className="project-card__block">
-            <span className="project-card__block-label">{resultLabel}</span>
-            {project.result}
-          </p>
+      <div className="case__copy">
+        {project.tag ? <p className="case__tag">{project.tag}</p> : null}
+
+        <h3 className="case__name">{project.name}</h3>
+
+        <div className="case__brief">
+          <div className="case__col">
+            <span className="case__label">{problemLabel}</span>
+            <p>{project.problem}</p>
+          </div>
+          <div className="case__col">
+            <span className="case__label">{resultLabel}</span>
+            <p>{project.result}</p>
+          </div>
         </div>
-        <div className="project-card__tech">
-          {project.tech.map((tech) => (
-            <span key={tech} className="project-card__tech-tag">{tech}</span>
-          ))}
+
+        <div className="case__meta">
+          <ul className="case__tech">
+            {project.tech.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
+
+          <div className="case__links">
+            {project.github ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="case__link"
+              >
+                {repoLabel(project.github, t)}
+              </a>
+            ) : null}
+            {project.live ? (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="case__link case__link--live"
+              >
+                {t.common.live}
+              </a>
+            ) : null}
+          </div>
         </div>
-        {links}
       </div>
     </motion.article>
   );
@@ -78,42 +93,31 @@ function ProjectCard({ project, featured, featuredLabel, problemLabel, resultLab
 
 export default function Projects() {
   const { t } = useLanguage();
-  const [feat, ...rest] = t.projects.items;
 
   return (
-    <section id="projects" className="projects section--dense">
-      <div className="projects__num" aria-hidden="true">02</div>
+    <section id="projects" className="section projects section--projects">
+      <SectionRail marker="02" label={t.nav.projects} />
 
-      <div className="projects__inner">
-        <motion.div
-          className="projects__header"
+      <div className="section__body projects__inner">
+        <motion.h2
+          className="section__headline"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="projects__eyebrow">{t.projects.subtitle}</span>
-          <h2 className="projects__title">{t.projects.title}</h2>
-        </motion.div>
+          {t.projects.subtitle}
+        </motion.h2>
 
-        <div className="projects__bento">
-          <ProjectCard
-            project={feat}
-            featured
-            featuredLabel={t.projects.featured}
-            problemLabel={t.projects.problem}
-            resultLabel={t.projects.result}
-            t={t}
-            index={0}
-          />
-          {rest.map((project, i) => (
-            <ProjectCard
+        <div className="projects__list">
+          {t.projects.items.map((project, i) => (
+            <ProjectCase
               key={project.name}
               project={project}
+              index={i}
               problemLabel={t.projects.problem}
               resultLabel={t.projects.result}
               t={t}
-              index={i}
             />
           ))}
         </div>

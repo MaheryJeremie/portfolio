@@ -1,221 +1,201 @@
-/* ── Skills ── */
-.skills {
-  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem);
-  position: relative;
+/* Skills — typographic atlas (columns, not list rows) */
+
+.section--skills {
   overflow: hidden;
-  background: transparent;
-  border-top: none;
+  background:
+    radial-gradient(
+      ellipse 42% 36% at 8% 88%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--chrome) 12%, var(--void)) 0%,
+      var(--void) 100%
+    );
 }
 
-.skills::before,
-.skills::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
+.section--skills::before {
+  display: none;
 }
 
-.skills::before {
-  width: 320px;
-  height: 320px;
-  background: var(--liquid-blue);
-  top: 10%;
-  right: -5%;
-  opacity: 0.4;
+.skills__inner {
+  max-width: none;
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
-.skills::after {
-  width: 260px;
-  height: 260px;
-  background: var(--liquid-chrome);
-  bottom: 5%;
-  left: -3%;
-  opacity: 0.5;
+.skills .section__headline {
+  margin-bottom: clamp(2.75rem, 6vw, 4.25rem);
 }
 
-.skills__num {
-  position: absolute;
-  top: 4rem; right: clamp(1.5rem, 6vw, 6rem);
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 14vw, 14rem);
-  font-weight: 900;
-  color: var(--faint);
-  pointer-events: none;
-  line-height: 1;
-  user-select: none;
+/* Column field — reads like a specimen board, not a ledger */
+.atlas {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
-.skills__inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-.skills__header { margin-bottom: var(--space-12); }
-
-.skills__eyebrow {
+.atlas__col {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--lime);
-  margin-bottom: var(--space-4);
+  flex-direction: column;
+  gap: 1.35rem;
+  min-height: 18rem;
+  padding: clamp(1.5rem, 2.8vw, 2.25rem) clamp(0.9rem, 1.6vw, 1.4rem);
+  border-right: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  overflow: hidden;
+  transition: background 0.4s var(--ease-expo);
 }
 
-.skills__eyebrow::before {
+.atlas__col:last-child {
+  border-right: none;
+}
+
+.atlas__col:hover {
+  background: color-mix(in srgb, var(--surface-solid) 55%, transparent);
+}
+
+.atlas__title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.atlas__title::after {
   content: '';
-  display: inline-block;
+  display: block;
   width: 1.5rem;
   height: 2px;
-  background: var(--lime);
+  margin-top: 0.85rem;
+  background: var(--accent);
+  transform-origin: left center;
+  transition: width 0.35s var(--ease-expo);
 }
 
-.skills__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--ink);
-  margin: 0;
+.atlas__col:hover .atlas__title::after {
+  width: 2.75rem;
 }
 
-.skills__body {
+.atlas__list {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-}
-
-.skills__tabs {
-  display: flex;
-  gap: 0;
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-}
-
-.skills__tab {
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--dim);
-  padding: 0.9rem 1.5rem;
-  min-height: 44px;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.skills__tab-indicator {
-  position: absolute;
-  bottom: -1px;
-  left: 0.75rem;
-  right: 0.75rem;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-soft), var(--lime));
-  border-radius: 1px;
-}
-
-.skills__tab--active { color: var(--ink); }
-.skills__tab:hover { color: var(--muted); }
-
-.skills__items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: var(--space-3);
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  overflow: visible;
-  padding: var(--space-4);
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md), var(--glass-shine);
-}
-
-.skills__item {
-  background: color-mix(in srgb, var(--void) 70%, transparent);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 1rem 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-align: center;
-  min-height: 88px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 0.55rem;
-  transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.skills__item-icon {
-  width: 22px;
-  height: 22px;
+.atlas__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  transition: color 0.25s ease, transform 0.25s var(--ease-expo);
+}
+
+.atlas__item:hover {
+  color: var(--ink);
+  transform: translateX(3px);
+}
+
+.atlas__icon {
+  width: 14px;
+  height: 14px;
   object-fit: contain;
-  opacity: 0.9;
   flex-shrink: 0;
+  opacity: 0.75;
 }
 
-.skills__item-icon--tinted {
+.atlas__icon--tinted {
   display: inline-block;
+  width: 14px;
+  height: 14px;
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
+  opacity: 0.8;
+}
+
+.atlas__item:hover .atlas__icon,
+.atlas__item:hover .atlas__icon--tinted {
   opacity: 1;
 }
 
-.skills__item-fallback {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--lime);
-  line-height: 1;
-}
-
-.skills__item-label {
-  line-height: 1.25;
-}
-
-.skills__item:hover,
-.skills__item:active {
-  background: var(--lime-dim);
-  color: var(--lime);
-  border-color: color-mix(in srgb, var(--lime) 30%, var(--border));
-  box-shadow: 0 4px 16px var(--lime-glow);
-}
-
-@media (max-width: 1024px) {
-  .skills { padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem); }
-  .skills__num { display: none; }
-}
-
-@media (max-width: 768px) {
-  .skills__tabs {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
-    scrollbar-width: thin;
+/* 5 cats → tablet wraps to 3+2 / mobile stack as soft panels */
+@media (max-width: 1100px) {
+  .atlas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .skills__tab {
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding: 0.85rem 1.1rem;
+
+  .atlas__col:nth-child(3) {
+    border-right: none;
   }
-  .skills__items { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+
+  .atlas__col:nth-child(n + 4) {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  }
+}
+
+@media (max-width: 720px) {
+  .atlas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .atlas__col {
+    min-height: 14rem;
+  }
+
+  .atlas__col:nth-child(3) {
+    border-right: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  }
+
+  .atlas__col:nth-child(even) {
+    border-right: none;
+  }
+
+  .atlas__col:nth-child(n + 3) {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  }
 }
 
 @media (max-width: 480px) {
-  .skills { padding: 3.5rem 1.25rem; }
-  .skills__title { font-size: clamp(1.5rem, 7vw, 2.4rem); }
-  .skills__items { grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); }
+  .atlas {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas__col {
+    min-height: 0;
+    border-right: none;
+    padding-block: 1.35rem;
+  }
+
+  .atlas__col:nth-child(n + 2) {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  }
+
+  .atlas__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+    margin-top: 0.25rem;
+  }
 }

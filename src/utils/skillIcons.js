@@ -13,7 +13,6 @@ const SKILL_ICON_SLUGS = {
   Python: 'python',
   JavaScript: 'javascript',
   C: 'c',
-  'C++': 'cplusplus',
   PostgreSQL: 'postgresql',
   MySQL: 'mysql',
   MongoDB: 'mongodb',

@@ -40,32 +40,16 @@ docs.push({
     available: L('Disponible', 'Available'),
     name1: 'Mahery',
     name2: 'Ramahay',
-    description: T(
-      "Je construis en apprenant — et j'apprends en construisant.",
-      'I build while learning — and I learn by building.',
-    ),
     cta: L('Voir mes projets', 'See my work'),
     ctaContact: L('Me contacter', 'Get in touch'),
-    marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
     scroll: L('défiler', 'scroll'),
-    photoAlt: L('Portrait de Mahery Ramahay', 'Portrait of Mahery Ramahay'),
     story: {
       stack: {
         label: L('Stack principale', 'Core stack'),
-        title: L('Ce avec quoi je construis', 'What I build with'),
-        items: ['React', 'Spring Boot', 'PostgreSQL', 'GitHub'],
-      },
-      intent: {
-        label: L('Approche', 'Approach'),
-        title: L('Apprendre vite. Livrer propre.', 'Learn fast. Ship clean.'),
-        body: T(
-          'Fullstack, curieux et adaptable — je préfère comprendre le problème avant de coder la solution.',
-          'Fullstack, curious and adaptable — I understand the problem before writing the fix.',
-        ),
+        items: ['React', 'Spring Boot', 'PostgreSQL'],
       },
       cta: {
         label: L('Ensuite', 'Next'),
-        title: L('On continue ?', 'Shall we continue?'),
         body: T(
           'Parcours mes projets, ou écris-moi directement.',
           'Browse my projects, or just reach out.',
@@ -82,7 +66,6 @@ docs.push({
       linkedin: L('LinkedIn', 'LinkedIn'),
       status: L('Statut', 'Status'),
     },
-    title: L('À Propos', 'About'),
     subtitle: L('Le dev derrière le terminal', 'The dev behind the terminal'),
     paragraphs: [
       T("Le code, c’est une histoire de famille.", 'Code runs in the family.'),
@@ -120,22 +103,17 @@ docs.push({
     },
   },
   projectsSection: {
-    title: L('Projets', 'Projects'),
     subtitle: L("Ce que j'ai construit", 'Things I shipped'),
-    featured: L('À la une', 'Featured'),
     problem: L('Problème', 'Problem'),
     result: L('Résultat', 'Result'),
   },
   skillsSection: {
-    title: L('Compétences', 'Skills'),
     subtitle: L('Ma stack technique', 'My technical stack'),
   },
   educationSection: {
-    title: L('Formation', 'Education'),
     subtitle: L('Mon parcours académique', 'My academic background'),
   },
   experienceSection: {
-    title: L('Expérience', 'Experience'),
     subtitle: L("Où j'ai travaillé", "Where I've worked"),
   },
   cta: {
@@ -158,6 +136,10 @@ docs.push({
       message: L('Message', 'Message'),
       send: L('Envoyer', 'Send message'),
       sending: L('Envoi…', 'Sending…'),
+      captchaRequired: L(
+        'Valide le captcha avant d’envoyer.',
+        'Please complete the captcha before sending.',
+      ),
       success: T(
         'Message envoyé — je te réponds rapidement.',
         "Message sent — I'll get back to you soon.",
@@ -170,7 +152,6 @@ docs.push({
   },
   footer: {
     built: L("Oser c'est faire.", 'To dare is to do.'),
-    links: L('GitHub · LinkedIn', 'GitHub · LinkedIn'),
     backToTop: L('Retour en haut', 'Back to top'),
     copy: L('© {year} Mahery Ramahay Mandimby', '© {year} Mahery Ramahay Mandimby'),
   },
@@ -192,7 +173,6 @@ const projects = [
     tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
     github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
     live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
-    highlight: true,
     tag: L('Projet académique', 'Academic project'),
     imagePath: '/images/projects/shopping-centre.webp',
     imageAlt: L('Aperçu Application Centre Commercial', 'Shopping Centre App preview'),
@@ -211,7 +191,6 @@ const projects = [
     ),
     tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
     github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
-    highlight: true,
     tag: L('Projet de Licence', 'Degree project'),
     imagePath: '/images/projects/odoo-budget.webp',
     imageAlt: L('Aperçu Module Gestion Budgétaire Odoo', 'Odoo Budget Management module preview'),
@@ -229,7 +208,6 @@ const projects = [
       'A platform that turns PDFs into AI study tools: summary, sourced RAG chat, quizzes, flashcards, and progress tracking.',
     ),
     tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
-    highlight: true,
     tag: L('Projet personnel', 'Personal project'),
     imagePath: '/images/projects/ai-study-assistant.webp',
     imageAlt: L('Aperçu AI Study Assistant', 'AI Study Assistant preview'),
@@ -248,7 +226,6 @@ const projects = [
     ),
     tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS'],
     github: 'https://github.com/MaheryJeremie/job-finder',
-    highlight: true,
     tag: L('Projet personnel', 'Personal project'),
     imagePath: '/images/projects/asafinder.webp',
     imageAlt: L('Aperçu AsaFinder', 'AsaFinder preview'),
@@ -265,7 +242,6 @@ for (const p of projects) {
     tech: p.tech,
     github: p.github || undefined,
     live: p.live || undefined,
-    highlight: p.highlight,
     tag: p.tag,
     imagePath: p.imagePath,
     imageAlt: p.imageAlt,

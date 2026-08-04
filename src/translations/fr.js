@@ -1,5 +1,4 @@
 export const fr = {
-  lang: 'fr',
   skipLink: 'Aller au contenu',
   common: {
     github: 'GitHub ↗',
@@ -17,33 +16,26 @@ export const fr = {
     themeLight: 'Mode clair',
     themeDark: 'Mode sombre',
   },
+  ui: {
+    now: 'Now',
+    principeMark: 'Principe',
+    principe: 'Apprendre vite. Livrer propre. Rester curieux.',
+  },
   hero: {
     eyebrow: 'Développeur Fullstack',
     available: 'Disponible',
     name1: 'Mahery',
     name2: 'Ramahay',
-    description:
-      "Je construis en apprenant — et j'apprends en construisant.",
     cta: 'Voir mes projets',
     ctaContact: 'Me contacter',
-    marquee: ['Spring Boot', 'Node.js', 'Symfony', 'React', 'Angular', 'Odoo'],
     scroll: 'défiler',
-    photoAlt: 'Portrait de Mahery Ramahay',
     story: {
       stack: {
         label: 'Stack principale',
-        title: 'Ce avec quoi je construis',
-        items: ['React', 'Spring Boot', 'PostgreSQL', 'GitHub'],
-      },
-      intent: {
-        label: 'Approche',
-        title: 'Apprendre vite. Livrer propre.',
-        body:
-          'Fullstack, curieux et adaptable — je préfère comprendre le problème avant de coder la solution.',
+        items: ['React', 'Spring Boot', 'PostgreSQL'],
       },
       cta: {
         label: 'Ensuite',
-        title: 'On continue ?',
         body: 'Parcours mes projets, ou écris-moi directement.',
       },
     },
@@ -57,7 +49,6 @@ export const fr = {
       linkedin: 'LinkedIn',
       status: 'Statut',
     },
-    title: 'À Propos',
     subtitle: 'Le dev derrière le terminal',
     paragraphs: [
       "Le code, c’est une histoire de famille.",
@@ -85,9 +76,7 @@ export const fr = {
     },
   },
   projects: {
-    title: 'Projets',
     subtitle: 'Ce que j\'ai construit',
-    featured: 'À la une',
     problem: 'Problème',
     result: 'Résultat',
     items: [
@@ -100,7 +89,6 @@ export const fr = {
         tech: ['Node.js', 'Express', 'Angular', 'MongoDB'],
         github: 'https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery',
         live: 'https://m1p13mean-rehareha-mahery.netlify.app/',
-        highlight: true,
         tag: 'Projet académique',
         image: '/images/projects/shopping-centre.webp',
         imageAlt: 'Aperçu Application Centre Commercial',
@@ -114,7 +102,6 @@ export const fr = {
         tech: ['Odoo', 'Python', 'XML', 'PostgreSQL'],
         github: 'https://github.com/MaheryJeremie/Gestion-budgetaire',
         live: null,
-        highlight: true,
         tag: 'Projet de Licence',
         image: '/images/projects/odoo-budget.webp',
         imageAlt: 'Aperçu Module Gestion Budgétaire Odoo',
@@ -127,7 +114,6 @@ export const fr = {
           'Plateforme qui transforme les PDF en outils d’étude IA : résumé, chat RAG avec sources, quiz, flashcards et suivi de progression.',
         tech: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Tailwind CSS', 'JWT', 'RAG'],
         live: '',
-        highlight: true,
         tag: 'Projet personnel',
         image: '/images/projects/ai-study-assistant.webp',
         imageAlt: 'Aperçu AI Study Assistant',
@@ -141,7 +127,6 @@ export const fr = {
         tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS'],
         github: 'https://github.com/MaheryJeremie/job-finder',
         live: null,
-        highlight: true,
         tag: 'Projet personnel',
         image: '/images/projects/asafinder.webp',
         imageAlt: 'Aperçu AsaFinder',
@@ -149,7 +134,6 @@ export const fr = {
     ],
   },
   skills: {
-    title: 'Compétences',
     subtitle: 'Ma stack technique',
     categories: [
       {
@@ -180,7 +164,6 @@ export const fr = {
     ],
   },
   education: {
-    title: 'Formation',
     subtitle: 'Mon parcours académique',
     items: [
       {
@@ -207,7 +190,6 @@ export const fr = {
     ],
   },
   experience: {
-    title: 'Expérience',
     subtitle: 'Où j\'ai travaillé',
     jobs: [
       {
@@ -260,7 +242,6 @@ export const fr = {
   },
   footer: {
     built: 'Oser c\'est faire.',
-    links: 'GitHub · LinkedIn',
     backToTop: 'Retour en haut',
     copy: '© {year} Mahery Ramahay Mandimby',
   },

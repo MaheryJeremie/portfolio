@@ -1,0 +1,18 @@
+/* Block-level line mask for pre-split title lines */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.12em;
+}
+
+.line-mask > * {
+  will-change: transform;
+  display: inline-block;
+  padding-bottom: 0.06em;
+}
+
+/* ── Magnetic wrapper ── */
+.magnetic {
+  display: inline-block;
+}

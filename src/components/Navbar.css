@@ -50,14 +50,6 @@
   padding: 0.4em 0.5em;
 }
 
-.nav__logo-name {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-}
-
 .nav__links {
   display: flex;
   gap: 0.15rem;

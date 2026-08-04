@@ -1,18 +1,22 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import SectionRail from './layout/SectionRail';
 import './About.css';
 
+const ease = [0.16, 1, 0.3, 1];
+
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 28 },
   visible: (i) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.08 + i * 0.1, duration: 0.75, ease },
   }),
 };
 
 export default function About() {
   const { t } = useLanguage();
+  const [lead, ...body] = t.about.paragraphs;
 
   const metaItems = [
     { label: t.about.meta.location, value: t.about.location, href: null },
@@ -23,62 +27,37 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="about">
-      <div className="about__num" aria-hidden="true">04</div>
+    <section id="about" className="section section--airy about section--about">
+      <SectionRail marker="04" label={t.nav.about} />
 
-      <div className="about__inner">
-        <div className="about__left">
-          <motion.p
-            className="about__eyebrow"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {t.about.subtitle}
-          </motion.p>
-          <motion.h2
-            className="about__title"
-            initial={{ opacity: 0, y: 60 }}
+      <div className="section__body about__inner">
+        <motion.h2
+          className="section__headline about__title"
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.85, ease }}
+        >
+          {t.about.subtitle}
+        </motion.h2>
+
+        <div className="folio">
+          <motion.blockquote
+            className="folio__pull"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, ease }}
           >
-            {t.about.title}
-          </motion.h2>
+            <span className="folio__mark" aria-hidden="true">“</span>
+            <p className="folio__quote">{lead}</p>
+          </motion.blockquote>
 
-          <motion.div
-            className="about__meta"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.35, duration: 0.7 }}
-          >
-            {metaItems.map(({ label, value, href }) => (
-              <div className="about__meta-row" key={label}>
-                <span className="about__meta-k">{label}</span>
-                {href ? (
-                  <a className="about__meta-v about__meta-link" href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
-                    {value}
-                  </a>
-                ) : (
-                  <span className="about__meta-v">{value}</span>
-                )}
-              </div>
-            ))}
-            <div className="about__meta-row">
-              <span className="about__meta-k">{t.about.meta.status}</span>
-              <span className="about__meta-v about__meta-avail">● {t.hero.available}</span>
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="about__right">
-          <div className="about__bio">
-            {t.about.paragraphs.map((p, i) => (
+          <div className="folio__body">
+            {body.map((p, i) => (
               <motion.p
                 key={i}
-                className="about__para"
+                className="folio__para"
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
@@ -89,40 +68,74 @@ export default function About() {
               </motion.p>
             ))}
           </div>
-
-          <motion.div
-            className="about__interests"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-          >
-            <p className="about__tag-label">{t.about.interests.title}</p>
-            <div className="about__chips">
-              {t.about.interests.items.map((item) => (
-                <span key={item} className="about__chip">{item}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="about__langs"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.7 }}
-          >
-            <p className="about__tag-label">{t.about.languages.title}</p>
-            <div className="about__langs-row">
-              {t.about.languages.items.map((l) => (
-                <div key={l.lang} className="about__lang-item">
-                  <span className="about__lang-name">{l.lang}</span>
-                  <span className="about__lang-level">{l.level}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
+
+        <motion.div
+          className="dossier"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+        >
+          <div className="dossier__rail" role="list">
+            {metaItems.map(({ label, value, href }) => (
+              <div className="dossier__cell" role="listitem" key={label}>
+                <span className="dossier__k">{label}</span>
+                {href ? (
+                  <a
+                    className="dossier__v dossier__link"
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {value}
+                  </a>
+                ) : (
+                  <span className="dossier__v">{value}</span>
+                )}
+              </div>
+            ))}
+            <div className="dossier__cell dossier__cell--status" role="listitem">
+              <span className="dossier__k">{t.about.meta.status}</span>
+              <span className="dossier__v dossier__avail">
+                <span className="dossier__pulse" aria-hidden="true" />
+                {t.hero.available}
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="folio__foot"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.7, ease }}
+        >
+          <div className="folio__block">
+            <p className="folio__label">{t.about.interests.title}</p>
+            <ul className="folio__interests">
+              {t.about.interests.items.map((item) => (
+                <li key={item} className="folio__interest">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="folio__block">
+            <p className="folio__label">{t.about.languages.title}</p>
+            <ul className="folio__langs">
+              {t.about.languages.items.map((l) => (
+                <li key={l.lang} className="folio__lang">
+                  <span className="folio__lang-name">{l.lang}</span>
+                  <span className="folio__lang-rule" aria-hidden="true" />
+                  <span className="folio__lang-level">{l.level}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

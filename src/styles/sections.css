@@ -1,15 +1,68 @@
-/* ── Section rhythm — dense vs airy ── */
-.section--dense {
-  position: relative;
-  background: color-mix(in srgb, var(--chrome) 14%, var(--void));
+/* ── Editorial section shell (rail + body) ── */
+:root {
+  --section-rail: 6.5rem;
+  --section-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --section-max: 72rem;
 }
 
+.section {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--section-rail) 1fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(4.5rem, 10vw, 8rem) var(--section-gutter);
+}
+
+.section__rail {
+  position: sticky;
+  top: calc(var(--nav-height) + 1.5rem);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.section__marker {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.section__label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section__body {
+  max-width: calc(var(--section-max) - var(--section-rail));
+  min-width: 0;
+}
+
+.section__headline {
+  margin: 0 0 clamp(2rem, 5vw, 3.25rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  max-width: 18ch;
+  color: var(--ink);
+}
+
+/* ── Section rhythm — airy ── */
 .section--airy {
-  position: relative;
   background: transparent;
+  padding-block: clamp(7rem, 14vw, 11rem);
 }
 
-.section--dense::before,
 .section--airy::before {
   content: '';
   position: absolute;
@@ -30,11 +83,89 @@
   z-index: 1;
 }
 
-.section--airy {
-  padding-top: clamp(7rem, 14vw, 11rem) !important;
-  padding-bottom: clamp(7rem, 14vw, 11rem) !important;
+/* Experience climate — cool chrome wash, our tokens (not premium sky) */
+.section--exp {
+  background:
+    radial-gradient(
+      circle at 92% 8%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 36%
+    ),
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--chrome) 28%, var(--void)) 0%,
+      color-mix(in srgb, var(--chrome) 12%, var(--void)) 55%,
+      var(--void) 100%
+    );
+  color: var(--ink);
 }
 
-[data-theme="dark"] .section--dense {
-  background: color-mix(in srgb, var(--chrome) 22%, var(--void));
+.section--exp::before {
+  display: none;
+}
+
+/* ── Principe band ── */
+.quote-band {
+  position: relative;
+  min-height: 48svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(3rem, 8vw, 6rem) var(--section-gutter);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--text-inverse);
+  text-align: center;
+}
+
+.quote-band__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 52% 48% at 50% 50%,
+    color-mix(in srgb, var(--accent) 32%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.quote-band__mark {
+  display: block;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent-soft) 80%, var(--text-inverse));
+  opacity: 0.9;
+}
+
+.quote-band__text {
+  position: relative;
+  margin: 0;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: var(--text-inverse);
+}
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+
+  .section__rail {
+    position: static;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.85rem;
+  }
+
+  .section__label {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
 }
