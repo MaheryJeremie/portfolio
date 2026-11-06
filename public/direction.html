@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mahery. — Direction visuelle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #16171c;
+      --paper: #fafaf7;
+      --band: #f3f1eb;
+      --white: #ffffff;
+      --muted: #6b6e76;
+      --dim: #8a8d94;
+      --line: #e6e4de;
+      --laterite: #c45c26;
+      --laterite-soft: #f6e4d4;
+      --mist: #e4eef6;
+      --leaf: #e6ede4;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --display: "Syne", sans-serif;
+      --body: "Inter", sans-serif;
+      --max: 1180px;
+      --gutter: clamp(1.25rem, 4vw, 3rem);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: var(--laterite-soft); color: var(--ink); }
+
+    .wrap {
+      width: min(var(--max), calc(100% - var(--gutter) * 2));
+      margin-inline: auto;
+    }
+
+    .note {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.55rem var(--gutter);
+      background: var(--ink);
+      color: #f3f1eb;
+      font-size: 0.78rem;
+    }
+    .note button { color: inherit; opacity: 0.7; }
+    .note button:hover { opacity: 1; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(16px);
+    }
+    .note[hidden] ~ header { top: 0; }
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem var(--gutter);
+    }
+    .wordmark {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
+    }
+    .wordmark span { color: var(--laterite); }
+    .nav-pill {
+      display: flex;
+      gap: 0.2rem;
+      padding: 0.28rem;
+      border-radius: 999px;
+      background: var(--band);
+    }
+    .nav-pill a {
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      color: var(--ink);
+      opacity: 0.72;
+    }
+    .nav-pill a:hover,
+    .nav-pill a.is-active {
+      opacity: 1;
+      background: var(--white);
+    }
+    .nav-end {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: transform 0.28s var(--ease), background 0.28s ease, color 0.28s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: var(--band);
+      color: var(--ink);
+    }
+    .btn-ghost:hover { background: #e8e6df; }
+    .burger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--band);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: center;
+      min-height: calc(100svh - 7rem);
+      padding: 2.5rem 0 3.5rem;
+    }
+    .hello {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.85rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      cursor: default;
+    }
+    .hello .wave {
+      display: inline-block;
+      transform-origin: 75% 75%;
+      transition: transform 0.3s var(--ease);
+    }
+    .hello:hover .wave { transform: rotate(16deg) scale(1.12); }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(4.2rem, 11vw, 7.4rem);
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 button {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+    }
+    .hero h1 .dot { color: var(--laterite); }
+
+    .roles {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1.15rem;
+      flex-wrap: wrap;
+    }
+    .role {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      transition: width 0.7s var(--ease), background 0.3s ease;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .role span.label {
+      display: none;
+      margin-left: 0.45rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .role.is-on {
+      width: auto;
+      padding: 0 1rem 0 0.85rem;
+    }
+    .role.is-on span.label { display: inline; }
+    .role[data-role="fullstack"] { background: var(--mist); }
+    .role[data-role="tana"] { background: var(--laterite-soft); }
+    .role[data-role="curious"] { background: var(--leaf); }
+
+    .tagline {
+      min-height: 3.2rem;
+      max-width: 28rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+
+    .btn-ink {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--paper);
+      min-width: 11.5rem;
+    }
+    .btn-ink .swap {
+      display: grid;
+    }
+    .btn-ink .swap span {
+      grid-area: 1 / 1;
+      transition: transform 0.35s var(--ease);
+    }
+    .btn-ink .swap span:last-child { transform: translateY(120%); }
+    .btn-ink:hover .swap span:first-child { transform: translateY(-120%); }
+    .btn-ink:hover .swap span:last-child { transform: translateY(0); }
+
+    .portrait {
+      position: relative;
+      display: grid;
+      place-items: end center;
+    }
+    .portrait img {
+      width: min(100%, 460px);
+      mix-blend-mode: multiply;
+    }
+    .pin {
+      position: absolute;
+      left: 8%;
+      bottom: 12%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.8rem;
+      box-shadow: 0 10px 30px rgba(22, 23, 28, 0.06);
+    }
+
+    /* Sections */
+    .band { background: var(--band); }
+    section { padding: 5.5rem 0; }
+    .kicker {
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+      font-size: 0.95rem;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4.5vw, 3.15rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .chip {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+    .chip.is-on {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .cards { display: grid; gap: 1rem; }
+    .card {
+      display: grid;
+      grid-template-columns: minmax(210px, 0.9fr) 1.2fr;
+      gap: 1.5rem;
+      padding: 1.4rem;
+      background: var(--white);
+      border-radius: 22px;
+    }
+    .card h3 {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.2rem;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.8rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 0.55rem;
+    }
+    .tag {
+      display: inline-flex;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: var(--band);
+      color: var(--ink);
+    }
+    .card p { color: var(--muted); }
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+    }
+    .tech span {
+      font-size: 0.78rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+    }
+
+    /* Quote */
+    .quote {
+      padding: 6.5rem 0;
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+    }
+    .quote .kicker { color: color-mix(in srgb, var(--laterite) 70%, white); }
+    .quote blockquote {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4.6vw, 3.3rem);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.12;
+      max-width: 14ch;
+      margin: 0 auto 1.1rem;
+    }
+    .quote p { color: #c8c6bf; max-width: 36rem; margin: 0 auto; }
+
+    /* Projects */
+    .cases { display: grid; }
+    .case {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr 1.1fr;
+      gap: 1.4rem;
+      padding: 2.1rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .case:last-child { border-bottom: 1px solid var(--line); }
+    .num {
+      font-family: var(--display);
+      font-weight: 800;
+      color: var(--laterite);
+      letter-spacing: -0.04em;
+    }
+    .shot {
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--band);
+      min-height: 180px;
+    }
+    .shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.6s var(--ease);
+    }
+    .case:hover .shot img { transform: scale(1.03); }
+    .case h3 {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+      margin: 0.35rem 0 0.8rem;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .split small {
+      display: block;
+      color: var(--laterite);
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+    .split p { color: var(--muted); font-size: 0.9rem; }
+    .links { display: flex; gap: 0.8rem; font-size: 0.9rem; }
+    .links a { border-bottom: 1px solid var(--line); }
+
+    /* Beyond */
+    .beyond {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .beyond article {
+      padding: 1.4rem;
+      background: var(--white);
+      border-radius: 22px;
+      min-height: 180px;
+    }
+    .beyond .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .beyond h3 {
+      font-family: var(--display);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.03em;
+    }
+    .beyond p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 0 2rem;
+      overflow: hidden;
+    }
+    .close {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: end;
+    }
+    .close h2 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      margin: 0.4rem 0 0.8rem;
+    }
+    .close h2 span { color: var(--laterite); }
+    .close .lead { color: #c8c6bf; max-width: 28rem; margin-bottom: 1.5rem; }
+    .socials { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .socials a, .socials button {
+      color: var(--paper);
+      background: #24262e;
+      border-radius: 999px;
+      padding: 0.65rem 0.95rem;
+      font-size: 0.9rem;
+    }
+    .foot-photo {
+      justify-self: end;
+      width: min(100%, 340px);
+      filter: grayscale(0.35) contrast(1.05);
+    }
+    .legal {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #2b2d35;
+      color: #9a9ca4;
+      font-size: 0.85rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translate(-50%, 12px);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s var(--ease);
+      z-index: 90;
+    }
+    .toast.is-on {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 900px) {
+      .nav { grid-template-columns: 1fr auto; }
+      .nav-pill { display: none; }
+      .nav-pill.is-open {
+        display: flex;
+        position: absolute;
+        top: 64px;
+        left: var(--gutter);
+        right: var(--gutter);
+        flex-direction: column;
+        padding: 0.6rem;
+      }
+      .burger { display: grid; place-items: center; }
+      .nav-end .btn-ghost { display: none; }
+      .hero, .card, .case, .beyond, .close {
+        grid-template-columns: 1fr;
+      }
+      .hero { min-height: auto; }
+      .portrait { order: -1; }
+      .portrait img { width: min(72%, 280px); margin: 0 auto; }
+      .pin { left: 50%; transform: translateX(-50%); bottom: 4%; }
+      .split { grid-template-columns: 1fr; }
+      .foot-photo { justify-self: start; width: min(70%, 240px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="note">
+    Mockup de direction — tes infos, une DA moins générique. Pas le site en prod.
+    <button type="button" id="hide-note">Fermer</button>
+  </div>
+
+  <header>
+    <nav class="nav" aria-label="Navigation">
+      <a class="wordmark" href="#top">Mahery<span>.</span></a>
+      <div class="nav-pill" id="menu">
+        <a href="#parcours">Parcours</a>
+        <a href="#projets">Projets</a>
+        <a href="#au-dela">Au-delà</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-end">
+        <a class="btn btn-ghost" href="CV_Mahery_FR.pdf">CV</a>
+        <button class="burger" id="burger" aria-label="Menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero">
+      <div>
+        <p class="hello"><span class="wave">👋</span> Manao ahoana</p>
+        <h1>
+          <button type="button" id="name-easter" title="Clique.">Mahery<span class="dot">.</span></button>
+        </h1>
+
+        <div class="roles" role="tablist" aria-label="Facets">
+          <button class="role is-on" data-role="fullstack" aria-selected="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 4.5h10M3 8h6M3 11.5h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="label">Fullstack</span>
+          </button>
+          <button class="role" data-role="tana" aria-selected="false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 8.7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 14s5-3.4 5-7.2A5 5 0 1 0 3 6.8C3 10.6 8 14 8 14Z" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span class="label">Tana</span>
+          </button>
+          <button class="role" data-role="curious" aria-selected="false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 11.5 8 3l4 8.5M5.4 8.7h5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="label">Curieux</span>
+          </button>
+        </div>
+
+        <p class="tagline" id="tagline">Je construis des outils que les gens aiment vraiment utiliser.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-ink" href="mailto:maheryramahay@gmail.com">
+            <span class="swap">
+              <span>Écrivons-nous</span>
+              <span>Ouvrir l’email</span>
+            </span>
+          </a>
+          <a class="btn btn-ghost" href="#projets">Voir les projets</a>
+        </div>
+      </div>
+
+      <div class="portrait">
+        <img src="animation/frames/frame-080.webp" alt="Mahery Ramahay" />
+        <span class="pin">Antananarivo · remote ok</span>
+      </div>
+    </section>
+
+    <section class="band" id="parcours">
+      <div class="wrap">
+        <p class="kicker">Où j’ai appris, et où j’ai livré.</p>
+        <h2 class="section-title">Parcours</h2>
+        <div class="filters" role="tablist">
+          <button class="chip is-on" data-filter="all">Tout</button>
+          <button class="chip" data-filter="stage">Stages</button>
+          <button class="chip" data-filter="formation">Formation</button>
+        </div>
+
+        <div class="cards">
+          <article class="card" data-kind="stage">
+            <div>
+              <h3>Développeur Fullstack</h3>
+              <p>GeoMadagascar</p>
+              <div class="meta">
+                <span>Avr. 2026 — Juil. 2026</span>
+                <span class="tag">Stage</span>
+                <span>Antananarivo</span>
+              </div>
+            </div>
+            <div>
+              <p>Refonte de l’interface ConsoMyZone, et optimisation de fonctions métiers pour la perf et l’usage réel.</p>
+              <div class="tech"><span>Symfony</span><span>PHP</span><span>PostgreSQL</span></div>
+            </div>
+          </article>
+
+          <article class="card" data-kind="stage">
+            <div>
+              <h3>Développeur Odoo</h3>
+              <p>Assurances ARO</p>
+              <div class="meta">
+                <span>Sept. 2025 — Nov. 2025</span>
+                <span class="tag">Stage</span>
+                <span>Antananarivo</span>
+              </div>
+            </div>
+            <div>
+              <p>Module de gestion budgétaire custom, suivi des dépenses en temps réel, notifications et documentation de transfert.</p>
+              <div class="tech"><span>Odoo 8</span><span>Python</span><span>XML</span><span>PostgreSQL</span></div>
+            </div>
+          </article>
+
+          <article class="card" data-kind="formation">
+            <div>
+              <h3>Master 1 — Informatique</h3>
+              <p>IT University</p>
+              <div class="meta">
+                <span>Janv. 2026 — Présent</span>
+                <span class="tag">Formation</span>
+                <span>Andoharanofotsy</span>
+              </div>
+            </div>
+            <div>
+              <p>Tronc commun. La suite du chemin commencé en licence, option développement.</p>
+            </div>
+          </article>
+
+          <article class="card" data-kind="formation">
+            <div>
+              <h3>Licence — Informatique</h3>
+              <p>IT University</p>
+              <div class="meta">
+                <span>2022 — 2025</span>
+                <span class="tag">Formation</span>
+                <span>Andoharanofotsy</span>
+              </div>
+            </div>
+            <div>
+              <p>Option développement. C’est là que les projets (Odoo, centre commercial) ont pris forme.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="wrap">
+        <p class="kicker">Ce qui n’est pas sur le CV</p>
+        <blockquote>Le code, c’est une histoire de famille.</blockquote>
+        <p>Petit, je regardais mon père travailler sur son écran. Je ne comprenais pas ces lignes, mais je savais déjà que c’est là que ça se passait. Choisir le développement n’a pas été une surprise. Une évidence.</p>
+      </div>
+    </section>
+
+    <section id="projets">
+      <div class="wrap">
+        <p class="kicker">Ce que j’ai construit.</p>
+        <h2 class="section-title">Projets</h2>
+        <div class="cases">
+          <article class="case">
+            <div class="num">01</div>
+            <div class="shot"><img src="images/projects/asafinder.webp" alt="AsaFinder" /></div>
+            <div>
+              <span class="tag">Personnel</span>
+              <h3>AsaFinder</h3>
+              <div class="split">
+                <div><small>Problème</small><p>Les offres sont dispersées. On jongle entre les sites.</p></div>
+                <div><small>Résultat</small><p>Une recherche unique, calée sur Tana, pour trouver l’offre qui colle.</p></div>
+              </div>
+              <div class="tech"><span>Next.js</span><span>TypeScript</span><span>React</span></div>
+              <div class="links"><a href="https://github.com/MaheryJeremie/job-finder">GitHub</a></div>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="num">02</div>
+            <div class="shot"><img src="images/projects/ai-study-assistant.webp" alt="AI Study Assistant" /></div>
+            <div>
+              <span class="tag">Personnel</span>
+              <h3>AI Study Assistant</h3>
+              <div class="split">
+                <div><small>Problème</small><p>Les PDF longs se relisent, se résument, se perdent.</p></div>
+                <div><small>Résultat</small><p>Résumé, chat RAG, quiz et flashcards à partir du document.</p></div>
+              </div>
+              <div class="tech"><span>Next.js</span><span>Prisma</span><span>RAG</span></div>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="num">03</div>
+            <div class="shot"><img src="images/projects/shopping-centre.webp" alt="Application Centre Commercial" /></div>
+            <div>
+              <span class="tag">Académique</span>
+              <h3>Centre commercial</h3>
+              <div class="split">
+                <div><small>Problème</small><p>Admin, commerçants et clients sans outil commun.</p></div>
+                <div><small>Résultat</small><p>App multi-rôles : boutiques, promos, avis, favoris.</p></div>
+              </div>
+              <div class="tech"><span>Angular</span><span>Node.js</span><span>MongoDB</span></div>
+              <div class="links">
+                <a href="https://gitlab.com/MaheryJeremie/m1p13mean-rehareha-mahery">GitLab</a>
+                <a href="https://m1p13mean-rehareha-mahery.netlify.app/">Live</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="num">04</div>
+            <div class="shot"><img src="images/projects/odoo-budget.webp" alt="Module Gestion Budgétaire Odoo" /></div>
+            <div>
+              <span class="tag">Licence</span>
+              <h3>Gestion budgétaire Odoo</h3>
+              <div class="split">
+                <div><small>Problème</small><p>Le module budget d’Odoo 8 ne collait pas au besoin.</p></div>
+                <div><small>Résultat</small><p>Planification, suivi, dashboard et mails de seuil — from scratch.</p></div>
+              </div>
+              <div class="tech"><span>Odoo</span><span>Python</span><span>PostgreSQL</span></div>
+              <div class="links"><a href="https://github.com/MaheryJeremie/Gestion-budgetaire">GitHub</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="au-dela">
+      <div class="wrap">
+        <p class="kicker">Ce que je porte hors du terminal.</p>
+        <h2 class="section-title">Au-delà</h2>
+        <div class="beyond">
+          <article>
+            <div class="icon" style="background: var(--laterite-soft)">♪</div>
+            <h3>Musique</h3>
+            <p>Le contrepoint du code. Clique sur Mahery. si tu cherches la note cachée.</p>
+          </article>
+          <article>
+            <div class="icon" style="background: var(--mist)">▸</div>
+            <h3>Jeux vidéo</h3>
+            <p>Systèmes, règles, feedback. La même obsession que pour un bon produit.</p>
+          </article>
+          <article>
+            <div class="icon" style="background: var(--leaf)">✺</div>
+            <h3>Madagascar</h3>
+            <p>Antananarivo. Malgache, français, un anglais qui avance. D’ici, ouvert partout.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="wrap close">
+      <div>
+        <p class="kicker" style="color:#c8c6bf">On se parle.</p>
+        <h2>Manao ahoana<span>.</span></h2>
+        <p class="lead">Oser c’est faire. Ouvert aux stages, CDI, freelance — et aux idées un peu bancales.</p>
+        <div class="socials">
+          <a href="mailto:maheryramahay@gmail.com">maheryramahay@gmail.com</a>
+          <button type="button" id="copy-mail">Copier l’email</button>
+          <a href="https://github.com/MaheryJeremie">GitHub</a>
+          <a href="https://www.linkedin.com/in/mahery-ramahay-mandimby-823b6b315/">LinkedIn</a>
+        </div>
+      </div>
+      <img class="foot-photo" src="animation/frames/frame-080.webp" alt="" />
+    </div>
+    <div class="wrap legal">
+      <span>© 2026 Mahery Ramahay Mandimby</span>
+      <a href="#top">Retour en haut</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Izaho i Mahery. ♪</div>
+
+  <script>
+    const lines = {
+      fullstack: "Je construis des outils que les gens aiment vraiment utiliser.",
+      tana: "Basé à Antananarivo. Ouvert au remote, partout.",
+      curious: "Musique, jeux, produits tech — et le terminal de mon père."
+    };
+
+    const tagline = document.getElementById("tagline");
+    document.querySelectorAll(".role").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".role").forEach((b) => {
+          b.classList.toggle("is-on", b === btn);
+          b.setAttribute("aria-selected", b === btn ? "true" : "false");
+        });
+        tagline.textContent = lines[btn.dataset.role];
+      });
+    });
+
+    document.querySelectorAll(".chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".chip").forEach((c) => c.classList.toggle("is-on", c === chip));
+        const f = chip.dataset.filter;
+        document.querySelectorAll(".card").forEach((card) => {
+          card.style.display = f === "all" || card.dataset.kind === f ? "" : "none";
+        });
+      });
+    });
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    function say(msg) {
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-on"), 1800);
+    }
+
+    document.getElementById("name-easter").addEventListener("click", () => say("Izaho i Mahery. ♪"));
+    document.getElementById("copy-mail").addEventListener("click", async () => {
+      await navigator.clipboard.writeText("maheryramahay@gmail.com");
+      say("Email copié.");
+    });
+    document.getElementById("hide-note").addEventListener("click", () => {
+      document.querySelector(".note").hidden = true;
+    });
+    document.getElementById("burger").addEventListener("click", () => {
+      document.getElementById("menu").classList.toggle("is-open");
+    });
+  </script>
+</body>
+</html>
