@@ -23,7 +23,7 @@ export const en = {
   },
   hero: {
     eyebrow: 'Fullstack Developer',
-    available: 'Available',
+    available: 'Unavailable for now',
     name1: 'Mahery',
     name2: 'Ramahay',
     cta: 'See my work',
@@ -167,9 +167,17 @@ export const en = {
     subtitle: 'My academic background',
     items: [
       {
+        degree: 'Master 2 — MBDS',
+        school: 'IT University',
+        period: 'November 2026 — Present',
+        location: 'Andoharanofotsy, Madagascar',
+        description:
+          'Mobiquity, Databases and Systems Integration — in partnership with Université Côte d’Azur.',
+      },
+      {
         degree: 'Master 1 — Computer Science',
         school: 'IT University',
-        period: 'January 2026 — Present',
+        period: 'January 2026 — October 2026',
         location: 'Andoharanofotsy, Madagascar',
         description: 'Common core curriculum.',
       },
@@ -195,12 +203,13 @@ export const en = {
       {
         role: 'Fullstack Developer',
         company: 'GeoMadagascar',
-        period: 'April 2026 - July 2026',
+        period: 'April 2026 — Present',
         location: 'Antananarivo, Madagascar',
         type: 'Internship',
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
         bullets: [
-          'Redesign and modernisation of the ConsoMyZone website interface.',
+          'Creation of a homepage for the ConsoMyZone website.',
+          'Redesign and modernisation of certain pages of the ConsoMyZone website.',
           'Optimisation of key business functions to improve performance and user experience.',
         ],
       },
@@ -223,7 +232,7 @@ export const en = {
   cta: {
     title: "Let's build\nsomething.",
     subtitle:
-      'Open to opportunities — internships, full-time roles, freelance projects.',
+      'Unavailable for new opportunities right now — feel free to reach out for later.',
     btnCV: 'Download CV',
     btnContact: 'Get in touch',
     email: 'maheryramahay@gmail.com',

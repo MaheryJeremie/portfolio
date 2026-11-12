@@ -23,7 +23,7 @@ export const fr = {
   },
   hero: {
     eyebrow: 'Développeur Fullstack',
-    available: 'Disponible',
+    available: 'Indisponible pour l’instant',
     name1: 'Mahery',
     name2: 'Ramahay',
     cta: 'Voir mes projets',
@@ -167,9 +167,17 @@ export const fr = {
     subtitle: 'Mon parcours académique',
     items: [
       {
+        degree: 'Master 2 — MBDS',
+        school: 'IT University',
+        period: 'Novembre 2026 — Présent',
+        location: 'Andoharanofotsy, Madagascar',
+        description:
+          'Mobiquité, Bases de Données et Intégration de Systèmes — en partenariat avec l’Université Côte d’Azur.',
+      },
+      {
         degree: 'Master 1 — Informatique',
         school: 'IT University',
-        period: 'Janvier 2026 — Présent',
+        period: 'Janvier 2026 — Octobre 2026',
         location: 'Andoharanofotsy, Madagascar',
         description: 'Tronc commun.',
       },
@@ -195,13 +203,14 @@ export const fr = {
       {
         role: 'Développeur Fullstack',
         company: 'GeoMadagascar',
-        period: 'Avril 2026 - Juillet 2026',
+        period: 'Avril 2026 — Présent',
         location: 'Antananarivo, Madagascar',
         type: 'Stage',
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
         bullets: [
-          'Refonte et modernisation de l\'interface du site ConsoMyZone.',
-          'Optimisation de certaines fonctions métiers pour améliorer les performances et l\'expérience utilisateur.',
+          'Création d’une page d’accueil pour le site ConsoMyZone.',
+          'Refonte et modernisation de certaines pages du site ConsoMyZone.',
+          'Optimisation de certaines fonctions métiers pour améliorer les performances et l’expérience utilisateur.',
         ],
       },
       {
@@ -223,7 +232,7 @@ export const fr = {
   cta: {
     title: 'Construisons\nquelque chose.',
     subtitle:
-      'Ouvert aux opportunités — stages, CDI, projets freelance.',
+      'Indisponible pour de nouvelles opportunités pour l’instant — n’hésite pas à me contacter plus tard.',
     btnCV: 'Télécharger CV',
     btnContact: 'Me contacter',
     email: 'maheryramahay@gmail.com',

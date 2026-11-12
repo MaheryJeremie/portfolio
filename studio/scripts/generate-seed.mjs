@@ -37,7 +37,7 @@ docs.push({
   },
   hero: {
     eyebrow: L('Développeur Fullstack', 'Fullstack Developer'),
-    available: L('Disponible', 'Available'),
+    available: L('Indisponible pour l’instant', 'Unavailable for now'),
     name1: 'Mahery',
     name2: 'Ramahay',
     cta: L('Voir mes projets', 'See my work'),
@@ -119,8 +119,8 @@ docs.push({
   cta: {
     title: T('Construisons\nquelque chose.', "Let's build\nsomething."),
     subtitle: T(
-      'Ouvert aux opportunités — stages, CDI, projets freelance.',
-      'Open to opportunities — internships, full-time roles, freelance projects.',
+      'Indisponible pour de nouvelles opportunités pour l’instant — n’hésite pas à me contacter plus tard.',
+      'Unavailable for new opportunities right now — feel free to reach out for later.',
     ),
     btnCV: L('Télécharger CV', 'Download CV'),
     btnContact: L('Me contacter', 'Get in touch'),
@@ -256,14 +256,18 @@ docs.push(
     order: 0,
     role: L('Développeur Fullstack', 'Fullstack Developer'),
     company: 'GeoMadagascar',
-    period: L('Avril 2026 - Juillet 2026', 'April 2026 - July 2026'),
+    period: L('Avril 2026 — Présent', 'April 2026 — Present'),
     location: L('Antananarivo, Madagascar', 'Antananarivo, Madagascar'),
     type: L('Stage', 'Internship'),
     tech: ['Symfony', 'PHP', 'PostgreSQL'],
     bullets: [
       T(
-        "Refonte et modernisation de l'interface du site ConsoMyZone.",
-        'Redesign and modernisation of the ConsoMyZone website interface.',
+        'Création d’une page d’accueil pour le site ConsoMyZone.',
+        'Creation of a homepage for the ConsoMyZone website.',
+      ),
+      T(
+        'Refonte et modernisation de certaines pages du site ConsoMyZone.',
+        'Redesign and modernisation of certain pages of the ConsoMyZone website.',
       ),
       T(
         "Optimisation de certaines fonctions métiers pour améliorer les performances et l'expérience utilisateur.",
@@ -304,19 +308,32 @@ docs.push(
 
 docs.push(
   {
-    _id: 'education-m1',
+    _id: 'education-m2',
     _type: 'education',
     order: 0,
+    degree: L('Master 2 — MBDS', 'Master 2 — MBDS'),
+    school: 'IT University',
+    period: L('Novembre 2026 — Présent', 'November 2026 — Present'),
+    location: L('Andoharanofotsy, Madagascar', 'Andoharanofotsy, Madagascar'),
+    description: T(
+      'Mobiquité, Bases de Données et Intégration de Systèmes — en partenariat avec l’Université Côte d’Azur.',
+      'Mobiquity, Databases and Systems Integration — in partnership with Université Côte d’Azur.',
+    ),
+  },
+  {
+    _id: 'education-m1',
+    _type: 'education',
+    order: 1,
     degree: L('Master 1 — Informatique', 'Master 1 — Computer Science'),
     school: 'IT University',
-    period: L('Janvier 2026 — Présent', 'January 2026 — Present'),
+    period: L('Janvier 2026 — Octobre 2026', 'January 2026 — October 2026'),
     location: L('Andoharanofotsy, Madagascar', 'Andoharanofotsy, Madagascar'),
     description: T('Tronc commun.', 'Common core curriculum.'),
   },
   {
     _id: 'education-licence',
     _type: 'education',
-    order: 1,
+    order: 2,
     degree: L('Licence — Informatique', "Bachelor's Degree — Computer Science"),
     school: 'IT University',
     period: L('Septembre 2022 — Décembre 2025', 'September 2022 — December 2025'),
@@ -326,7 +343,7 @@ docs.push(
   {
     _id: 'education-bac',
     _type: 'education',
-    order: 2,
+    order: 3,
     degree: L('Baccalauréat — Série D', 'High School Diploma (Baccalauréat) — Science'),
     school: 'Collège Saint Michel',
     period: L('2010 — 2022', '2010 — 2022'),
