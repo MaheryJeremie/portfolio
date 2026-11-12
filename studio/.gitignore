@@ -4,3 +4,6 @@ dist
 *.log
 .env
 .env.*
+.cursor
+.impeccable
+.github
