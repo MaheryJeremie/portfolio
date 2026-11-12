@@ -6,4 +6,4 @@ dist
 .env.*
 .cursor
 .impeccable
-.github
+.github\
