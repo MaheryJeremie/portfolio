@@ -208,9 +208,10 @@ export const fr = {
         type: 'Stage',
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
         bullets: [
-          'Création d’une page d’accueil pour le site ConsoMyZone.',
-          'Refonte et modernisation de certaines pages du site ConsoMyZone.',
-          'Optimisation de certaines fonctions métiers pour améliorer les performances et l’expérience utilisateur.',
+          'Refonte totale du site web de GeoMadagascar.',
+          'Création de la page d’accueil de l’application ConsoMyZone.',
+          'Modernisation de certaines interfaces de l’application.',
+          'Développement de nouvelles fonctionnalités pour l’application ConsoMyZone.',
         ],
       },
       {

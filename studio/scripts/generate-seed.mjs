@@ -262,16 +262,20 @@ docs.push(
     tech: ['Symfony', 'PHP', 'PostgreSQL'],
     bullets: [
       T(
-        'Création d’une page d’accueil pour le site ConsoMyZone.',
-        'Creation of a homepage for the ConsoMyZone website.',
+        'Refonte totale du site web de GeoMadagascar.',
+        'Full redesign of the GeoMadagascar website.',
       ),
       T(
-        'Refonte et modernisation de certaines pages du site ConsoMyZone.',
-        'Redesign and modernisation of certain pages of the ConsoMyZone website.',
+        'Création de la page d’accueil de l’application ConsoMyZone.',
+        'Creation of the ConsoMyZone application homepage.',
       ),
       T(
-        "Optimisation de certaines fonctions métiers pour améliorer les performances et l'expérience utilisateur.",
-        'Optimisation of key business functions to improve performance and user experience.',
+        'Modernisation de certaines interfaces de l’application.',
+        'Modernisation of several application interfaces.',
+      ),
+      T(
+        'Développement de nouvelles fonctionnalités pour l’application ConsoMyZone.',
+        'Development of new features for the ConsoMyZone application.',
       ),
     ],
   },

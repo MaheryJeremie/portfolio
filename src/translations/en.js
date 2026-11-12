@@ -208,9 +208,10 @@ export const en = {
         type: 'Internship',
         tech: ['Symfony', 'PHP', 'PostgreSQL'],
         bullets: [
-          'Creation of a homepage for the ConsoMyZone website.',
-          'Redesign and modernisation of certain pages of the ConsoMyZone website.',
-          'Optimisation of key business functions to improve performance and user experience.',
+          'Full redesign of the GeoMadagascar website.',
+          'Creation of the ConsoMyZone application homepage.',
+          'Modernisation of several application interfaces.',
+          'Development of new features for the ConsoMyZone application.',
         ],
       },
       {

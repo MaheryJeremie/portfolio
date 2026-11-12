@@ -1,0 +1,301 @@
+/* ── CV Mahery — palette portfolio, ATS-friendly, print-ready ── */
+:root {
+  --color-bg-page: #f3f4f6;
+  --color-bg-cv: #f8fafc;
+  --color-accent: #3b82f6;
+  --color-accent-dark: #2563eb;
+  --color-heading: #000000;
+  --color-text: #4b5563;
+  --color-text-muted: #6b7280;
+  --color-border: #dee2e6;
+  --color-border-light: #e9ecef;
+  --gradient-name: linear-gradient(90deg, #94a3b8 0%, #3b82f6 100%);
+}
+
+@page {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10.5pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg-page);
+  line-height: 1.45;
+}
+
+.cv {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: var(--color-bg-cv);
+  padding: 14mm 16mm;
+}
+
+/* ── Header ── */
+.cv-header {
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.cv-header__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cv-header__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cv-photo {
+  width: 24mm;
+  height: 30mm;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 6px;
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+  background: #eff6ff;
+}
+
+.cv-name {
+  font-size: 22pt;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-heading);
+}
+
+.cv-name__accent {
+  background: var(--gradient-name);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.cv-title {
+  font-size: 11.5pt;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 4px;
+}
+
+.cv-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 18px;
+  margin-top: 9px;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-contact li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.2pt;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.cv-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.cv-contact a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.cv-contact a:hover {
+  color: var(--color-accent);
+}
+
+/* ── Sections ── */
+.section {
+  margin-bottom: 13px;
+  page-break-inside: avoid;
+}
+
+.section-title {
+  font-size: 10.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-heading);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+}
+
+/* ── Profile ── */
+.cv-summary {
+  font-size: 10pt;
+  color: var(--color-text);
+  text-align: justify;
+}
+
+/* ── Skills (ATS keywords) ── */
+.skills-grid {
+  display: block;
+}
+
+.skill-row {
+  font-size: 9.8pt;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.skill-row strong {
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+/* ── Experience / Education / Projects ── */
+.entry {
+  margin-bottom: 10px;
+  page-break-inside: avoid;
+}
+
+.entry:last-child {
+  margin-bottom: 0;
+}
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin-bottom: 2px;
+}
+
+.entry-role {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.entry-org {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.entry-meta {
+  font-size: 9.2pt;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.entry-sub {
+  font-size: 9.2pt;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.entry-tech {
+  font-size: 9pt;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.entry ul {
+  margin-left: 16px;
+  padding: 0;
+}
+
+.entry li {
+  font-size: 9.8pt;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.entry li::marker {
+  color: var(--color-accent);
+}
+
+/* ── Two-column footer blocks ── */
+.two-col {
+  display: flex;
+  gap: 24px;
+}
+
+.two-col .section {
+  flex: 1;
+}
+
+.lang-list,
+.soft-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lang-list li,
+.soft-list li {
+  font-size: 9.8pt;
+  margin-bottom: 3px;
+  color: var(--color-text);
+}
+
+.lang-list strong {
+  display: inline-block;
+  min-width: 72px;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+/* ── Print ── */
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .cv {
+    padding: 0;
+    max-width: none;
+    background: #fff;
+  }
+
+  .cv-contact a {
+    color: var(--color-text);
+  }
+
+  .cv-name__accent {
+    -webkit-text-fill-color: var(--color-accent);
+    color: var(--color-accent);
+    background: none;
+  }
+
+  a[href]::after {
+    content: none;
+  }
+}
+
+@media screen {
+  body {
+    padding: 20px 0 40px;
+  }
+}
